@@ -1,0 +1,1809 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Pocketflows API",
+    "version": "0.0.1"
+  },
+  "servers": [
+    {
+      "url": "https://api.pocketflows.com",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/rewards_programs": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "rewards_programs": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "points_earned_per_dollar_spent": {
+                            "type": "integer"
+                          },
+                          "point_redemption_value": {
+                            "type": "string"
+                          },
+                          "points_for_member_class_attendance": {
+                            "type": "integer"
+                          },
+                          "points_for_referring_new_student": {
+                            "type": "integer"
+                          },
+                          "points_for_referring_new_student_that_signs_up": {
+                            "type": "integer"
+                          },
+                          "points_for_every_ten_classes_non_member": {
+                            "type": "integer"
+                          },
+                          "points_for_first_visit_in_three_months": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "points_earned_per_dollar_spent": {
+                    "type": "integer"
+                  },
+                  "point_redemption_value": {
+                    "type": "string"
+                  },
+                  "points_for_member_class_attendance": {
+                    "type": "integer"
+                  },
+                  "points_for_referring_new_student": {
+                    "type": "integer"
+                  },
+                  "points_for_referring_new_student_that_signs_up": {
+                    "type": "integer"
+                  },
+                  "points_for_every_ten_classes_non_member": {
+                    "type": "integer"
+                  },
+                  "points_for_first_visit_in_three_months": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "points_earned_per_dollar_spent": {
+                      "type": "integer"
+                    },
+                    "point_redemption_value": {
+                      "type": "string"
+                    },
+                    "points_for_member_class_attendance": {
+                      "type": "integer"
+                    },
+                    "points_for_referring_new_student": {
+                      "type": "integer"
+                    },
+                    "points_for_referring_new_student_that_signs_up": {
+                      "type": "integer"
+                    },
+                    "points_for_every_ten_classes_non_member": {
+                      "type": "integer"
+                    },
+                    "points_for_first_visit_in_three_months": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rewards_programs/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "points_earned_per_dollar_spent": {
+                      "type": "integer"
+                    },
+                    "point_redemption_value": {
+                      "type": "string"
+                    },
+                    "points_for_member_class_attendance": {
+                      "type": "integer"
+                    },
+                    "points_for_referring_new_student": {
+                      "type": "integer"
+                    },
+                    "points_for_referring_new_student_that_signs_up": {
+                      "type": "integer"
+                    },
+                    "points_for_every_ten_classes_non_member": {
+                      "type": "integer"
+                    },
+                    "points_for_first_visit_in_three_months": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rewards_programs/{id}/members": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "members": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "user": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "phone_number": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "rewards_program": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "points_earned_per_dollar_spent": {
+                                    "type": "integer"
+                                  },
+                                  "point_redemption_value": {
+                                    "type": "string"
+                                  },
+                                  "points_for_member_class_attendance": {
+                                    "type": "integer"
+                                  },
+                                  "points_for_referring_new_student": {
+                                    "type": "integer"
+                                  },
+                                  "points_for_referring_new_student_that_signs_up": {
+                                    "type": "integer"
+                                  },
+                                  "points_for_every_ten_classes_non_member": {
+                                    "type": "integer"
+                                  },
+                                  "points_for_first_visit_in_three_months": {
+                                    "type": "integer"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "point_total": {
+                            "type": "integer"
+                          },
+                          "point_balance": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "user": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "phone_number": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "rewards_program": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "points_earned_per_dollar_spent": {
+                              "type": "integer"
+                            },
+                            "point_redemption_value": {
+                              "type": "string"
+                            },
+                            "points_for_member_class_attendance": {
+                              "type": "integer"
+                            },
+                            "points_for_referring_new_student": {
+                              "type": "integer"
+                            },
+                            "points_for_referring_new_student_that_signs_up": {
+                              "type": "integer"
+                            },
+                            "points_for_every_ten_classes_non_member": {
+                              "type": "integer"
+                            },
+                            "points_for_first_visit_in_three_months": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "point_total": {
+                      "type": "integer"
+                    },
+                    "point_balance": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rewards_programs/{id}/members/{member_id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "member_id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "user": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "phone_number": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "rewards_program": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "points_earned_per_dollar_spent": {
+                              "type": "integer"
+                            },
+                            "point_redemption_value": {
+                              "type": "string"
+                            },
+                            "points_for_member_class_attendance": {
+                              "type": "integer"
+                            },
+                            "points_for_referring_new_student": {
+                              "type": "integer"
+                            },
+                            "points_for_referring_new_student_that_signs_up": {
+                              "type": "integer"
+                            },
+                            "points_for_every_ten_classes_non_member": {
+                              "type": "integer"
+                            },
+                            "points_for_first_visit_in_three_months": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "point_total": {
+                      "type": "integer"
+                    },
+                    "point_balance": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rewards_programs/{id}/locations": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "locations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "rewards_program": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "points_earned_per_dollar_spent": {
+                                    "type": "integer"
+                                  },
+                                  "point_redemption_value": {
+                                    "type": "string"
+                                  },
+                                  "points_for_member_class_attendance": {
+                                    "type": "integer"
+                                  },
+                                  "points_for_referring_new_student": {
+                                    "type": "integer"
+                                  },
+                                  "points_for_referring_new_student_that_signs_up": {
+                                    "type": "integer"
+                                  },
+                                  "points_for_every_ten_classes_non_member": {
+                                    "type": "integer"
+                                  },
+                                  "points_for_first_visit_in_three_months": {
+                                    "type": "integer"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rewards_programs/{id}/add_location": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "location_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "rewards_program": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "points_earned_per_dollar_spent": {
+                              "type": "integer"
+                            },
+                            "point_redemption_value": {
+                              "type": "string"
+                            },
+                            "points_for_member_class_attendance": {
+                              "type": "integer"
+                            },
+                            "points_for_referring_new_student": {
+                              "type": "integer"
+                            },
+                            "points_for_referring_new_student_that_signs_up": {
+                              "type": "integer"
+                            },
+                            "points_for_every_ten_classes_non_member": {
+                              "type": "integer"
+                            },
+                            "points_for_first_visit_in_three_months": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rewards_programs/{id}/tiers": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tiers": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "minimum_points": {
+                            "type": "integer"
+                          },
+                          "perks": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "minimum_points": {
+                    "type": "integer"
+                  },
+                  "perks": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "minimum_points": {
+                      "type": "integer"
+                    },
+                    "perks": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/locations": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "locations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "rewards_program": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "points_earned_per_dollar_spent": {
+                                    "type": "integer"
+                                  },
+                                  "point_redemption_value": {
+                                    "type": "string"
+                                  },
+                                  "points_for_member_class_attendance": {
+                                    "type": "integer"
+                                  },
+                                  "points_for_referring_new_student": {
+                                    "type": "integer"
+                                  },
+                                  "points_for_referring_new_student_that_signs_up": {
+                                    "type": "integer"
+                                  },
+                                  "points_for_every_ten_classes_non_member": {
+                                    "type": "integer"
+                                  },
+                                  "points_for_first_visit_in_three_months": {
+                                    "type": "integer"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "rewards_program_id": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "rewards_program": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "points_earned_per_dollar_spent": {
+                              "type": "integer"
+                            },
+                            "point_redemption_value": {
+                              "type": "string"
+                            },
+                            "points_for_member_class_attendance": {
+                              "type": "integer"
+                            },
+                            "points_for_referring_new_student": {
+                              "type": "integer"
+                            },
+                            "points_for_referring_new_student_that_signs_up": {
+                              "type": "integer"
+                            },
+                            "points_for_every_ten_classes_non_member": {
+                              "type": "integer"
+                            },
+                            "points_for_first_visit_in_three_months": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/locations/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "rewards_program": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "points_earned_per_dollar_spent": {
+                              "type": "integer"
+                            },
+                            "point_redemption_value": {
+                              "type": "string"
+                            },
+                            "points_for_member_class_attendance": {
+                              "type": "integer"
+                            },
+                            "points_for_referring_new_student": {
+                              "type": "integer"
+                            },
+                            "points_for_referring_new_student_that_signs_up": {
+                              "type": "integer"
+                            },
+                            "points_for_every_ten_classes_non_member": {
+                              "type": "integer"
+                            },
+                            "points_for_first_visit_in_three_months": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/locations/{id}/members": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "members": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "user": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "phone_number": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "rewards_program": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "points_earned_per_dollar_spent": {
+                                    "type": "integer"
+                                  },
+                                  "point_redemption_value": {
+                                    "type": "string"
+                                  },
+                                  "points_for_member_class_attendance": {
+                                    "type": "integer"
+                                  },
+                                  "points_for_referring_new_student": {
+                                    "type": "integer"
+                                  },
+                                  "points_for_referring_new_student_that_signs_up": {
+                                    "type": "integer"
+                                  },
+                                  "points_for_every_ten_classes_non_member": {
+                                    "type": "integer"
+                                  },
+                                  "points_for_first_visit_in_three_months": {
+                                    "type": "integer"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "point_total": {
+                            "type": "integer"
+                          },
+                          "point_balance": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "user": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "phone_number": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "rewards_program": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "points_earned_per_dollar_spent": {
+                              "type": "integer"
+                            },
+                            "point_redemption_value": {
+                              "type": "string"
+                            },
+                            "points_for_member_class_attendance": {
+                              "type": "integer"
+                            },
+                            "points_for_referring_new_student": {
+                              "type": "integer"
+                            },
+                            "points_for_referring_new_student_that_signs_up": {
+                              "type": "integer"
+                            },
+                            "points_for_every_ten_classes_non_member": {
+                              "type": "integer"
+                            },
+                            "points_for_first_visit_in_three_months": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "point_total": {
+                      "type": "integer"
+                    },
+                    "point_balance": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/locations/{id}/change_rewards_program": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "rewards_program_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "rewards_program": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "points_earned_per_dollar_spent": {
+                              "type": "integer"
+                            },
+                            "point_redemption_value": {
+                              "type": "string"
+                            },
+                            "points_for_member_class_attendance": {
+                              "type": "integer"
+                            },
+                            "points_for_referring_new_student": {
+                              "type": "integer"
+                            },
+                            "points_for_referring_new_student_that_signs_up": {
+                              "type": "integer"
+                            },
+                            "points_for_every_ten_classes_non_member": {
+                              "type": "integer"
+                            },
+                            "points_for_first_visit_in_three_months": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "users": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "phone_number": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phone_number": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "phone_number": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "phone_number": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/track": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "event": {
+                    "type": "string"
+                  },
+                  "member_id": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "location_member_id": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "rewards_program_id": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "location_id": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "price": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "points": {
+                    "type": "integer",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "event_name": {
+                      "type": "string"
+                    },
+                    "member": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "user": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "string"
+                                    },
+                                    "phone_number": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "rewards_program": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "string"
+                                    },
+                                    "points_earned_per_dollar_spent": {
+                                      "type": "integer"
+                                    },
+                                    "point_redemption_value": {
+                                      "type": "string"
+                                    },
+                                    "points_for_member_class_attendance": {
+                                      "type": "integer"
+                                    },
+                                    "points_for_referring_new_student": {
+                                      "type": "integer"
+                                    },
+                                    "points_for_referring_new_student_that_signs_up": {
+                                      "type": "integer"
+                                    },
+                                    "points_for_every_ten_classes_non_member": {
+                                      "type": "integer"
+                                    },
+                                    "points_for_first_visit_in_three_months": {
+                                      "type": "integer"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "point_total": {
+                              "type": "integer"
+                            },
+                            "point_balance": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rewards_programs/{id}/flows": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "expires_at": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/flows/{id}/embed": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/flows/{id}/embed/analytics": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/employees/{id}/emails": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "emails": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emails/{id}/threads": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "threads": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emails/{id}/send": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "to": {
+                    "type": "string"
+                  },
+                  "subject": {
+                    "type": "string"
+                  },
+                  "body": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/threads/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/threads/{id}/reply": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/employees/{id}/emails/connect/gmail": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "yeah yeah",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
