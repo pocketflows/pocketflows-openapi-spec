@@ -24,33 +24,7 @@
                     "rewards_programs": {
                       "type": "array",
                       "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          },
-                          "points_earned_per_dollar_spent": {
-                            "type": "integer"
-                          },
-                          "point_redemption_value": {
-                            "type": "string"
-                          },
-                          "points_for_member_class_attendance": {
-                            "type": "integer"
-                          },
-                          "points_for_referring_new_student": {
-                            "type": "integer"
-                          },
-                          "points_for_referring_new_student_that_signs_up": {
-                            "type": "integer"
-                          },
-                          "points_for_every_ten_classes_non_member": {
-                            "type": "integer"
-                          },
-                          "points_for_first_visit_in_three_months": {
-                            "type": "integer"
-                          }
-                        }
+                        "$ref": "#/components/schemas/RewardsProgram"
                       }
                     }
                   }
@@ -99,33 +73,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "points_earned_per_dollar_spent": {
-                      "type": "integer"
-                    },
-                    "point_redemption_value": {
-                      "type": "string"
-                    },
-                    "points_for_member_class_attendance": {
-                      "type": "integer"
-                    },
-                    "points_for_referring_new_student": {
-                      "type": "integer"
-                    },
-                    "points_for_referring_new_student_that_signs_up": {
-                      "type": "integer"
-                    },
-                    "points_for_every_ten_classes_non_member": {
-                      "type": "integer"
-                    },
-                    "points_for_first_visit_in_three_months": {
-                      "type": "integer"
-                    }
-                  }
+                  "$ref": "#/components/schemas/RewardsProgram"
                 }
               }
             }
@@ -151,33 +99,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "points_earned_per_dollar_spent": {
-                      "type": "integer"
-                    },
-                    "point_redemption_value": {
-                      "type": "string"
-                    },
-                    "points_for_member_class_attendance": {
-                      "type": "integer"
-                    },
-                    "points_for_referring_new_student": {
-                      "type": "integer"
-                    },
-                    "points_for_referring_new_student_that_signs_up": {
-                      "type": "integer"
-                    },
-                    "points_for_every_ten_classes_non_member": {
-                      "type": "integer"
-                    },
-                    "points_for_first_visit_in_three_months": {
-                      "type": "integer"
-                    }
-                  }
+                  "$ref": "#/components/schemas/RewardsProgram"
                 }
               }
             }
@@ -219,15 +141,7 @@
                                 "type": "string"
                               },
                               {
-                                "type": "object",
-                                "properties": {
-                                  "id": {
-                                    "type": "string"
-                                  },
-                                  "phone_number": {
-                                    "type": "string"
-                                  }
-                                }
+                                "$ref": "#/components/schemas/User"
                               }
                             ]
                           },
@@ -237,33 +151,7 @@
                                 "type": "string"
                               },
                               {
-                                "type": "object",
-                                "properties": {
-                                  "id": {
-                                    "type": "string"
-                                  },
-                                  "points_earned_per_dollar_spent": {
-                                    "type": "integer"
-                                  },
-                                  "point_redemption_value": {
-                                    "type": "string"
-                                  },
-                                  "points_for_member_class_attendance": {
-                                    "type": "integer"
-                                  },
-                                  "points_for_referring_new_student": {
-                                    "type": "integer"
-                                  },
-                                  "points_for_referring_new_student_that_signs_up": {
-                                    "type": "integer"
-                                  },
-                                  "points_for_every_ten_classes_non_member": {
-                                    "type": "integer"
-                                  },
-                                  "points_for_first_visit_in_three_months": {
-                                    "type": "integer"
-                                  }
-                                }
+                                "$ref": "#/components/schemas/RewardsProgram"
                               }
                             ]
                           },
@@ -325,15 +213,7 @@
                           "type": "string"
                         },
                         {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "string"
-                            },
-                            "phone_number": {
-                              "type": "string"
-                            }
-                          }
+                          "$ref": "#/components/schemas/User"
                         }
                       ]
                     },
@@ -343,33 +223,7 @@
                           "type": "string"
                         },
                         {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "string"
-                            },
-                            "points_earned_per_dollar_spent": {
-                              "type": "integer"
-                            },
-                            "point_redemption_value": {
-                              "type": "string"
-                            },
-                            "points_for_member_class_attendance": {
-                              "type": "integer"
-                            },
-                            "points_for_referring_new_student": {
-                              "type": "integer"
-                            },
-                            "points_for_referring_new_student_that_signs_up": {
-                              "type": "integer"
-                            },
-                            "points_for_every_ten_classes_non_member": {
-                              "type": "integer"
-                            },
-                            "points_for_first_visit_in_three_months": {
-                              "type": "integer"
-                            }
-                          }
+                          "$ref": "#/components/schemas/RewardsProgram"
                         }
                       ]
                     },
@@ -424,15 +278,7 @@
                           "type": "string"
                         },
                         {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "string"
-                            },
-                            "phone_number": {
-                              "type": "string"
-                            }
-                          }
+                          "$ref": "#/components/schemas/User"
                         }
                       ]
                     },
@@ -442,33 +288,7 @@
                           "type": "string"
                         },
                         {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "string"
-                            },
-                            "points_earned_per_dollar_spent": {
-                              "type": "integer"
-                            },
-                            "point_redemption_value": {
-                              "type": "string"
-                            },
-                            "points_for_member_class_attendance": {
-                              "type": "integer"
-                            },
-                            "points_for_referring_new_student": {
-                              "type": "integer"
-                            },
-                            "points_for_referring_new_student_that_signs_up": {
-                              "type": "integer"
-                            },
-                            "points_for_every_ten_classes_non_member": {
-                              "type": "integer"
-                            },
-                            "points_for_first_visit_in_three_months": {
-                              "type": "integer"
-                            }
-                          }
+                          "$ref": "#/components/schemas/RewardsProgram"
                         }
                       ]
                     },
@@ -509,48 +329,7 @@
                     "locations": {
                       "type": "array",
                       "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          },
-                          "rewards_program": {
-                            "anyOf": [
-                              {
-                                "type": "string"
-                              },
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "id": {
-                                    "type": "string"
-                                  },
-                                  "points_earned_per_dollar_spent": {
-                                    "type": "integer"
-                                  },
-                                  "point_redemption_value": {
-                                    "type": "string"
-                                  },
-                                  "points_for_member_class_attendance": {
-                                    "type": "integer"
-                                  },
-                                  "points_for_referring_new_student": {
-                                    "type": "integer"
-                                  },
-                                  "points_for_referring_new_student_that_signs_up": {
-                                    "type": "integer"
-                                  },
-                                  "points_for_every_ten_classes_non_member": {
-                                    "type": "integer"
-                                  },
-                                  "points_for_first_visit_in_three_months": {
-                                    "type": "integer"
-                                  }
-                                }
-                              }
-                            ]
-                          }
-                        }
+                        "$ref": "#/components/schemas/Location"
                       }
                     }
                   }
@@ -593,48 +372,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "rewards_program": {
-                      "anyOf": [
-                        {
-                          "type": "string"
-                        },
-                        {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "string"
-                            },
-                            "points_earned_per_dollar_spent": {
-                              "type": "integer"
-                            },
-                            "point_redemption_value": {
-                              "type": "string"
-                            },
-                            "points_for_member_class_attendance": {
-                              "type": "integer"
-                            },
-                            "points_for_referring_new_student": {
-                              "type": "integer"
-                            },
-                            "points_for_referring_new_student_that_signs_up": {
-                              "type": "integer"
-                            },
-                            "points_for_every_ten_classes_non_member": {
-                              "type": "integer"
-                            },
-                            "points_for_first_visit_in_three_months": {
-                              "type": "integer"
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
+                  "$ref": "#/components/schemas/Location"
                 }
               }
             }
@@ -665,24 +403,7 @@
                     "tiers": {
                       "type": "array",
                       "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          },
-                          "name": {
-                            "type": "string"
-                          },
-                          "minimum_points": {
-                            "type": "integer"
-                          },
-                          "perks": {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            }
-                          }
-                        }
+                        "$ref": "#/components/schemas/Tier"
                       }
                     }
                   }
@@ -732,24 +453,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "minimum_points": {
-                      "type": "integer"
-                    },
-                    "perks": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    }
-                  }
+                  "$ref": "#/components/schemas/Tier"
                 }
               }
             }
@@ -770,48 +474,7 @@
                     "locations": {
                       "type": "array",
                       "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          },
-                          "rewards_program": {
-                            "anyOf": [
-                              {
-                                "type": "string"
-                              },
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "id": {
-                                    "type": "string"
-                                  },
-                                  "points_earned_per_dollar_spent": {
-                                    "type": "integer"
-                                  },
-                                  "point_redemption_value": {
-                                    "type": "string"
-                                  },
-                                  "points_for_member_class_attendance": {
-                                    "type": "integer"
-                                  },
-                                  "points_for_referring_new_student": {
-                                    "type": "integer"
-                                  },
-                                  "points_for_referring_new_student_that_signs_up": {
-                                    "type": "integer"
-                                  },
-                                  "points_for_every_ten_classes_non_member": {
-                                    "type": "integer"
-                                  },
-                                  "points_for_first_visit_in_three_months": {
-                                    "type": "integer"
-                                  }
-                                }
-                              }
-                            ]
-                          }
-                        }
+                        "$ref": "#/components/schemas/Location"
                       }
                     }
                   }
@@ -843,48 +506,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "rewards_program": {
-                      "anyOf": [
-                        {
-                          "type": "string"
-                        },
-                        {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "string"
-                            },
-                            "points_earned_per_dollar_spent": {
-                              "type": "integer"
-                            },
-                            "point_redemption_value": {
-                              "type": "string"
-                            },
-                            "points_for_member_class_attendance": {
-                              "type": "integer"
-                            },
-                            "points_for_referring_new_student": {
-                              "type": "integer"
-                            },
-                            "points_for_referring_new_student_that_signs_up": {
-                              "type": "integer"
-                            },
-                            "points_for_every_ten_classes_non_member": {
-                              "type": "integer"
-                            },
-                            "points_for_first_visit_in_three_months": {
-                              "type": "integer"
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
+                  "$ref": "#/components/schemas/Location"
                 }
               }
             }
@@ -910,48 +532,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "rewards_program": {
-                      "anyOf": [
-                        {
-                          "type": "string"
-                        },
-                        {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "string"
-                            },
-                            "points_earned_per_dollar_spent": {
-                              "type": "integer"
-                            },
-                            "point_redemption_value": {
-                              "type": "string"
-                            },
-                            "points_for_member_class_attendance": {
-                              "type": "integer"
-                            },
-                            "points_for_referring_new_student": {
-                              "type": "integer"
-                            },
-                            "points_for_referring_new_student_that_signs_up": {
-                              "type": "integer"
-                            },
-                            "points_for_every_ten_classes_non_member": {
-                              "type": "integer"
-                            },
-                            "points_for_first_visit_in_three_months": {
-                              "type": "integer"
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
+                  "$ref": "#/components/schemas/Location"
                 }
               }
             }
@@ -993,15 +574,7 @@
                                 "type": "string"
                               },
                               {
-                                "type": "object",
-                                "properties": {
-                                  "id": {
-                                    "type": "string"
-                                  },
-                                  "phone_number": {
-                                    "type": "string"
-                                  }
-                                }
+                                "$ref": "#/components/schemas/User"
                               }
                             ]
                           },
@@ -1011,33 +584,7 @@
                                 "type": "string"
                               },
                               {
-                                "type": "object",
-                                "properties": {
-                                  "id": {
-                                    "type": "string"
-                                  },
-                                  "points_earned_per_dollar_spent": {
-                                    "type": "integer"
-                                  },
-                                  "point_redemption_value": {
-                                    "type": "string"
-                                  },
-                                  "points_for_member_class_attendance": {
-                                    "type": "integer"
-                                  },
-                                  "points_for_referring_new_student": {
-                                    "type": "integer"
-                                  },
-                                  "points_for_referring_new_student_that_signs_up": {
-                                    "type": "integer"
-                                  },
-                                  "points_for_every_ten_classes_non_member": {
-                                    "type": "integer"
-                                  },
-                                  "points_for_first_visit_in_three_months": {
-                                    "type": "integer"
-                                  }
-                                }
+                                "$ref": "#/components/schemas/RewardsProgram"
                               }
                             ]
                           },
@@ -1099,15 +646,7 @@
                           "type": "string"
                         },
                         {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "string"
-                            },
-                            "phone_number": {
-                              "type": "string"
-                            }
-                          }
+                          "$ref": "#/components/schemas/User"
                         }
                       ]
                     },
@@ -1117,33 +656,7 @@
                           "type": "string"
                         },
                         {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "string"
-                            },
-                            "points_earned_per_dollar_spent": {
-                              "type": "integer"
-                            },
-                            "point_redemption_value": {
-                              "type": "string"
-                            },
-                            "points_for_member_class_attendance": {
-                              "type": "integer"
-                            },
-                            "points_for_referring_new_student": {
-                              "type": "integer"
-                            },
-                            "points_for_referring_new_student_that_signs_up": {
-                              "type": "integer"
-                            },
-                            "points_for_every_ten_classes_non_member": {
-                              "type": "integer"
-                            },
-                            "points_for_first_visit_in_three_months": {
-                              "type": "integer"
-                            }
-                          }
+                          "$ref": "#/components/schemas/RewardsProgram"
                         }
                       ]
                     },
@@ -1193,48 +706,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "rewards_program": {
-                      "anyOf": [
-                        {
-                          "type": "string"
-                        },
-                        {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "string"
-                            },
-                            "points_earned_per_dollar_spent": {
-                              "type": "integer"
-                            },
-                            "point_redemption_value": {
-                              "type": "string"
-                            },
-                            "points_for_member_class_attendance": {
-                              "type": "integer"
-                            },
-                            "points_for_referring_new_student": {
-                              "type": "integer"
-                            },
-                            "points_for_referring_new_student_that_signs_up": {
-                              "type": "integer"
-                            },
-                            "points_for_every_ten_classes_non_member": {
-                              "type": "integer"
-                            },
-                            "points_for_first_visit_in_three_months": {
-                              "type": "integer"
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
+                  "$ref": "#/components/schemas/Location"
                 }
               }
             }
@@ -1255,15 +727,7 @@
                     "users": {
                       "type": "array",
                       "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          },
-                          "phone_number": {
-                            "type": "string"
-                          }
-                        }
+                        "$ref": "#/components/schemas/User"
                       }
                     }
                   }
@@ -1294,15 +758,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "phone_number": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }
@@ -1328,15 +784,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "phone_number": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }
@@ -1394,90 +842,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "event_name": {
-                      "type": "string"
-                    },
-                    "member": {
-                      "anyOf": [
-                        {
-                          "type": "string"
-                        },
-                        {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "string"
-                            },
-                            "user": {
-                              "anyOf": [
-                                {
-                                  "type": "string"
-                                },
-                                {
-                                  "type": "object",
-                                  "properties": {
-                                    "id": {
-                                      "type": "string"
-                                    },
-                                    "phone_number": {
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              ]
-                            },
-                            "rewards_program": {
-                              "anyOf": [
-                                {
-                                  "type": "string"
-                                },
-                                {
-                                  "type": "object",
-                                  "properties": {
-                                    "id": {
-                                      "type": "string"
-                                    },
-                                    "points_earned_per_dollar_spent": {
-                                      "type": "integer"
-                                    },
-                                    "point_redemption_value": {
-                                      "type": "string"
-                                    },
-                                    "points_for_member_class_attendance": {
-                                      "type": "integer"
-                                    },
-                                    "points_for_referring_new_student": {
-                                      "type": "integer"
-                                    },
-                                    "points_for_referring_new_student_that_signs_up": {
-                                      "type": "integer"
-                                    },
-                                    "points_for_every_ten_classes_non_member": {
-                                      "type": "integer"
-                                    },
-                                    "points_for_first_visit_in_three_months": {
-                                      "type": "integer"
-                                    }
-                                  }
-                                }
-                              ]
-                            },
-                            "point_total": {
-                              "type": "integer"
-                            },
-                            "point_balance": {
-                              "type": "integer"
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
+                  "$ref": "#/components/schemas/Event"
                 }
               }
             }
@@ -1503,18 +868,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "expires_at": {
-                      "type": "string"
-                    },
-                    "url": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Flow"
                 }
               }
             }
@@ -1597,12 +951,7 @@
                     "emails": {
                       "type": "array",
                       "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          }
-                        }
+                        "$ref": "#/components/schemas/Email"
                       }
                     }
                   }
@@ -1636,12 +985,7 @@
                     "threads": {
                       "type": "array",
                       "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          }
-                        }
+                        "$ref": "#/components/schemas/PocketflowsThread"
                       }
                     }
                   }
@@ -1690,12 +1034,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Email"
                 }
               }
             }
@@ -1721,12 +1060,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/PocketflowsThread"
                 }
               }
             }
@@ -1766,12 +1100,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/PocketflowsThread"
                 }
               }
             }
@@ -1801,6 +1130,170 @@
                 }
               }
             }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Email": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "PocketflowsThread": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "Flow": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "expires_at": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "Event": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "event_name": {
+            "type": "string"
+          },
+          "member": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "user": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "$ref": "#/components/schemas/User"
+                      }
+                    ]
+                  },
+                  "rewards_program": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "$ref": "#/components/schemas/RewardsProgram"
+                      }
+                    ]
+                  },
+                  "point_total": {
+                    "type": "integer"
+                  },
+                  "point_balance": {
+                    "type": "integer"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "string"
+          }
+        }
+      },
+      "Tier": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "minimum_points": {
+            "type": "integer"
+          },
+          "perks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "RewardsProgram": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "points_earned_per_dollar_spent": {
+            "type": "integer"
+          },
+          "point_redemption_value": {
+            "type": "string"
+          },
+          "points_for_member_class_attendance": {
+            "type": "integer"
+          },
+          "points_for_referring_new_student": {
+            "type": "integer"
+          },
+          "points_for_referring_new_student_that_signs_up": {
+            "type": "integer"
+          },
+          "points_for_every_ten_classes_non_member": {
+            "type": "integer"
+          },
+          "points_for_first_visit_in_three_months": {
+            "type": "integer"
+          }
+        }
+      },
+      "Location": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "rewards_program": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/RewardsProgram"
+              }
+            ]
           }
         }
       }
