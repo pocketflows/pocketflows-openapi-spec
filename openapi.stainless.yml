@@ -1,0 +1,122 @@
+# yaml-language-server: $schema=https://app.stainlessapi.com/config.schema.json
+
+organization:
+  name: pocketflows
+  docs: https://docs.pocketflows.com
+  contact: dev-feedback@pocketflows.com
+resources:
+  rewards_programs:
+    methods:
+      list: get /rewards_programs
+      create: post /rewards_programs
+      retrieve: get /rewards_programs/{id}
+      add_location: post /rewards_programs/{id}/add_location
+    subresources:
+      members:
+        methods:
+          list: get /rewards_programs/{id}/members
+          create: post /rewards_programs/{id}/members
+          retrieve: get /rewards_programs/{id}/members/{member_id}
+      locations:
+        methods:
+          list: get /rewards_programs/{id}/locations
+      tiers:
+        methods:
+          list: get /rewards_programs/{id}/tiers
+          create: post /rewards_programs/{id}/tiers
+        models:
+          tier: Tier
+      flows:
+        methods:
+          create: post /rewards_programs/{id}/flows
+        models:
+          flow: Flow
+    models:
+      rewards_program: RewardsProgram
+  locations:
+    methods:
+      list: get /locations
+      create: post /locations
+      retrieve: get /locations/{id}
+      change_rewards_program: post /locations/{id}/change_rewards_program
+    subresources:
+      members:
+        methods:
+          list: get /locations/{id}/members
+          create: post /locations/{id}/members
+    models:
+      location: Location
+  users:
+    methods:
+      list: get /users
+      create: post /users
+      retrieve: get /users/{id}
+    models:
+      user: User
+  track:
+    methods:
+      create: post /track
+    models:
+      event: Event
+  flows:
+    subresources:
+      embed:
+        methods:
+          retrieve: get /flows/{id}/embed
+        subresources:
+          analytics:
+            methods:
+              retrieve: get /flows/{id}/embed/analytics
+  employees:
+    subresources:
+      emails:
+        methods:
+          retrieve: get /employees/{id}/emails
+        subresources:
+          connect_gmail:
+            methods:
+              retrieve: get /employees/{id}/emails/connect/gmail
+  emails:
+    methods:
+      send: post /emails/{id}/send
+    subresources:
+      threads:
+        methods:
+          retrieve: get /emails/{id}/threads
+    models:
+      email: Email
+  threads:
+    methods:
+      retrieve: get /threads/{id}
+      reply: post /threads/{id}/reply
+    models:
+      pocketflows_thread: PocketflowsThread
+  $shared:
+    models:
+      member: Member
+package:
+  node:
+    name: "@pocketflows/node"
+    repo: ""
+settings:
+  license: MIT
+client_settings: {}
+environments:
+  production: https://api.pocketflows.com
+query_settings:
+  nested_format: brackets
+  array_format: comma
+readme:
+  example_requests:
+    default:
+      type: request
+      endpoint: post /rewards_programs
+      params: &ref_0 {}
+    headline:
+      type: request
+      endpoint: post /rewards_programs
+      params: *ref_0
+    pagination:
+      type: request
+      endpoint: get /rewards_programs
+      params: {}
