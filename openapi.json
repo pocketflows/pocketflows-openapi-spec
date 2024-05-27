@@ -15,7 +15,7 @@
       "get": {
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "A dictionary with a `rewards_programs` property which is an array of `RewardsProgram` objects",
             "content": {
               "application/json": {
                 "schema": {
@@ -25,51 +25,73 @@
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/RewardsProgram"
-                      }
+                      },
+                      "description": "An array of rewards programs"
                     }
-                  }
+                  },
+                  "required": [
+                    "rewards_programs"
+                  ]
                 }
               }
             }
           }
-        }
+        },
+        "summary": "List all rewards programs"
       },
       "post": {
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
                   "points_earned_per_dollar_spent": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The number of points earned per dollar spent"
                   },
                   "point_redemption_value": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The value of a single point in dollars"
                   },
                   "points_for_member_class_attendance": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The number of points earned for attending a class"
                   },
                   "points_for_referring_new_student": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The number of points earned for referring a new student"
                   },
                   "points_for_referring_new_student_that_signs_up": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The number of points earned for referring a new student that signs up"
                   },
                   "points_for_every_ten_classes_non_member": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The number of points earned for every ten classes attended"
                   },
                   "points_for_first_visit_in_three_months": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The number of points earned for first visit in three months"
                   }
-                }
+                },
+                "required": [
+                  "points_earned_per_dollar_spent",
+                  "point_redemption_value",
+                  "points_for_member_class_attendance",
+                  "points_for_referring_new_student",
+                  "points_for_referring_new_student_that_signs_up",
+                  "points_for_every_ten_classes_non_member",
+                  "points_for_first_visit_in_three_months"
+                ]
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "The created `RewardsProgram` object",
             "content": {
               "application/json": {
                 "schema": {
@@ -78,7 +100,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Create a rewards program"
       }
     },
     "/rewards_programs/{id}": {
@@ -90,12 +113,13 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the rewards program",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "A `RewardsProgram` object",
             "content": {
               "application/json": {
                 "schema": {
@@ -104,7 +128,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Retrieve a rewards program"
       }
     },
     "/rewards_programs/{id}/members": {
@@ -116,12 +141,13 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the rewards program",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "A dictionary with a `members` property which is an array of `Member` objects",
             "content": {
               "application/json": {
                 "schema": {
@@ -131,14 +157,19 @@
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/Member"
-                      }
+                      },
+                      "description": "An array of members"
                     }
-                  }
+                  },
+                  "required": [
+                    "members"
+                  ]
                 }
               }
             }
           }
-        }
+        },
+        "summary": "List a rewards program's members"
       },
       "post": {
         "parameters": [
@@ -148,10 +179,12 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the rewards program",
             "required": true
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -160,14 +193,17 @@
                   "user_id": {
                     "type": "string"
                   }
-                }
+                },
+                "required": [
+                  "user_id"
+                ]
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "The created `Member` object",
             "content": {
               "application/json": {
                 "schema": {
@@ -176,7 +212,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Create a member in a rewards program"
       }
     },
     "/rewards_programs/{id}/members/{member_id}": {
@@ -188,6 +225,7 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the rewards program",
             "required": true
           },
           {
@@ -196,12 +234,13 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the member",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "A `Member` object",
             "content": {
               "application/json": {
                 "schema": {
@@ -210,7 +249,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Retrieve a member"
       }
     },
     "/rewards_programs/{id}/locations": {
@@ -222,12 +262,13 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the rewards program",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "A dictionary with a `locations` property which is an array of `Location` objects",
             "content": {
               "application/json": {
                 "schema": {
@@ -237,14 +278,19 @@
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/Location"
-                      }
+                      },
+                      "description": "An array of locations"
                     }
-                  }
+                  },
+                  "required": [
+                    "locations"
+                  ]
                 }
               }
             }
           }
-        }
+        },
+        "summary": "List a rewards program's locations"
       }
     },
     "/rewards_programs/{id}/add_location": {
@@ -256,26 +302,32 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the rewards program",
             "required": true
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
                   "location_id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The ID of the location to add to the rewards program"
                   }
-                }
+                },
+                "required": [
+                  "location_id"
+                ]
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "The `Location` object that was added to the rewards program",
             "content": {
               "application/json": {
                 "schema": {
@@ -284,7 +336,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Add a location to a rewards program"
       }
     },
     "/rewards_programs/{id}/tiers": {
@@ -296,12 +349,13 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the rewards program",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "A dictionary with a `tiers` property which is an array of `Tier` objects",
             "content": {
               "application/json": {
                 "schema": {
@@ -311,14 +365,19 @@
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/Tier"
-                      }
+                      },
+                      "description": "An array of tiers"
                     }
-                  }
+                  },
+                  "required": [
+                    "tiers"
+                  ]
                 }
               }
             }
           }
-        }
+        },
+        "summary": "List a rewards program's tiers"
       },
       "post": {
         "parameters": [
@@ -328,35 +387,45 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the rewards program",
             "required": true
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
                   "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The tier's name"
                   },
                   "minimum_points": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The minimum number of points to reach this tier"
                   },
                   "perks": {
                     "type": "array",
                     "items": {
                       "type": "string"
-                    }
+                    },
+                    "description": "The perks associated with reaching this tier"
                   }
-                }
+                },
+                "required": [
+                  "name",
+                  "minimum_points",
+                  "perks"
+                ]
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "The created `Tier` object",
             "content": {
               "application/json": {
                 "schema": {
@@ -365,14 +434,15 @@
               }
             }
           }
-        }
+        },
+        "summary": "Create a tier in a rewards program"
       }
     },
     "/locations": {
       "get": {
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "A dictionary with a `locations` property which is an array of `Location` objects",
             "content": {
               "application/json": {
                 "schema": {
@@ -382,17 +452,23 @@
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/Location"
-                      }
+                      },
+                      "description": "An array of locations"
                     }
-                  }
+                  },
+                  "required": [
+                    "locations"
+                  ]
                 }
               }
             }
           }
-        }
+        },
+        "summary": "List all locations"
       },
       "post": {
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -400,7 +476,8 @@
                 "properties": {
                   "rewards_program_id": {
                     "type": "string",
-                    "nullable": true
+                    "nullable": true,
+                    "description": "The ID of the location's rewards program"
                   }
                 }
               }
@@ -409,7 +486,7 @@
         },
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "The created `Location` object",
             "content": {
               "application/json": {
                 "schema": {
@@ -418,7 +495,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Create a location"
       }
     },
     "/locations/{id}": {
@@ -430,12 +508,13 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the location",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "A `Location` object",
             "content": {
               "application/json": {
                 "schema": {
@@ -444,7 +523,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Retrieve a location"
       }
     },
     "/locations/{id}/members": {
@@ -456,12 +536,13 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the location",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "A dictionary with a `members` property which is an array of `Member` objects",
             "content": {
               "application/json": {
                 "schema": {
@@ -471,14 +552,19 @@
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/Member"
-                      }
+                      },
+                      "description": "An array of members"
                     }
-                  }
+                  },
+                  "required": [
+                    "members"
+                  ]
                 }
               }
             }
           }
-        }
+        },
+        "summary": "List all a location's members"
       },
       "post": {
         "parameters": [
@@ -488,26 +574,32 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the location",
             "required": true
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
                   "user_id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The ID of the user to add as a member to the location"
                   }
-                }
+                },
+                "required": [
+                  "user_id"
+                ]
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "The created `Member` object",
             "content": {
               "application/json": {
                 "schema": {
@@ -516,7 +608,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Create a member of a location"
       }
     },
     "/locations/{id}/change_rewards_program": {
@@ -528,26 +621,32 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the location",
             "required": true
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
                   "rewards_program_id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The ID of the location's new rewards program"
                   }
-                }
+                },
+                "required": [
+                  "rewards_program_id"
+                ]
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "The changed `Location` object",
             "content": {
               "application/json": {
                 "schema": {
@@ -556,14 +655,15 @@
               }
             }
           }
-        }
+        },
+        "summary": "Update a location's rewards program"
       }
     },
     "/users": {
       "get": {
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "A dictionary with a `users` property which is an array of `User` objects",
             "content": {
               "application/json": {
                 "schema": {
@@ -573,33 +673,43 @@
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/User"
-                      }
+                      },
+                      "description": "An array of users"
                     }
-                  }
+                  },
+                  "required": [
+                    "users"
+                  ]
                 }
               }
             }
           }
-        }
+        },
+        "summary": "List all users"
       },
       "post": {
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
                   "phone_number": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The user's phone number"
                   }
-                }
+                },
+                "required": [
+                  "phone_number"
+                ]
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "The created `User` object",
             "content": {
               "application/json": {
                 "schema": {
@@ -608,7 +718,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Create a user"
       }
     },
     "/users/{id}": {
@@ -620,12 +731,13 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the user",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "A `User` object",
             "content": {
               "application/json": {
                 "schema": {
@@ -634,56 +746,76 @@
               }
             }
           }
-        }
+        },
+        "summary": "Retrieve a user"
       }
     },
     "/track": {
       "post": {
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
                   "event": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the event"
                   },
                   "member_id": {
                     "type": "string",
-                    "nullable": true
+                    "nullable": true,
+                    "description": "The ID of the member doing the event"
                   },
                   "location_member_id": {
                     "type": "string",
-                    "nullable": true
+                    "nullable": true,
+                    "description": "The ID of the location member the event"
                   },
                   "rewards_program_id": {
                     "type": "string",
-                    "nullable": true
+                    "nullable": true,
+                    "description": "The ID of the rewards program the event belongs to"
                   },
                   "location_id": {
                     "type": "string",
-                    "nullable": true
+                    "nullable": true,
+                    "description": "The ID of the location the event belongs to"
                   },
                   "user_id": {
                     "type": "string",
-                    "nullable": true
+                    "nullable": true,
+                    "description": "The ID of the user doing the event"
                   },
                   "price": {
                     "type": "string",
-                    "nullable": true
+                    "nullable": true,
+                    "description": "The price of the item involved in the event"
                   },
                   "points": {
                     "type": "integer",
-                    "nullable": true
+                    "nullable": true,
+                    "description": "The number of points earned for the event"
                   }
-                }
+                },
+                "required": [
+                  "event",
+                  "member_id",
+                  "location_member_id",
+                  "rewards_program_id",
+                  "location_id",
+                  "user_id",
+                  "price",
+                  "points"
+                ]
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "The created `Event` object",
             "content": {
               "application/json": {
                 "schema": {
@@ -692,7 +824,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Track an event"
       }
     },
     "/rewards_programs/{id}/flows": {
@@ -704,12 +837,13 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the rewards program",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "The created `Flow` object",
             "content": {
               "application/json": {
                 "schema": {
@@ -718,7 +852,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Create a flow to edit a rewards program"
       }
     },
     "/flows/{id}/embed": {
@@ -730,12 +865,13 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the flow",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "The embeddable HTML content of the flow",
             "content": {
               "text/html": {
                 "schema": {
@@ -744,7 +880,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Embed a flow"
       }
     },
     "/flows/{id}/embed/analytics": {
@@ -756,12 +893,13 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the flow",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "The embeddable HTML content of the flow analytics",
             "content": {
               "text/html": {
                 "schema": {
@@ -770,7 +908,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Embed an analytics flow"
       }
     },
     "/employees/{id}/emails": {
@@ -782,12 +921,13 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the employee",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "A dictionary with an `emails` property which is an array of `Email` objects",
             "content": {
               "application/json": {
                 "schema": {
@@ -797,14 +937,19 @@
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/Email"
-                      }
+                      },
+                      "description": "An array of emails"
                     }
-                  }
+                  },
+                  "required": [
+                    "emails"
+                  ]
                 }
               }
             }
           }
-        }
+        },
+        "summary": "List all an employee's emails"
       }
     },
     "/emails/{id}/threads": {
@@ -816,12 +961,13 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the email",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "A dictionary with a `threads` property which is an array of `Thread` objects",
             "content": {
               "application/json": {
                 "schema": {
@@ -831,14 +977,19 @@
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/PocketflowsThread"
-                      }
+                      },
+                      "description": "An array of threads"
                     }
-                  }
+                  },
+                  "required": [
+                    "threads"
+                  ]
                 }
               }
             }
           }
-        }
+        },
+        "summary": "List all an email's threads"
       }
     },
     "/emails/{id}/send": {
@@ -850,32 +1001,42 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the email",
             "required": true
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
                   "to": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The email address to send the email to"
                   },
                   "subject": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The subject of the email"
                   },
                   "body": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The body of the email"
                   }
-                }
+                },
+                "required": [
+                  "to",
+                  "subject",
+                  "body"
+                ]
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "The sent `Email` object",
             "content": {
               "application/json": {
                 "schema": {
@@ -884,7 +1045,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Send an email"
       }
     },
     "/threads/{id}": {
@@ -896,12 +1058,13 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the thread",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "A `Thread` object",
             "content": {
               "application/json": {
                 "schema": {
@@ -910,7 +1073,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Retrieve an email thread"
       }
     },
     "/threads/{id}/reply": {
@@ -922,26 +1086,32 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the thread",
             "required": true
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
                   "body": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The body of the email"
                   }
-                }
+                },
+                "required": [
+                  "body"
+                ]
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "The replied `Thread` object",
             "content": {
               "application/json": {
                 "schema": {
@@ -950,14 +1120,15 @@
               }
             }
           }
-        }
+        },
+        "summary": "Reply to an email thread"
       }
     },
     "/campaigns": {
       "get": {
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "A dictionary with a `campaigns` property which is an array of `Campaign` objects",
             "content": {
               "application/json": {
                 "schema": {
@@ -967,14 +1138,19 @@
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/Campaign"
-                      }
+                      },
+                      "description": "An array of campaigns"
                     }
-                  }
+                  },
+                  "required": [
+                    "campaigns"
+                  ]
                 }
               }
             }
           }
-        }
+        },
+        "summary": "List all campaigns"
       }
     },
     "/businesses/{id}/campaigns": {
@@ -986,15 +1162,34 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the business",
             "required": true
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
+                  "enrolled_users": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/User"
+                        }
+                      }
+                    ],
+                    "description": "The users enrolled in the campaign"
+                  },
                   "steps": {
                     "type": "array",
                     "items": {
@@ -1003,52 +1198,69 @@
                           "type": "object",
                           "properties": {
                             "type": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "The step type. Always \"email\" for this step"
                             },
                             "email_template_id": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "The ID of the email template to use in this step"
                             }
-                          }
+                          },
+                          "required": [
+                            "type",
+                            "email_template_id"
+                          ]
                         },
                         {
                           "type": "object",
                           "properties": {
                             "type": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "The step type. Always \"sms\" for this step"
                             },
                             "sms_template_id": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "The ID of the SMS template to use in this step"
                             }
-                          }
+                          },
+                          "required": [
+                            "type",
+                            "sms_template_id"
+                          ]
                         },
                         {
                           "type": "object",
                           "properties": {
                             "type": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "The step type. Always \"wait\" for this step"
                             },
                             "duration": {
-                              "type": "integer"
+                              "type": "integer",
+                              "description": "The number of seconds to wait"
                             }
-                          }
+                          },
+                          "required": [
+                            "type",
+                            "duration"
+                          ]
                         }
                       ]
-                    }
-                  },
-                  "enrolled_user_ids": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
+                    },
+                    "description": "The steps of the campaign"
                   }
-                }
+                },
+                "required": [
+                  "enrolled_users",
+                  "steps"
+                ]
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "The created `Campaign` object",
             "content": {
               "application/json": {
                 "schema": {
@@ -1057,7 +1269,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Create a campaign"
       }
     },
     "/businesses/{id}/campaigns/embeds": {
@@ -1069,12 +1282,13 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the business",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "The created `CampaignEmbed` object. Can be used to create a new campaign for the business",
             "content": {
               "application/json": {
                 "schema": {
@@ -1083,7 +1297,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Create a campaign embed to create a new campaign"
       }
     },
     "/campaigns/{id}": {
@@ -1095,12 +1310,13 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the campaign",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "A `Campaign` object",
             "content": {
               "application/json": {
                 "schema": {
@@ -1109,7 +1325,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Retrieve a campaign"
       },
       "post": {
         "parameters": [
@@ -1119,10 +1336,12 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the campaign",
             "required": true
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1136,49 +1355,67 @@
                           "type": "object",
                           "properties": {
                             "type": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "The step type. Always \"email\" for this step"
                             },
                             "email_template_id": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "The ID of the email template to use in this step"
                             }
-                          }
+                          },
+                          "required": [
+                            "type",
+                            "email_template_id"
+                          ]
                         },
                         {
                           "type": "object",
                           "properties": {
                             "type": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "The step type. Always \"sms\" for this step"
                             },
                             "sms_template_id": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "The ID of the SMS template to use in this step"
                             }
-                          }
+                          },
+                          "required": [
+                            "type",
+                            "sms_template_id"
+                          ]
                         },
                         {
                           "type": "object",
                           "properties": {
                             "type": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "The step type. Always \"wait\" for this step"
                             },
                             "duration": {
-                              "type": "integer"
+                              "type": "integer",
+                              "description": "The number of seconds to wait"
                             }
-                          }
+                          },
+                          "required": [
+                            "type",
+                            "duration"
+                          ]
                         }
                       ]
                     },
-                    "nullable": true
+                    "description": "The updated steps of the campaign. Can be omitted"
                   },
                   "name": {
                     "type": "string",
-                    "nullable": true
+                    "description": "The updated name of the campaign. Can be omitted"
                   },
                   "enrolled_user_ids": {
                     "type": "array",
                     "items": {
                       "type": "string"
                     },
-                    "nullable": true
+                    "description": "The updated enrolled user IDs of the campaign. Can be omitted"
                   }
                 }
               }
@@ -1187,7 +1424,7 @@
         },
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "The updated `Campaign` object",
             "content": {
               "application/json": {
                 "schema": {
@@ -1196,7 +1433,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Update a campaign"
       },
       "delete": {
         "parameters": [
@@ -1206,12 +1444,13 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the campaign",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "The deleted `Campaign` object",
             "content": {
               "application/json": {
                 "schema": {
@@ -1220,7 +1459,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Delete a campaign"
       }
     },
     "/campaigns/{id}/embeds": {
@@ -1232,12 +1472,13 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the campaign",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "The created `CampaignEmbed` object. Can be used to modify the campaign",
             "content": {
               "application/json": {
                 "schema": {
@@ -1246,7 +1487,36 @@
               }
             }
           }
-        }
+        },
+        "summary": "Create a campaign embed"
+      }
+    },
+    "/campaign_embeds/{id}/show": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the campaign embed",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The embeddable HTML that will render a UI for editing the campaign",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Embed the campaign editor"
       }
     },
     "/campaign_embeds/{id}": {
@@ -1258,21 +1528,23 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the campaign embed",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "A `CampaignEmbed` object",
             "content": {
-              "text/html": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/CampaignEmbed"
                 }
               }
             }
           }
-        }
+        },
+        "summary": "Retrieve a campaign embed"
       }
     },
     "/employees/{id}/emails/connect/gmail": {
@@ -1284,12 +1556,13 @@
             "schema": {
               "type": "string"
             },
+            "description": "The ID of the employee",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "yeah yeah",
+            "description": "The redirect to the Google sign-in page",
             "content": {
               "text/html": {
                 "schema": {
@@ -1298,7 +1571,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Connect a Gmail account to an employee"
       }
     }
   },
@@ -1317,174 +1591,35 @@
       }
     },
     "schemas": {
-      "Email": {
+      "CampaignEmbed": {
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
-          }
-        }
-      },
-      "PocketflowsThread": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          }
-        }
-      },
-      "Flow": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "expires_at": {
-            "type": "string"
+            "type": "string",
+            "description": "The ID of the campaign embed"
           },
           "url": {
-            "type": "string"
+            "type": "string",
+            "description": "The URL to embed the campaign editor"
+          },
+          "expires_at": {
+            "type": "string",
+            "description": "When the campaign embed expires and needs to be regenerated"
           }
-        }
-      },
-      "Event": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "event_name": {
-            "type": "string"
-          },
-          "member": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/Member"
-              }
-            ]
-          }
-        }
-      },
-      "User": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "phone_number": {
-            "type": "string"
-          }
-        }
-      },
-      "Tier": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "minimum_points": {
-            "type": "integer"
-          },
-          "perks": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "Member": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "user": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/User"
-              }
-            ]
-          },
-          "rewards_program": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/RewardsProgram"
-              }
-            ]
-          },
-          "point_total": {
-            "type": "integer"
-          },
-          "point_balance": {
-            "type": "integer"
-          }
-        }
-      },
-      "RewardsProgram": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "points_earned_per_dollar_spent": {
-            "type": "integer"
-          },
-          "point_redemption_value": {
-            "type": "string"
-          },
-          "points_for_member_class_attendance": {
-            "type": "integer"
-          },
-          "points_for_referring_new_student": {
-            "type": "integer"
-          },
-          "points_for_referring_new_student_that_signs_up": {
-            "type": "integer"
-          },
-          "points_for_every_ten_classes_non_member": {
-            "type": "integer"
-          },
-          "points_for_first_visit_in_three_months": {
-            "type": "integer"
-          }
-        }
-      },
-      "Location": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "rewards_program": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/RewardsProgram"
-              }
-            ]
-          }
-        }
+        },
+        "required": [
+          "id",
+          "url",
+          "expires_at"
+        ],
+        "title": "The Campaign Embed object"
       },
       "Campaign": {
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "The ID of the campaign"
           },
           "enrolled_users": {
             "anyOf": [
@@ -1500,7 +1635,8 @@
                   "$ref": "#/components/schemas/User"
                 }
               }
-            ]
+            ],
+            "description": "The users enrolled in the campaign"
           },
           "steps": {
             "type": "array",
@@ -1510,53 +1646,326 @@
                   "type": "object",
                   "properties": {
                     "type": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "The step type. Always \"email\" for this step"
                     },
                     "email_template_id": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "The ID of the email template to use in this step"
                     }
-                  }
+                  },
+                  "required": [
+                    "type",
+                    "email_template_id"
+                  ]
                 },
                 {
                   "type": "object",
                   "properties": {
                     "type": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "The step type. Always \"sms\" for this step"
                     },
                     "sms_template_id": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "The ID of the SMS template to use in this step"
                     }
-                  }
+                  },
+                  "required": [
+                    "type",
+                    "sms_template_id"
+                  ]
                 },
                 {
                   "type": "object",
                   "properties": {
                     "type": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "The step type. Always \"wait\" for this step"
                     },
                     "duration": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "The number of seconds to wait"
                     }
-                  }
+                  },
+                  "required": [
+                    "type",
+                    "duration"
+                  ]
                 }
               ]
-            }
+            },
+            "description": "The steps of the campaign"
           }
-        }
+        },
+        "required": [
+          "id",
+          "enrolled_users",
+          "steps"
+        ],
+        "title": "The Campaign object"
       },
-      "CampaignEmbed": {
+      "Template": {
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
-          },
-          "url": {
-            "type": "string"
+            "type": "string",
+            "description": "The ID of the template"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "title": "The Template object"
+      },
+      "PocketflowsThread": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the thread"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "title": "The Thread object"
+      },
+      "Email": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the email"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "title": "The Email object"
+      },
+      "Flow": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the flow"
           },
           "expires_at": {
-            "type": "string"
+            "type": "string",
+            "description": "When the flow expires"
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL to embed the flow"
           }
-        }
+        },
+        "required": [
+          "id",
+          "expires_at",
+          "url"
+        ],
+        "title": "The Flow object"
+      },
+      "Event": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the event"
+          },
+          "event_name": {
+            "type": "string",
+            "description": "The name of the event"
+          },
+          "member": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/Member"
+              }
+            ],
+            "description": "The member associated with the event"
+          }
+        },
+        "required": [
+          "id",
+          "event_name",
+          "member"
+        ],
+        "title": "The Event object"
+      },
+      "Tier": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the tier"
+          },
+          "name": {
+            "type": "string",
+            "description": "The tier's name"
+          },
+          "minimum_points": {
+            "type": "integer",
+            "description": "The minimum number of points to reach this tier"
+          },
+          "perks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The perks associated with reaching this tier"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "minimum_points",
+          "perks"
+        ],
+        "title": "The Tier object"
+      },
+      "Member": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the member"
+          },
+          "user": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/User"
+              }
+            ],
+            "description": "The user associated with the member"
+          },
+          "rewards_program": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/RewardsProgram"
+              }
+            ],
+            "description": "The member's rewards program"
+          },
+          "point_total": {
+            "type": "integer",
+            "description": "The total number of points the member has earned in their lifetime"
+          },
+          "point_balance": {
+            "type": "integer",
+            "description": "The number of points the member currently has"
+          }
+        },
+        "required": [
+          "id",
+          "user",
+          "rewards_program",
+          "point_total",
+          "point_balance"
+        ],
+        "title": "The Member object"
+      },
+      "Location": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the location"
+          },
+          "rewards_program": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/RewardsProgram"
+              }
+            ],
+            "nullable": true,
+            "description": "The location's rewards program"
+          }
+        },
+        "required": [
+          "id",
+          "rewards_program"
+        ],
+        "title": "The Location object"
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the user"
+          },
+          "phone_number": {
+            "type": "string",
+            "description": "The user's phone number"
+          }
+        },
+        "required": [
+          "id",
+          "phone_number"
+        ],
+        "title": "The User object"
+      },
+      "RewardsProgram": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the rewards program"
+          },
+          "points_earned_per_dollar_spent": {
+            "type": "integer",
+            "description": "The number of points earned per dollar spent"
+          },
+          "point_redemption_value": {
+            "type": "string",
+            "description": "The value of a single point in dollars"
+          },
+          "points_for_member_class_attendance": {
+            "type": "integer",
+            "description": "The number of points earned for attending a class"
+          },
+          "points_for_referring_new_student": {
+            "type": "integer",
+            "description": "The number of points earned for referring a new student"
+          },
+          "points_for_referring_new_student_that_signs_up": {
+            "type": "integer",
+            "description": "The number of points earned for referring a new student that signs up"
+          },
+          "points_for_every_ten_classes_non_member": {
+            "type": "integer",
+            "description": "The number of points earned for every ten classes attended"
+          },
+          "points_for_first_visit_in_three_months": {
+            "type": "integer",
+            "description": "The number of points earned for first visit in three months"
+          }
+        },
+        "required": [
+          "id",
+          "points_earned_per_dollar_spent",
+          "point_redemption_value",
+          "points_for_member_class_attendance",
+          "points_for_referring_new_student",
+          "points_for_referring_new_student_that_signs_up",
+          "points_for_every_ten_classes_non_member",
+          "points_for_first_visit_in_three_months"
+        ],
+        "title": "The Rewards Program object"
       }
     }
   }
