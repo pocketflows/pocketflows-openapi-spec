@@ -1510,7 +1510,7 @@
             }
           }
         },
-        "summary": "List all the employees for the business"
+        "summary": "List all employees for a business"
       },
       "post": {
         "parameters": [
