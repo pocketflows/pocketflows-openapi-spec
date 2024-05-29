@@ -1473,6 +1473,196 @@
         "summary": "Delete a customer"
       }
     },
+    "/businesses/{id}/employees": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A dictionary with an `employees` property which is an array of `Employee` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "employees": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Employee"
+                      },
+                      "description": "An array of employees"
+                    }
+                  },
+                  "required": [
+                    "employees"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List all the employees for the business"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phone_number": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The phone number of the employee"
+                  },
+                  "email_address": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The email of the employee"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created `Employee` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Employee"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create an employee"
+      }
+    },
+    "/employees/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the employee",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An `Employee` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Employee"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve an employee"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the employee",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phone_number": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The phone number of the employee"
+                  },
+                  "email_address": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The email of the employee"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated `Employee` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Employee"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update an employee"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the employee",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The deleted `Employee` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Employee"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Delete an employee"
+      }
+    },
     "/campaigns": {
       "get": {
         "responses": {
@@ -1940,6 +2130,31 @@
       }
     },
     "schemas": {
+      "Employee": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the employee"
+          },
+          "email_address": {
+            "type": "string",
+            "nullable": true,
+            "description": "The email address of the employee"
+          },
+          "phone_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "The phone number of the employee"
+          }
+        },
+        "required": [
+          "id",
+          "email_address",
+          "phone_number"
+        ],
+        "title": "The Employee object"
+      },
       "Customer": {
         "type": "object",
         "properties": {
