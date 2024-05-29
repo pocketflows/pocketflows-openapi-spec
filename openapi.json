@@ -1124,6 +1124,167 @@
         "summary": "Reply to an email thread"
       }
     },
+    "/businesses": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "A dictionary with a `businesses` property which is an array of `Business` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "businesses": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Business"
+                      },
+                      "description": "An array of businesses"
+                    }
+                  },
+                  "required": [
+                    "businesses"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List all businesses"
+      },
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the business"
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created `Business` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Business"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a business"
+      }
+    },
+    "/businesses/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A `Business` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Business"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve a business"
+      }
+    },
+    "businesses/{id}": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The updated name of the business. Can be omitted"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated `Business` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Business"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update a business"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The deleted `Business` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Business"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Delete a business"
+      }
+    },
     "/campaigns": {
       "get": {
         "responses": {
@@ -1591,6 +1752,24 @@
       }
     },
     "schemas": {
+      "Business": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the business"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the business"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ],
+        "title": "The Business object"
+      },
       "CampaignEmbed": {
         "type": "object",
         "properties": {
