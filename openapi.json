@@ -1283,6 +1283,196 @@
         "summary": "Delete a business"
       }
     },
+    "/businesses/{id}/customers": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A dictionary with a `customers` property which is an array of `Customer` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "customers": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Customer"
+                      },
+                      "description": "An array of customers"
+                    }
+                  },
+                  "required": [
+                    "customers"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List all customers for a business"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email_address": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The email address of the customer"
+                  },
+                  "phone_number": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The phone number of the customer"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created `Customer` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a customer"
+      }
+    },
+    "/customers/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the customer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A `Customer` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve a customer"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the customer",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email_address": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The email address of the customer"
+                  },
+                  "phone_number": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The phone number of the customer"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated `Customer` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update a customer"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the customer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The deleted `Customer` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Delete a customer"
+      }
+    },
     "/campaigns": {
       "get": {
         "responses": {
@@ -1750,6 +1940,31 @@
       }
     },
     "schemas": {
+      "Customer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the customer"
+          },
+          "email_address": {
+            "type": "string",
+            "nullable": true,
+            "description": "The email address of the customer"
+          },
+          "phone_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "The phone number of the customer"
+          }
+        },
+        "required": [
+          "id",
+          "email_address",
+          "phone_number"
+        ],
+        "title": "The Customer object"
+      },
       "Business": {
         "type": "object",
         "properties": {
