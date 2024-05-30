@@ -1663,6 +1663,205 @@
         "summary": "Delete an employee"
       }
     },
+    "/businesses/{id}/email_templates": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A dictionary with an `email_templates` property which is an array of `EmailTemplate` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email_templates": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EmailTemplate"
+                      },
+                      "description": "An array of email templates"
+                    }
+                  },
+                  "required": [
+                    "email_templates"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List all email templates for a business"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the email template"
+                  },
+                  "subject": {
+                    "type": "string",
+                    "description": "The subject of the email template. Variables are supported via `{{ variableName }}`"
+                  },
+                  "body": {
+                    "type": "string",
+                    "description": "The body of the email template. Variables are supported via `{{ variableName }}`"
+                  }
+                },
+                "required": [
+                  "name",
+                  "subject",
+                  "body"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created `EmailTemplate` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailTemplate"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create an email template"
+      }
+    },
+    "/email_templates/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the email template",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An `EmailTemplate` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailTemplate"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve an email template"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the email template",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the email template"
+                  },
+                  "subject": {
+                    "type": "string",
+                    "description": "The subject of the email template. Variables are supported via `{{ variableName }}`"
+                  },
+                  "body": {
+                    "type": "string",
+                    "description": "The body of the email template. Variables are supported via `{{ variableName }}`"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated `EmailTemplate` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailTemplate"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update an email template"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the email template",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The deleted `EmailTemplate` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailTemplate"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Delete an email template"
+      }
+    },
     "/campaigns": {
       "get": {
         "responses": {
@@ -2130,6 +2329,34 @@
       }
     },
     "schemas": {
+      "EmailTemplate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the email template"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the email template"
+          },
+          "subject": {
+            "type": "string",
+            "description": "The subject of the email template. Variables are supported via `{{ variableName }}`"
+          },
+          "body": {
+            "type": "string",
+            "description": "The body of the email template. Variables are supported via `{{ variableName }}`"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "subject",
+          "body"
+        ],
+        "title": "The Email Template object"
+      },
       "Employee": {
         "type": "object",
         "properties": {
