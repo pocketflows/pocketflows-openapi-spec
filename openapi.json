@@ -1862,6 +1862,63 @@
         "summary": "Delete an email template"
       }
     },
+    "/email_templates/{id}/draft_send": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the email template",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "from": {
+                    "type": "string",
+                    "description": "The ID of the email address to send from"
+                  },
+                  "to": {
+                    "type": "string",
+                    "description": "The email address to send to"
+                  },
+                  "variables": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "description": "Variables to use in the email template"
+                  }
+                },
+                "required": [
+                  "from",
+                  "to"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A `DraftEmail` representing what would have been sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DraftEmail"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Draft send an email based off an email template"
+      }
+    },
     "/campaigns": {
       "get": {
         "responses": {
@@ -2329,6 +2386,34 @@
       }
     },
     "schemas": {
+      "DraftEmail": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "The from address of the draft email"
+          },
+          "to": {
+            "type": "string",
+            "description": "The to address of the draft email"
+          },
+          "subject": {
+            "type": "string",
+            "description": "The subject of the draft email"
+          },
+          "body": {
+            "type": "string",
+            "description": "The body of the draft email"
+          }
+        },
+        "required": [
+          "from",
+          "to",
+          "subject",
+          "body"
+        ],
+        "title": "The Draft Email object"
+      },
       "EmailTemplate": {
         "type": "object",
         "properties": {
