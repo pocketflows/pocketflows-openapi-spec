@@ -853,7 +853,7 @@
             }
           }
         },
-        "summary": "Create a flow to edit a rewards program"
+        "summary": "Create a flow"
       }
     },
     "/flows/{id}/embed": {
@@ -2623,19 +2623,6 @@
           "steps"
         ],
         "title": "The Campaign object"
-      },
-      "Template": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The ID of the template"
-          }
-        },
-        "required": [
-          "id"
-        ],
-        "title": "The Template object"
       },
       "PocketflowsThread": {
         "type": "object",
