@@ -2109,6 +2109,64 @@
         "summary": "Delete an SMS template"
       }
     },
+    "/sms_templates/{id}/draft_send": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the SMS template",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "from": {
+                    "type": "string",
+                    "description": "The ID of the phone number to send the SMS from"
+                  },
+                  "to": {
+                    "type": "string",
+                    "description": "The phone number to send the SMS to"
+                  },
+                  "variables": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "description": "The variables to inject into the SMS template"
+                  }
+                },
+                "required": [
+                  "from",
+                  "to",
+                  "variables"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A `DraftSMSMessage` representing what would have been sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DraftSMSMessage"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Draft send an SMS message from an SMS template"
+      }
+    },
     "/campaigns": {
       "get": {
         "responses": {
@@ -2576,6 +2634,29 @@
       }
     },
     "schemas": {
+      "DraftSMSMessage": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "The phone number the SMS message would be sent from"
+          },
+          "to": {
+            "type": "string",
+            "description": "The phone number the SMS message would be sent to"
+          },
+          "message": {
+            "type": "string",
+            "description": "The message that would be sent"
+          }
+        },
+        "required": [
+          "from",
+          "to",
+          "message"
+        ],
+        "title": "The Draft SMS Message object"
+      },
       "SMSTemplate": {
         "type": "object",
         "properties": {
