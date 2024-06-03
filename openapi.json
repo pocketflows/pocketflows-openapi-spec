@@ -1919,6 +1919,196 @@
         "summary": "Draft send an email based off an email template"
       }
     },
+    "/businesses/{id}/sms_templates": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A dictionary with an `sms_templates` property which is an array of `SMSTemplate` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sms_templates": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SMSTemplate"
+                      },
+                      "description": "An array of SMS templates"
+                    }
+                  },
+                  "required": [
+                    "sms_templates"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List all SMS templates for a business"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the SMS template"
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "The message of the SMS template. Variables are supported via `{{ variableName }}`"
+                  }
+                },
+                "required": [
+                  "name",
+                  "message"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created `SMSTemplate` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SMSTemplate"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create an SMS template"
+      }
+    },
+    "/sms_templates/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the SMS template",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An `SMSTemplate` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SMSTemplate"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve an SMS template"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the SMS template",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the SMS template"
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "The message of the SMS template. Variables are supported via `{{ variableName }}`"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated `SMSTemplate` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SMSTemplate"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update an SMS template"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the SMS template",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The deleted `SMSTemplate` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SMSTemplate"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Delete an SMS template"
+      }
+    },
     "/campaigns": {
       "get": {
         "responses": {
@@ -2386,6 +2576,29 @@
       }
     },
     "schemas": {
+      "SMSTemplate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the SMS template"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the SMS template"
+          },
+          "message": {
+            "type": "string",
+            "description": "The message of the SMS template. Variables are supported via `{{ variableName }}`"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "message"
+        ],
+        "title": "The SMS Template object"
+      },
       "DraftEmail": {
         "type": "object",
         "properties": {
