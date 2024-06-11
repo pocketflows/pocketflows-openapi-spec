@@ -2590,7 +2590,7 @@
         "summary": "Retrieve a campaign embed"
       }
     },
-    "/employees/{id}/emails/connect/gmail": {
+    "/employees/{id}/email_addresses": {
       "get": {
         "parameters": [
           {
@@ -2605,7 +2605,47 @@
         ],
         "responses": {
           "200": {
-            "description": "The redirect to the Google sign-in page",
+            "description": "A dictionary with an `email_addresses` property which is an array of `ConnectedEmailAddress` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email_addresses": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ConnectedEmailAddress"
+                      },
+                      "description": "An array of connected email addresses"
+                    }
+                  },
+                  "required": [
+                    "email_addresses"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List all connected email addresses for an employee"
+      }
+    },
+    "/employees/{id}/email_addresses/connect/gmail": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the employee",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An HTML page for the OAuth flow to connect the Gmail account",
             "content": {
               "text/html": {
                 "schema": {
@@ -2615,7 +2655,64 @@
             }
           }
         },
-        "summary": "Connect a Gmail account to an employee"
+        "summary": "Connect a Gmail to an employee",
+        "security": [
+
+        ]
+      }
+    },
+    "/email_addresses/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the connected email address",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A `ConnectedEmailAddress` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectedEmailAddress"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve a connected email address"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the connected email address",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The deleted `ConnectedEmailAddress` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectedEmailAddress"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Delete a connected email address"
       }
     }
   },
@@ -2634,6 +2731,29 @@
       }
     },
     "schemas": {
+      "ConnectedEmailAddress": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the connected email address"
+          },
+          "email_address": {
+            "type": "string",
+            "description": "The email address of the connected email address"
+          },
+          "provider": {
+            "type": "string",
+            "description": "The provider of the connected email address. Always \"google\" (for now)"
+          }
+        },
+        "required": [
+          "id",
+          "email_address",
+          "provider"
+        ],
+        "title": "The Connected Email Address object"
+      },
       "DraftSMSMessage": {
         "type": "object",
         "properties": {
