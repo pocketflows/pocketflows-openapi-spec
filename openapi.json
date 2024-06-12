@@ -952,178 +952,6 @@
         "summary": "List all an employee's emails"
       }
     },
-    "/emails/{id}/threads": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the email",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A dictionary with a `threads` property which is an array of `Thread` objects",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "threads": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/PocketflowsThread"
-                      },
-                      "description": "An array of threads"
-                    }
-                  },
-                  "required": [
-                    "threads"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "summary": "List all an email's threads"
-      }
-    },
-    "/emails/{id}/send": {
-      "post": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the email",
-            "required": true
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "to": {
-                    "type": "string",
-                    "description": "The email address to send the email to"
-                  },
-                  "subject": {
-                    "type": "string",
-                    "description": "The subject of the email"
-                  },
-                  "body": {
-                    "type": "string",
-                    "description": "The body of the email"
-                  }
-                },
-                "required": [
-                  "to",
-                  "subject",
-                  "body"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The sent `Email` object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Email"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Send an email"
-      }
-    },
-    "/threads/{id}": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the thread",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A `Thread` object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PocketflowsThread"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Retrieve an email thread"
-      }
-    },
-    "/threads/{id}/reply": {
-      "post": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the thread",
-            "required": true
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "body": {
-                    "type": "string",
-                    "description": "The body of the email"
-                  }
-                },
-                "required": [
-                  "body"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The replied `Thread` object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PocketflowsThread"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Reply to an email thread"
-      }
-    },
     "/businesses": {
       "get": {
         "responses": {
@@ -1917,6 +1745,63 @@
           }
         },
         "summary": "Draft send an email based off an email template"
+      }
+    },
+    "/email_addresses/{id}/send": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the email",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "to": {
+                    "type": "string",
+                    "description": "The email address to send the email to"
+                  },
+                  "subject": {
+                    "type": "string",
+                    "description": "The subject of the email"
+                  },
+                  "body": {
+                    "type": "string",
+                    "description": "The body of the email"
+                  }
+                },
+                "required": [
+                  "to",
+                  "subject",
+                  "body"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The sent `Email` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Email"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Send an email"
       }
     },
     "/businesses/{id}/sms_templates": {
