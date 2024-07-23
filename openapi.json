@@ -1690,6 +1690,146 @@
         "summary": "Delete an email template"
       }
     },
+    "/email_templates/{id}/copy": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the email template",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The created `EmailTemplate` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailTemplate"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a copy of an existing email template"
+      }
+    },
+    "/email_templates/{id}/embeds": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the email template",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The created `EmailTemplateEmbed` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailTemplateEmbed"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create an email template embed to edit an existing email template"
+      }
+    },
+    "/businesses/{id}/email_templates/embeds": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The created `EmailTemplateEmbed` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailTemplateEmbed"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create an email template embed to create a brand new email template"
+      }
+    },
+    "/email_template_embeds/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the email template embed",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The `EmailTemplateEmbed` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailTemplateEmbed"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve an email template embed"
+      }
+    },
+    "/email_template_embeds/{id}/show": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the email template embed",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The embeddable HTML that will render a UI for editing the email template",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Embed the email template editor"
+      }
+    },
     "/email_templates/{id}/draft_send": {
       "post": {
         "parameters": [
@@ -1802,6 +1942,68 @@
           }
         },
         "summary": "Send an email"
+      }
+    },
+    "/project_email_addresses/{id}/send": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the email",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "to": {
+                    "type": "string",
+                    "description": "The email address to send the email to"
+                  },
+                  "subject": {
+                    "type": "string",
+                    "description": "The subject of the email"
+                  },
+                  "body": {
+                    "type": "string",
+                    "description": "The plaintext body of the email"
+                  },
+                  "html": {
+                    "type": "string",
+                    "description": "The HTML body of the email"
+                  }
+                },
+                "required": [
+                  "to",
+                  "subject",
+                  "body",
+                  "html"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The sent `Email` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Email"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Send an email from a project email address"
       }
     },
     "/businesses/{id}/sms_templates": {
@@ -2052,7 +2254,54 @@
         "summary": "Draft send an SMS message from an SMS template"
       }
     },
-    "/campaigns": {
+    "/project_phone_numbers/{id}/send": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the project",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "description": "The message of the SMS template. Variables are supported via `{{ variableName }}`"
+                  }
+                },
+                "required": [
+                  "message"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A `SMSMessage` representing the sent message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SMSMessage"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Send an SMS message from a project's phone number"
+      }
+    },
+    "/businesses/{id}/campaigns": {
       "get": {
         "responses": {
           "200": {
@@ -2079,9 +2328,7 @@
           }
         },
         "summary": "List all campaigns"
-      }
-    },
-    "/businesses/{id}/campaigns": {
+      },
       "post": {
         "parameters": [
           {
@@ -2101,22 +2348,16 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "enrolled_users": {
-                    "anyOf": [
-                      {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      },
-                      {
-                        "type": "array",
-                        "items": {
-                          "$ref": "#/components/schemas/User"
-                        }
-                      }
-                    ],
-                    "description": "The users enrolled in the campaign"
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the campaign"
+                  },
+                  "enrolled_customers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "The ID of the customers enrolled in the campaign"
                   },
                   "steps": {
                     "type": "array",
@@ -2176,10 +2417,21 @@
                       ]
                     },
                     "description": "The steps of the campaign"
+                  },
+                  "email_address": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The email address used to send emails in the campaign. Will be the ID of an email-like object"
+                  },
+                  "phone_number": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The phone number used to send SMS messages in the campaign. Will be the ID of a phone number-like object"
                   }
                 },
                 "required": [
-                  "enrolled_users",
+                  "name",
+                  "enrolled_customers",
                   "steps"
                 ]
               }
@@ -2338,12 +2590,12 @@
                     "type": "string",
                     "description": "The updated name of the campaign. Can be omitted"
                   },
-                  "enrolled_user_ids": {
+                  "enrolled_customers": {
                     "type": "array",
                     "items": {
                       "type": "string"
                     },
-                    "description": "The updated enrolled user IDs of the campaign. Can be omitted"
+                    "description": "The updated enrolled customer IDs of the campaign. Can be omitted"
                   }
                 }
               }
@@ -2389,6 +2641,62 @@
           }
         },
         "summary": "Delete a campaign"
+      }
+    },
+    "/campaigns/{id}/start": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the campaign",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The `Campaign` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Campaign"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Start a campaign"
+      }
+    },
+    "/campaigns/{id}/stop": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the campaign",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The `Campaign` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Campaign"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Stop a campaign"
       }
     },
     "/campaigns/{id}/embeds": {
@@ -2473,6 +2781,238 @@
           }
         },
         "summary": "Retrieve a campaign embed"
+      }
+    },
+    "/project_email_domains": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "A dictionary with a `project_email_domains` property which is an array of `ProjectEmailDomain` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "project_email_domains": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ProjectEmailDomain"
+                      },
+                      "description": "An array of email domains"
+                    }
+                  },
+                  "required": [
+                    "project_email_domains"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List all project email domains"
+      }
+    },
+    "/project_email_domains/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the project email domain",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The `ProjectEmailDomain` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectEmailDomain"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve a project email domain"
+      }
+    },
+    "/project_email_domains/{id}/project_email_addresses": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the project email domain",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A dictionary with a `project_email_addresses` property which is an array of `ProjectEmailAddress` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "project_email_addresses": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ProjectEmailDomain"
+                      },
+                      "description": "An array of email domains"
+                    }
+                  },
+                  "required": [
+                    "project_email_addresses"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List all project email addresses"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the project email domain",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email_address": {
+                    "type": "string",
+                    "description": "The email address"
+                  },
+                  "display_name": {
+                    "type": "string",
+                    "description": "The readable name of the email address"
+                  }
+                },
+                "required": [
+                  "email_address",
+                  "display_name"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created `ProjectEmailAddress` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectEmailAddress"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a new project email address"
+      }
+    },
+    "/project_email_addresses/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the project email address",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The `ProjectEmailAddress` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectEmailAddress"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve a project email address"
+      }
+    },
+    "/project_phone_numbers": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "A dictionary with a `project_phone_numbers` property which is an array of `ProjectPhoneNumber` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "project_phone_numbers": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ProjectPhoneNumber"
+                      },
+                      "description": "An array of project phone numbers"
+                    }
+                  },
+                  "required": [
+                    "project_phone_numbers"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List all project phone numbers"
+      }
+    },
+    "/project_phone_numbers/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the project phone number",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The `ProjectPhoneNumber` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectPhoneNumber"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve a project phone number"
       }
     },
     "/employees/{id}/email_addresses": {
@@ -2616,6 +3156,65 @@
       }
     },
     "schemas": {
+      "ProjectPhoneNumber": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the phone number"
+          },
+          "phone_number": {
+            "type": "string",
+            "description": "The phone number"
+          }
+        },
+        "required": [
+          "id",
+          "phone_number"
+        ],
+        "title": "The Project Phone Number object"
+      },
+      "ProjectEmailAddress": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the email address"
+          },
+          "email_address": {
+            "type": "string",
+            "description": "The email address"
+          },
+          "display_name": {
+            "type": "string",
+            "description": "The readable name of the email address"
+          }
+        },
+        "required": [
+          "id",
+          "email_address",
+          "display_name"
+        ],
+        "title": "The Project Email Address object"
+      },
+      "ProjectEmailDomain": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the email domain"
+          },
+          "domain": {
+            "type": "string",
+            "description": "The domain for email addresses"
+          }
+        },
+        "required": [
+          "id",
+          "domain"
+        ],
+        "title": "The Project Email Domain object"
+      },
       "ConnectedEmailAddress": {
         "type": "object",
         "properties": {
@@ -2638,6 +3237,29 @@
           "provider"
         ],
         "title": "The Connected Email Address object"
+      },
+      "SMSMessage": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "The phone number the SMS message was sent from"
+          },
+          "to": {
+            "type": "string",
+            "description": "The phone number the SMS message was sent to"
+          },
+          "message": {
+            "type": "string",
+            "description": "The message that was sent"
+          }
+        },
+        "required": [
+          "from",
+          "to",
+          "message"
+        ],
+        "title": "The SMS Message object"
       },
       "DraftSMSMessage": {
         "type": "object",
@@ -2766,31 +3388,6 @@
         ],
         "title": "The Employee object"
       },
-      "Customer": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The ID of the customer"
-          },
-          "email_address": {
-            "type": "string",
-            "nullable": true,
-            "description": "The email address of the customer"
-          },
-          "phone_number": {
-            "type": "string",
-            "nullable": true,
-            "description": "The phone number of the customer"
-          }
-        },
-        "required": [
-          "id",
-          "email_address",
-          "phone_number"
-        ],
-        "title": "The Customer object"
-      },
       "Business": {
         "type": "object",
         "properties": {
@@ -2808,6 +3405,29 @@
           "name"
         ],
         "title": "The Business object"
+      },
+      "EmailTemplateEmbed": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the email template embed"
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL to embed the email template editor"
+          },
+          "expires_at": {
+            "type": "string",
+            "description": "When the email template embed expires and needs to be regenerated"
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "expires_at"
+        ],
+        "title": "The Campaign Embed object"
       },
       "CampaignEmbed": {
         "type": "object",
@@ -2839,7 +3459,11 @@
             "type": "string",
             "description": "The ID of the campaign"
           },
-          "enrolled_users": {
+          "name": {
+            "type": "string",
+            "description": "The name of the campaign"
+          },
+          "enrolled_customers": {
             "anyOf": [
               {
                 "type": "array",
@@ -2850,11 +3474,11 @@
               {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/Customer"
                 }
               }
             ],
-            "description": "The users enrolled in the campaign"
+            "description": "The customers enrolled in the campaign"
           },
           "steps": {
             "type": "array",
@@ -2914,14 +3538,57 @@
               ]
             },
             "description": "The steps of the campaign"
+          },
+          "email_address": {
+            "type": "string",
+            "nullable": true,
+            "description": "The email address used to send emails in the campaign. Will be the ID of an email-like object"
+          },
+          "phone_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "The phone number used to send SMS messages in the campaign. Will be the ID of a phone number-like object"
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the campaign. One of \"started\", \"stopped\", or \"finished\""
           }
         },
         "required": [
           "id",
-          "enrolled_users",
-          "steps"
+          "name",
+          "enrolled_customers",
+          "steps",
+          "email_address",
+          "phone_number",
+          "status"
         ],
         "title": "The Campaign object"
+      },
+      "Customer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the customer"
+          },
+          "email_address": {
+            "type": "string",
+            "nullable": true,
+            "description": "The email address of the customer"
+          },
+          "phone_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "The phone number of the customer"
+          }
+        },
+        "required": [
+          "id",
+          "email_address",
+          "phone_number"
+        ],
+        "title": "The Customer object"
       },
       "PocketflowsThread": {
         "type": "object",
