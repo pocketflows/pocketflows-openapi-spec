@@ -158,7 +158,11 @@
                       "items": {
                         "$ref": "#/components/schemas/Member"
                       },
+<<<<<<< HEAD
                       "description": "An array of members"
+=======
+                      "description": "An array of `Member` objects"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                     }
                   },
                   "required": [
@@ -191,7 +195,8 @@
                 "type": "object",
                 "properties": {
                   "user_id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The ID of the user"
                   }
                 },
                 "required": [
@@ -279,7 +284,11 @@
                       "items": {
                         "$ref": "#/components/schemas/Location"
                       },
+<<<<<<< HEAD
                       "description": "An array of locations"
+=======
+                      "description": "An array of `Location` objects"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                     }
                   },
                   "required": [
@@ -453,7 +462,11 @@
                       "items": {
                         "$ref": "#/components/schemas/Location"
                       },
+<<<<<<< HEAD
                       "description": "An array of locations"
+=======
+                      "description": "An array of `Location` objects"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                     }
                   },
                   "required": [
@@ -553,7 +566,11 @@
                       "items": {
                         "$ref": "#/components/schemas/Member"
                       },
+<<<<<<< HEAD
                       "description": "An array of members"
+=======
+                      "description": "An array of `Member` objects"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                     }
                   },
                   "required": [
@@ -634,7 +651,11 @@
                 "properties": {
                   "rewards_program_id": {
                     "type": "string",
+<<<<<<< HEAD
                     "description": "The ID of the location's new rewards program"
+=======
+                    "description": "The ID of the rewards program"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                   }
                 },
                 "required": [
@@ -938,7 +959,11 @@
                       "items": {
                         "$ref": "#/components/schemas/Email"
                       },
+<<<<<<< HEAD
                       "description": "An array of emails"
+=======
+                      "description": "An array of `Email` objects"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                     }
                   },
                   "required": [
@@ -1167,6 +1192,7 @@
           "content": {
             "application/json": {
               "schema": {
+<<<<<<< HEAD
                 "type": "object",
                 "properties": {
                   "email_address": {
@@ -1180,6 +1206,44 @@
                     "description": "The phone number of the customer"
                   }
                 }
+=======
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "email_address": {
+                        "type": "string",
+                        "description": "The email address of the customer"
+                      },
+                      "phone_number": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The phone number of the customer"
+                      }
+                    },
+                    "required": [
+                      "email_address"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "phone_number": {
+                        "type": "string",
+                        "description": "The phone number of the customer"
+                      },
+                      "email_address": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The email address of the customer"
+                      }
+                    },
+                    "required": [
+                      "phone_number"
+                    ]
+                  }
+                ]
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
               }
             }
           }
@@ -1327,7 +1391,11 @@
                       "items": {
                         "$ref": "#/components/schemas/Employee"
                       },
+<<<<<<< HEAD
                       "description": "An array of employees"
+=======
+                      "description": "An array of `Employee` objects"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                     }
                   },
                   "required": [
@@ -1559,6 +1627,7 @@
                   },
                   "body": {
                     "type": "string",
+<<<<<<< HEAD
                     "description": "The body of the email template. Variables are supported via `{{ variableName }}`"
                   }
                 },
@@ -1566,6 +1635,20 @@
                   "name",
                   "subject",
                   "body"
+=======
+                    "description": "The plaintext version of the body of the email template. Variables are supported via `{{ variableName }}`"
+                  },
+                  "template_html": {
+                    "type": "string",
+                    "description": "The HTML version of the body of the email template. Variables are supported via `{{ variableName }}`"
+                  },
+                  "template_json": {
+                    "description": "The JSON representing the email template"
+                  }
+                },
+                "required": [
+                  "name"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                 ]
               }
             }
@@ -1642,7 +1725,11 @@
                   },
                   "body": {
                     "type": "string",
+<<<<<<< HEAD
                     "description": "The body of the email template. Variables are supported via `{{ variableName }}`"
+=======
+                    "description": "The plaintext version of the body of the email template. Variables are supported via `{{ variableName }}`"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                   }
                 }
               }
@@ -1827,7 +1914,14 @@
             }
           }
         },
+<<<<<<< HEAD
         "summary": "Embed the email template editor"
+=======
+        "summary": "Embed the email template editor",
+        "security": [
+
+        ]
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
       }
     },
     "/email_templates/{id}/draft_send": {
@@ -1953,7 +2047,11 @@
             "schema": {
               "type": "string"
             },
+<<<<<<< HEAD
             "description": "The ID of the email",
+=======
+            "description": "The ID of the project email address",
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
             "required": true
           }
         ],
@@ -1974,18 +2072,26 @@
                   },
                   "body": {
                     "type": "string",
+<<<<<<< HEAD
                     "description": "The plaintext body of the email"
                   },
                   "html": {
                     "type": "string",
                     "description": "The HTML body of the email"
+=======
+                    "description": "The body of the email"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                   }
                 },
                 "required": [
                   "to",
                   "subject",
+<<<<<<< HEAD
                   "body",
                   "html"
+=======
+                  "body"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                 ]
               }
             }
@@ -2181,6 +2287,7 @@
             "required": true
           }
         ],
+<<<<<<< HEAD
         "responses": {
           "200": {
             "description": "The deleted `SMSTemplate` object",
@@ -2305,6 +2412,142 @@
       "get": {
         "responses": {
           "200": {
+=======
+        "responses": {
+          "200": {
+            "description": "The deleted `SMSTemplate` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SMSTemplate"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Delete an SMS template"
+      }
+    },
+    "/sms_templates/{id}/draft_send": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the SMS template",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "from": {
+                    "type": "string",
+                    "description": "The ID of the phone number to send the SMS from"
+                  },
+                  "to": {
+                    "type": "string",
+                    "description": "The phone number to send the SMS to"
+                  },
+                  "variables": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "description": "Variables to use in the email template"
+                  }
+                },
+                "required": [
+                  "from",
+                  "to"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A `DraftSMSMessage` representing what would have been sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DraftSMSMessage"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Draft send an SMS message from an SMS template"
+      }
+    },
+    "/project_phone_numbers/{id}/send": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the project",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "description": "The message of the SMS template. Variables are supported via `{{ variableName }}`"
+                  }
+                },
+                "required": [
+                  "message"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "An `SMSMessage` representing the sent message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SMSMessage"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Send an SMS message from a project's phone number"
+      }
+    },
+    "/businesses/{id}/campaigns": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
             "description": "A dictionary with a `campaigns` property which is an array of `Campaign` objects",
             "content": {
               "application/json": {
@@ -2368,16 +2611,37 @@
                           "properties": {
                             "type": {
                               "type": "string",
+<<<<<<< HEAD
+=======
+                              "enum": [
+                                "email"
+                              ],
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                               "description": "The step type. Always \"email\" for this step"
                             },
                             "email_template_id": {
                               "type": "string",
                               "description": "The ID of the email template to use in this step"
+<<<<<<< HEAD
                             }
                           },
                           "required": [
                             "type",
                             "email_template_id"
+=======
+                            },
+                            "subject": {
+                              "type": "string",
+                              "description": "The subject of the email template to use at this step"
+                            },
+                            "body": {
+                              "type": "string",
+                              "description": "The body of the email template to use at this step"
+                            }
+                          },
+                          "required": [
+                            "type"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                           ]
                         },
                         {
@@ -2385,16 +2649,33 @@
                           "properties": {
                             "type": {
                               "type": "string",
+<<<<<<< HEAD
+=======
+                              "enum": [
+                                "sms"
+                              ],
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                               "description": "The step type. Always \"sms\" for this step"
                             },
                             "sms_template_id": {
                               "type": "string",
                               "description": "The ID of the SMS template to use in this step"
+<<<<<<< HEAD
                             }
                           },
                           "required": [
                             "type",
                             "sms_template_id"
+=======
+                            },
+                            "message": {
+                              "type": "string",
+                              "description": "The message to send in this step"
+                            }
+                          },
+                          "required": [
+                            "type"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                           ]
                         },
                         {
@@ -2402,6 +2683,12 @@
                           "properties": {
                             "type": {
                               "type": "string",
+<<<<<<< HEAD
+=======
+                              "enum": [
+                                "wait"
+                              ],
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                               "description": "The step type. Always \"wait\" for this step"
                             },
                             "duration": {
@@ -2536,16 +2823,37 @@
                           "properties": {
                             "type": {
                               "type": "string",
+<<<<<<< HEAD
+=======
+                              "enum": [
+                                "email"
+                              ],
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                               "description": "The step type. Always \"email\" for this step"
                             },
                             "email_template_id": {
                               "type": "string",
                               "description": "The ID of the email template to use in this step"
+<<<<<<< HEAD
                             }
                           },
                           "required": [
                             "type",
                             "email_template_id"
+=======
+                            },
+                            "subject": {
+                              "type": "string",
+                              "description": "The subject of the email template to use at this step"
+                            },
+                            "body": {
+                              "type": "string",
+                              "description": "The body of the email template to use at this step"
+                            }
+                          },
+                          "required": [
+                            "type"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                           ]
                         },
                         {
@@ -2553,16 +2861,33 @@
                           "properties": {
                             "type": {
                               "type": "string",
+<<<<<<< HEAD
+=======
+                              "enum": [
+                                "sms"
+                              ],
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                               "description": "The step type. Always \"sms\" for this step"
                             },
                             "sms_template_id": {
                               "type": "string",
                               "description": "The ID of the SMS template to use in this step"
+<<<<<<< HEAD
                             }
                           },
                           "required": [
                             "type",
                             "sms_template_id"
+=======
+                            },
+                            "message": {
+                              "type": "string",
+                              "description": "The message to send in this step"
+                            }
+                          },
+                          "required": [
+                            "type"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                           ]
                         },
                         {
@@ -2570,6 +2895,12 @@
                           "properties": {
                             "type": {
                               "type": "string",
+<<<<<<< HEAD
+=======
+                              "enum": [
+                                "wait"
+                              ],
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                               "description": "The step type. Always \"wait\" for this step"
                             },
                             "duration": {
@@ -2798,7 +3129,11 @@
                       "items": {
                         "$ref": "#/components/schemas/ProjectEmailDomain"
                       },
+<<<<<<< HEAD
                       "description": "An array of email domains"
+=======
+                      "description": "An array of project email domains"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                     }
                   },
                   "required": [
@@ -2864,9 +3199,15 @@
                     "project_email_addresses": {
                       "type": "array",
                       "items": {
+<<<<<<< HEAD
                         "$ref": "#/components/schemas/ProjectEmailDomain"
                       },
                       "description": "An array of email domains"
+=======
+                        "$ref": "#/components/schemas/ProjectEmailAddress"
+                      },
+                      "description": "An array of project email addresses"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                     }
                   },
                   "required": [
@@ -2904,6 +3245,10 @@
                   },
                   "display_name": {
                     "type": "string",
+<<<<<<< HEAD
+=======
+                    "nullable": true,
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                     "description": "The readable name of the email address"
                   }
                 },
@@ -3101,7 +3446,11 @@
         ],
         "responses": {
           "200": {
+<<<<<<< HEAD
             "description": "A `ConnectedEmailAddress` object",
+=======
+            "description": "An `EmailAddress` object",
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
             "content": {
               "application/json": {
                 "schema": {
@@ -3156,11 +3505,16 @@
       }
     },
     "schemas": {
+<<<<<<< HEAD
       "ProjectPhoneNumber": {
+=======
+      "Business": {
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
+<<<<<<< HEAD
             "description": "The ID of the phone number"
           },
           "phone_number": {
@@ -3298,10 +3652,18 @@
           "message": {
             "type": "string",
             "description": "The message of the SMS template. Variables are supported via `{{ variableName }}`"
+=======
+            "description": "The ID of the business"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the business"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
           }
         },
         "required": [
           "id",
+<<<<<<< HEAD
           "name",
           "message"
         ],
@@ -3451,6 +3813,11 @@
           "expires_at"
         ],
         "title": "The Campaign Embed object"
+=======
+          "name"
+        ],
+        "title": "The Business object"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
       },
       "Campaign": {
         "type": "object",
@@ -3489,16 +3856,37 @@
                   "properties": {
                     "type": {
                       "type": "string",
+<<<<<<< HEAD
+=======
+                      "enum": [
+                        "email"
+                      ],
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                       "description": "The step type. Always \"email\" for this step"
                     },
                     "email_template_id": {
                       "type": "string",
                       "description": "The ID of the email template to use in this step"
+<<<<<<< HEAD
                     }
                   },
                   "required": [
                     "type",
                     "email_template_id"
+=======
+                    },
+                    "subject": {
+                      "type": "string",
+                      "description": "The subject of the email template to use at this step"
+                    },
+                    "body": {
+                      "type": "string",
+                      "description": "The body of the email template to use at this step"
+                    }
+                  },
+                  "required": [
+                    "type"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                   ]
                 },
                 {
@@ -3506,16 +3894,33 @@
                   "properties": {
                     "type": {
                       "type": "string",
+<<<<<<< HEAD
+=======
+                      "enum": [
+                        "sms"
+                      ],
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                       "description": "The step type. Always \"sms\" for this step"
                     },
                     "sms_template_id": {
                       "type": "string",
                       "description": "The ID of the SMS template to use in this step"
+<<<<<<< HEAD
                     }
                   },
                   "required": [
                     "type",
                     "sms_template_id"
+=======
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The message to send in this step"
+                    }
+                  },
+                  "required": [
+                    "type"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                   ]
                 },
                 {
@@ -3523,6 +3928,12 @@
                   "properties": {
                     "type": {
                       "type": "string",
+<<<<<<< HEAD
+=======
+                      "enum": [
+                        "wait"
+                      ],
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
                       "description": "The step type. Always \"wait\" for this step"
                     },
                     "duration": {
@@ -3570,6 +3981,7 @@
         "properties": {
           "id": {
             "type": "string",
+<<<<<<< HEAD
             "description": "The ID of the customer"
           },
           "email_address": {
@@ -3630,14 +4042,220 @@
           "url": {
             "type": "string",
             "description": "The URL to embed the flow"
+=======
+            "description": "The ID of the campaign embed"
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL to embed the campaign editor"
+          },
+          "expires_at": {
+            "type": "string",
+            "description": "When the campaign embed expires and needs to be regenerated"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
           }
         },
         "required": [
           "id",
+<<<<<<< HEAD
           "expires_at",
           "url"
         ],
         "title": "The Flow object"
+=======
+          "url",
+          "expires_at"
+        ],
+        "title": "The Campaign Embed object"
+      },
+      "ConnectedEmailAddress": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the connected email address"
+          },
+          "email_address": {
+            "type": "string",
+            "description": "The email address of the connected email address"
+          },
+          "provider": {
+            "type": "string",
+            "description": "The provider of the connected email address. Always \"google\" (for now)"
+          }
+        },
+        "required": [
+          "id",
+          "email_address",
+          "provider"
+        ],
+        "title": "The Connected Email Address object"
+      },
+      "Customer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the customer"
+          },
+          "email_address": {
+            "type": "string",
+            "nullable": true,
+            "description": "The email address of the customer"
+          },
+          "phone_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "The phone number of the customer"
+          }
+        },
+        "required": [
+          "id",
+          "email_address",
+          "phone_number"
+        ],
+        "title": "The Customer object"
+      },
+      "DraftEmail": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "The from address of the draft email"
+          },
+          "to": {
+            "type": "string",
+            "description": "The to address of the draft email"
+          },
+          "subject": {
+            "type": "string",
+            "description": "The subject of the draft email"
+          },
+          "body": {
+            "type": "string",
+            "description": "The body of the draft email"
+          }
+        },
+        "required": [
+          "from",
+          "to",
+          "subject",
+          "body"
+        ],
+        "title": "The Draft Email object"
+      },
+      "DraftSMSMessage": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "The phone number the SMS message would be sent from"
+          },
+          "to": {
+            "type": "string",
+            "description": "The phone number the SMS message would be sent to"
+          },
+          "message": {
+            "type": "string",
+            "description": "The message that would be sent"
+          }
+        },
+        "required": [
+          "from",
+          "to",
+          "message"
+        ],
+        "title": "The Draft SMS Message object"
+      },
+      "Email": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the email"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "title": "The Email object"
+      },
+      "EmailTemplate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the email template"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the email template"
+          },
+          "subject": {
+            "type": "string",
+            "description": "The subject of the email template. Variables are supported via `{{ variableName }}`"
+          },
+          "body": {
+            "type": "string",
+            "description": "The body of the email template. Variables are supported via `{{ variableName }}`"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "subject",
+          "body"
+        ],
+        "title": "The Email Template object"
+      },
+      "EmailTemplateEmbed": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the email template embed"
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL to embed the email template editor"
+          },
+          "expires_at": {
+            "type": "string",
+            "description": "When the email template embed expires and needs to be regenerated"
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "expires_at"
+        ],
+        "title": "The Email Template Embed object"
+      },
+      "Employee": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the employee"
+          },
+          "email_address": {
+            "type": "string",
+            "nullable": true,
+            "description": "The email address of the employee"
+          },
+          "phone_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "The phone number of the employee"
+          }
+        },
+        "required": [
+          "id",
+          "email_address",
+          "phone_number"
+        ],
+        "title": "The Employee object"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
       },
       "Event": {
         "type": "object",
@@ -3669,11 +4287,16 @@
         ],
         "title": "The Event object"
       },
+<<<<<<< HEAD
       "Tier": {
+=======
+      "Flow": {
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
+<<<<<<< HEAD
             "description": "The ID of the tier"
           },
           "name": {
@@ -3690,15 +4313,59 @@
               "type": "string"
             },
             "description": "The perks associated with reaching this tier"
+=======
+            "description": "The ID of the flow"
+          },
+          "expires_at": {
+            "type": "string",
+            "description": "When the flow expires"
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL to embed the flow"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
           }
         },
         "required": [
           "id",
+<<<<<<< HEAD
           "name",
           "minimum_points",
           "perks"
         ],
         "title": "The Tier object"
+=======
+          "expires_at",
+          "url"
+        ],
+        "title": "The Flow object"
+      },
+      "Location": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the location"
+          },
+          "rewards_program": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RewardsProgram"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "nullable": true,
+            "description": "The location's rewards program"
+          }
+        },
+        "required": [
+          "id",
+          "rewards_program"
+        ],
+        "title": "The Location object"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
       },
       "Member": {
         "type": "object",
@@ -3747,11 +4414,16 @@
         ],
         "title": "The Member object"
       },
+<<<<<<< HEAD
       "Location": {
+=======
+      "ProjectEmailAddress": {
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
+<<<<<<< HEAD
             "description": "The ID of the location"
           },
           "rewards_program": {
@@ -3765,31 +4437,81 @@
             ],
             "nullable": true,
             "description": "The location's rewards program"
+=======
+            "description": "The ID of the email address"
+          },
+          "email_address": {
+            "type": "string",
+            "description": "The email address"
+          },
+          "display_name": {
+            "type": "string",
+            "description": "The readable name of the email address"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
           }
         },
         "required": [
           "id",
+<<<<<<< HEAD
           "rewards_program"
         ],
         "title": "The Location object"
       },
       "User": {
+=======
+          "email_address",
+          "display_name"
+        ],
+        "title": "The Project Email Address object"
+      },
+      "ProjectEmailDomain": {
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
+<<<<<<< HEAD
             "description": "The ID of the user"
           },
           "phone_number": {
             "type": "string",
             "description": "The user's phone number"
+=======
+            "description": "The ID of the email domain"
+          },
+          "domain": {
+            "type": "string",
+            "description": "The domain for email addresses"
+          }
+        },
+        "required": [
+          "id",
+          "domain"
+        ],
+        "title": "The Project Email Domain object"
+      },
+      "ProjectPhoneNumber": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the phone number"
+          },
+          "phone_number": {
+            "type": "string",
+            "description": "The phone number"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
           }
         },
         "required": [
           "id",
           "phone_number"
         ],
+<<<<<<< HEAD
         "title": "The User object"
+=======
+        "title": "The Project Phone Number object"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
       },
       "RewardsProgram": {
         "type": "object",
@@ -3838,6 +4560,117 @@
           "points_for_first_visit_in_three_months"
         ],
         "title": "The Rewards Program object"
+<<<<<<< HEAD
+=======
+      },
+      "SMSMessage": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "The phone number the SMS message was sent from"
+          },
+          "to": {
+            "type": "string",
+            "description": "The phone number the SMS message was sent to"
+          },
+          "message": {
+            "type": "string",
+            "description": "The message that was sent"
+          }
+        },
+        "required": [
+          "from",
+          "to",
+          "message"
+        ],
+        "title": "The SMS Message object"
+      },
+      "SMSTemplate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the SMS template"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the SMS template"
+          },
+          "message": {
+            "type": "string",
+            "description": "The message of the SMS template. Variables are supported via `{{ variableName }}`"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "message"
+        ],
+        "title": "The SMS Template object"
+      },
+      "Thread": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the thread"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "title": "The Thread object"
+      },
+      "Tier": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the tier"
+          },
+          "name": {
+            "type": "string",
+            "description": "The tier's name"
+          },
+          "minimum_points": {
+            "type": "integer",
+            "description": "The minimum number of points to reach this tier"
+          },
+          "perks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The perks associated with reaching this tier"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "minimum_points",
+          "perks"
+        ],
+        "title": "The Tier object"
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the user"
+          },
+          "phone_number": {
+            "type": "string",
+            "description": "The user's phone number"
+          }
+        },
+        "required": [
+          "id",
+          "phone_number"
+        ],
+        "title": "The User object"
+>>>>>>> f6cb0c2 (Update with generate_openapi_spec_v2.rb)
       }
     }
   }
