@@ -158,7 +158,7 @@
                       "items": {
                         "$ref": "#/components/schemas/Member"
                       },
-                      "description": "An array of members"
+                      "description": "An array of `Member` objects"
                     }
                   },
                   "required": [
@@ -191,7 +191,8 @@
                 "type": "object",
                 "properties": {
                   "user_id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The ID of the user"
                   }
                 },
                 "required": [
@@ -279,7 +280,7 @@
                       "items": {
                         "$ref": "#/components/schemas/Location"
                       },
-                      "description": "An array of locations"
+                      "description": "An array of `Location` objects"
                     }
                   },
                   "required": [
@@ -453,7 +454,7 @@
                       "items": {
                         "$ref": "#/components/schemas/Location"
                       },
-                      "description": "An array of locations"
+                      "description": "An array of `Location` objects"
                     }
                   },
                   "required": [
@@ -553,7 +554,7 @@
                       "items": {
                         "$ref": "#/components/schemas/Member"
                       },
-                      "description": "An array of members"
+                      "description": "An array of `Member` objects"
                     }
                   },
                   "required": [
@@ -634,7 +635,7 @@
                 "properties": {
                   "rewards_program_id": {
                     "type": "string",
-                    "description": "The ID of the location's new rewards program"
+                    "description": "The ID of the rewards program"
                   }
                 },
                 "required": [
@@ -938,7 +939,7 @@
                       "items": {
                         "$ref": "#/components/schemas/Email"
                       },
-                      "description": "An array of emails"
+                      "description": "An array of `Email` objects"
                     }
                   },
                   "required": [
@@ -1167,19 +1168,42 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "email_address": {
-                    "type": "string",
-                    "nullable": true,
-                    "description": "The email address of the customer"
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "email_address": {
+                        "type": "string",
+                        "description": "The email address of the customer"
+                      },
+                      "phone_number": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The phone number of the customer"
+                      }
+                    },
+                    "required": [
+                      "email_address"
+                    ]
                   },
-                  "phone_number": {
-                    "type": "string",
-                    "nullable": true,
-                    "description": "The phone number of the customer"
+                  {
+                    "type": "object",
+                    "properties": {
+                      "phone_number": {
+                        "type": "string",
+                        "description": "The phone number of the customer"
+                      },
+                      "email_address": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The email address of the customer"
+                      }
+                    },
+                    "required": [
+                      "phone_number"
+                    ]
                   }
-                }
+                ]
               }
             }
           }
@@ -1327,7 +1351,7 @@
                       "items": {
                         "$ref": "#/components/schemas/Employee"
                       },
-                      "description": "An array of employees"
+                      "description": "An array of `Employee` objects"
                     }
                   },
                   "required": [
@@ -1559,13 +1583,18 @@
                   },
                   "body": {
                     "type": "string",
-                    "description": "The body of the email template. Variables are supported via `{{ variableName }}`"
+                    "description": "The plaintext version of the body of the email template. Variables are supported via `{{ variableName }}`"
+                  },
+                  "template_html": {
+                    "type": "string",
+                    "description": "The HTML version of the body of the email template. Variables are supported via `{{ variableName }}`"
+                  },
+                  "template_json": {
+                    "description": "The JSON representing the email template"
                   }
                 },
                 "required": [
-                  "name",
-                  "subject",
-                  "body"
+                  "name"
                 ]
               }
             }
@@ -1642,7 +1671,7 @@
                   },
                   "body": {
                     "type": "string",
-                    "description": "The body of the email template. Variables are supported via `{{ variableName }}`"
+                    "description": "The plaintext version of the body of the email template. Variables are supported via `{{ variableName }}`"
                   }
                 }
               }
@@ -1827,7 +1856,10 @@
             }
           }
         },
-        "summary": "Embed the email template editor"
+        "summary": "Embed the email template editor",
+        "security": [
+
+        ]
       }
     },
     "/email_templates/{id}/draft_send": {
@@ -1953,7 +1985,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "The ID of the email",
+            "description": "The ID of the project email address",
             "required": true
           }
         ],
@@ -1974,18 +2006,13 @@
                   },
                   "body": {
                     "type": "string",
-                    "description": "The plaintext body of the email"
-                  },
-                  "html": {
-                    "type": "string",
-                    "description": "The HTML body of the email"
+                    "description": "The body of the email"
                   }
                 },
                 "required": [
                   "to",
                   "subject",
-                  "body",
-                  "html"
+                  "body"
                 ]
               }
             }
@@ -2227,13 +2254,12 @@
                   "variables": {
                     "type": "object",
                     "additionalProperties": true,
-                    "description": "The variables to inject into the SMS template"
+                    "description": "Variables to use in the email template"
                   }
                 },
                 "required": [
                   "from",
-                  "to",
-                  "variables"
+                  "to"
                 ]
               }
             }
@@ -2288,7 +2314,7 @@
         },
         "responses": {
           "200": {
-            "description": "A `SMSMessage` representing the sent message",
+            "description": "An `SMSMessage` representing the sent message",
             "content": {
               "application/json": {
                 "schema": {
@@ -2303,6 +2329,17 @@
     },
     "/businesses/{id}/campaigns": {
       "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "A dictionary with a `campaigns` property which is an array of `Campaign` objects",
@@ -2368,16 +2405,26 @@
                           "properties": {
                             "type": {
                               "type": "string",
+                              "enum": [
+                                "email"
+                              ],
                               "description": "The step type. Always \"email\" for this step"
                             },
                             "email_template_id": {
                               "type": "string",
                               "description": "The ID of the email template to use in this step"
+                            },
+                            "subject": {
+                              "type": "string",
+                              "description": "The subject of the email template to use at this step"
+                            },
+                            "body": {
+                              "type": "string",
+                              "description": "The body of the email template to use at this step"
                             }
                           },
                           "required": [
-                            "type",
-                            "email_template_id"
+                            "type"
                           ]
                         },
                         {
@@ -2385,16 +2432,22 @@
                           "properties": {
                             "type": {
                               "type": "string",
+                              "enum": [
+                                "sms"
+                              ],
                               "description": "The step type. Always \"sms\" for this step"
                             },
                             "sms_template_id": {
                               "type": "string",
                               "description": "The ID of the SMS template to use in this step"
+                            },
+                            "message": {
+                              "type": "string",
+                              "description": "The message to send in this step"
                             }
                           },
                           "required": [
-                            "type",
-                            "sms_template_id"
+                            "type"
                           ]
                         },
                         {
@@ -2402,6 +2455,9 @@
                           "properties": {
                             "type": {
                               "type": "string",
+                              "enum": [
+                                "wait"
+                              ],
                               "description": "The step type. Always \"wait\" for this step"
                             },
                             "duration": {
@@ -2536,16 +2592,26 @@
                           "properties": {
                             "type": {
                               "type": "string",
+                              "enum": [
+                                "email"
+                              ],
                               "description": "The step type. Always \"email\" for this step"
                             },
                             "email_template_id": {
                               "type": "string",
                               "description": "The ID of the email template to use in this step"
+                            },
+                            "subject": {
+                              "type": "string",
+                              "description": "The subject of the email template to use at this step"
+                            },
+                            "body": {
+                              "type": "string",
+                              "description": "The body of the email template to use at this step"
                             }
                           },
                           "required": [
-                            "type",
-                            "email_template_id"
+                            "type"
                           ]
                         },
                         {
@@ -2553,16 +2619,22 @@
                           "properties": {
                             "type": {
                               "type": "string",
+                              "enum": [
+                                "sms"
+                              ],
                               "description": "The step type. Always \"sms\" for this step"
                             },
                             "sms_template_id": {
                               "type": "string",
                               "description": "The ID of the SMS template to use in this step"
+                            },
+                            "message": {
+                              "type": "string",
+                              "description": "The message to send in this step"
                             }
                           },
                           "required": [
-                            "type",
-                            "sms_template_id"
+                            "type"
                           ]
                         },
                         {
@@ -2570,6 +2642,9 @@
                           "properties": {
                             "type": {
                               "type": "string",
+                              "enum": [
+                                "wait"
+                              ],
                               "description": "The step type. Always \"wait\" for this step"
                             },
                             "duration": {
@@ -2798,7 +2873,7 @@
                       "items": {
                         "$ref": "#/components/schemas/ProjectEmailDomain"
                       },
-                      "description": "An array of email domains"
+                      "description": "An array of project email domains"
                     }
                   },
                   "required": [
@@ -2864,9 +2939,9 @@
                     "project_email_addresses": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/ProjectEmailDomain"
+                        "$ref": "#/components/schemas/ProjectEmailAddress"
                       },
-                      "description": "An array of email domains"
+                      "description": "An array of project email addresses"
                     }
                   },
                   "required": [
@@ -2904,6 +2979,7 @@
                   },
                   "display_name": {
                     "type": "string",
+                    "nullable": true,
                     "description": "The readable name of the email address"
                   }
                 },
@@ -3101,7 +3177,7 @@
         ],
         "responses": {
           "200": {
-            "description": "A `ConnectedEmailAddress` object",
+            "description": "An `EmailAddress` object",
             "content": {
               "application/json": {
                 "schema": {
@@ -3156,238 +3232,6 @@
       }
     },
     "schemas": {
-      "ProjectPhoneNumber": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The ID of the phone number"
-          },
-          "phone_number": {
-            "type": "string",
-            "description": "The phone number"
-          }
-        },
-        "required": [
-          "id",
-          "phone_number"
-        ],
-        "title": "The Project Phone Number object"
-      },
-      "ProjectEmailAddress": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The ID of the email address"
-          },
-          "email_address": {
-            "type": "string",
-            "description": "The email address"
-          },
-          "display_name": {
-            "type": "string",
-            "description": "The readable name of the email address"
-          }
-        },
-        "required": [
-          "id",
-          "email_address",
-          "display_name"
-        ],
-        "title": "The Project Email Address object"
-      },
-      "ProjectEmailDomain": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The ID of the email domain"
-          },
-          "domain": {
-            "type": "string",
-            "description": "The domain for email addresses"
-          }
-        },
-        "required": [
-          "id",
-          "domain"
-        ],
-        "title": "The Project Email Domain object"
-      },
-      "ConnectedEmailAddress": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The ID of the connected email address"
-          },
-          "email_address": {
-            "type": "string",
-            "description": "The email address of the connected email address"
-          },
-          "provider": {
-            "type": "string",
-            "description": "The provider of the connected email address. Always \"google\" (for now)"
-          }
-        },
-        "required": [
-          "id",
-          "email_address",
-          "provider"
-        ],
-        "title": "The Connected Email Address object"
-      },
-      "SMSMessage": {
-        "type": "object",
-        "properties": {
-          "from": {
-            "type": "string",
-            "description": "The phone number the SMS message was sent from"
-          },
-          "to": {
-            "type": "string",
-            "description": "The phone number the SMS message was sent to"
-          },
-          "message": {
-            "type": "string",
-            "description": "The message that was sent"
-          }
-        },
-        "required": [
-          "from",
-          "to",
-          "message"
-        ],
-        "title": "The SMS Message object"
-      },
-      "DraftSMSMessage": {
-        "type": "object",
-        "properties": {
-          "from": {
-            "type": "string",
-            "description": "The phone number the SMS message would be sent from"
-          },
-          "to": {
-            "type": "string",
-            "description": "The phone number the SMS message would be sent to"
-          },
-          "message": {
-            "type": "string",
-            "description": "The message that would be sent"
-          }
-        },
-        "required": [
-          "from",
-          "to",
-          "message"
-        ],
-        "title": "The Draft SMS Message object"
-      },
-      "SMSTemplate": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The ID of the SMS template"
-          },
-          "name": {
-            "type": "string",
-            "description": "The name of the SMS template"
-          },
-          "message": {
-            "type": "string",
-            "description": "The message of the SMS template. Variables are supported via `{{ variableName }}`"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "message"
-        ],
-        "title": "The SMS Template object"
-      },
-      "DraftEmail": {
-        "type": "object",
-        "properties": {
-          "from": {
-            "type": "string",
-            "description": "The from address of the draft email"
-          },
-          "to": {
-            "type": "string",
-            "description": "The to address of the draft email"
-          },
-          "subject": {
-            "type": "string",
-            "description": "The subject of the draft email"
-          },
-          "body": {
-            "type": "string",
-            "description": "The body of the draft email"
-          }
-        },
-        "required": [
-          "from",
-          "to",
-          "subject",
-          "body"
-        ],
-        "title": "The Draft Email object"
-      },
-      "EmailTemplate": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The ID of the email template"
-          },
-          "name": {
-            "type": "string",
-            "description": "The name of the email template"
-          },
-          "subject": {
-            "type": "string",
-            "description": "The subject of the email template. Variables are supported via `{{ variableName }}`"
-          },
-          "body": {
-            "type": "string",
-            "description": "The body of the email template. Variables are supported via `{{ variableName }}`"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "subject",
-          "body"
-        ],
-        "title": "The Email Template object"
-      },
-      "Employee": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The ID of the employee"
-          },
-          "email_address": {
-            "type": "string",
-            "nullable": true,
-            "description": "The email address of the employee"
-          },
-          "phone_number": {
-            "type": "string",
-            "nullable": true,
-            "description": "The phone number of the employee"
-          }
-        },
-        "required": [
-          "id",
-          "email_address",
-          "phone_number"
-        ],
-        "title": "The Employee object"
-      },
       "Business": {
         "type": "object",
         "properties": {
@@ -3405,52 +3249,6 @@
           "name"
         ],
         "title": "The Business object"
-      },
-      "EmailTemplateEmbed": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The ID of the email template embed"
-          },
-          "url": {
-            "type": "string",
-            "description": "The URL to embed the email template editor"
-          },
-          "expires_at": {
-            "type": "string",
-            "description": "When the email template embed expires and needs to be regenerated"
-          }
-        },
-        "required": [
-          "id",
-          "url",
-          "expires_at"
-        ],
-        "title": "The Campaign Embed object"
-      },
-      "CampaignEmbed": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The ID of the campaign embed"
-          },
-          "url": {
-            "type": "string",
-            "description": "The URL to embed the campaign editor"
-          },
-          "expires_at": {
-            "type": "string",
-            "description": "When the campaign embed expires and needs to be regenerated"
-          }
-        },
-        "required": [
-          "id",
-          "url",
-          "expires_at"
-        ],
-        "title": "The Campaign Embed object"
       },
       "Campaign": {
         "type": "object",
@@ -3489,16 +3287,26 @@
                   "properties": {
                     "type": {
                       "type": "string",
+                      "enum": [
+                        "email"
+                      ],
                       "description": "The step type. Always \"email\" for this step"
                     },
                     "email_template_id": {
                       "type": "string",
                       "description": "The ID of the email template to use in this step"
+                    },
+                    "subject": {
+                      "type": "string",
+                      "description": "The subject of the email template to use at this step"
+                    },
+                    "body": {
+                      "type": "string",
+                      "description": "The body of the email template to use at this step"
                     }
                   },
                   "required": [
-                    "type",
-                    "email_template_id"
+                    "type"
                   ]
                 },
                 {
@@ -3506,16 +3314,22 @@
                   "properties": {
                     "type": {
                       "type": "string",
+                      "enum": [
+                        "sms"
+                      ],
                       "description": "The step type. Always \"sms\" for this step"
                     },
                     "sms_template_id": {
                       "type": "string",
                       "description": "The ID of the SMS template to use in this step"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The message to send in this step"
                     }
                   },
                   "required": [
-                    "type",
-                    "sms_template_id"
+                    "type"
                   ]
                 },
                 {
@@ -3523,6 +3337,9 @@
                   "properties": {
                     "type": {
                       "type": "string",
+                      "enum": [
+                        "wait"
+                      ],
                       "description": "The step type. Always \"wait\" for this step"
                     },
                     "duration": {
@@ -3565,6 +3382,52 @@
         ],
         "title": "The Campaign object"
       },
+      "CampaignEmbed": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the campaign embed"
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL to embed the campaign editor"
+          },
+          "expires_at": {
+            "type": "string",
+            "description": "When the campaign embed expires and needs to be regenerated"
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "expires_at"
+        ],
+        "title": "The Campaign Embed object"
+      },
+      "ConnectedEmailAddress": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the connected email address"
+          },
+          "email_address": {
+            "type": "string",
+            "description": "The email address of the connected email address"
+          },
+          "provider": {
+            "type": "string",
+            "description": "The provider of the connected email address. Always \"google\" (for now)"
+          }
+        },
+        "required": [
+          "id",
+          "email_address",
+          "provider"
+        ],
+        "title": "The Connected Email Address object"
+      },
       "Customer": {
         "type": "object",
         "properties": {
@@ -3590,18 +3453,56 @@
         ],
         "title": "The Customer object"
       },
-      "PocketflowsThread": {
+      "DraftEmail": {
         "type": "object",
         "properties": {
-          "id": {
+          "from": {
             "type": "string",
-            "description": "The ID of the thread"
+            "description": "The from address of the draft email"
+          },
+          "to": {
+            "type": "string",
+            "description": "The to address of the draft email"
+          },
+          "subject": {
+            "type": "string",
+            "description": "The subject of the draft email"
+          },
+          "body": {
+            "type": "string",
+            "description": "The body of the draft email"
           }
         },
         "required": [
-          "id"
+          "from",
+          "to",
+          "subject",
+          "body"
         ],
-        "title": "The Thread object"
+        "title": "The Draft Email object"
+      },
+      "DraftSMSMessage": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "The phone number the SMS message would be sent from"
+          },
+          "to": {
+            "type": "string",
+            "description": "The phone number the SMS message would be sent to"
+          },
+          "message": {
+            "type": "string",
+            "description": "The message that would be sent"
+          }
+        },
+        "required": [
+          "from",
+          "to",
+          "message"
+        ],
+        "title": "The Draft SMS Message object"
       },
       "Email": {
         "type": "object",
@@ -3616,28 +3517,81 @@
         ],
         "title": "The Email object"
       },
-      "Flow": {
+      "EmailTemplate": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "description": "The ID of the flow"
+            "description": "The ID of the email template"
           },
-          "expires_at": {
+          "name": {
             "type": "string",
-            "description": "When the flow expires"
+            "description": "The name of the email template"
           },
-          "url": {
+          "subject": {
             "type": "string",
-            "description": "The URL to embed the flow"
+            "description": "The subject of the email template. Variables are supported via `{{ variableName }}`"
+          },
+          "body": {
+            "type": "string",
+            "description": "The body of the email template. Variables are supported via `{{ variableName }}`"
           }
         },
         "required": [
           "id",
-          "expires_at",
-          "url"
+          "name",
+          "subject",
+          "body"
         ],
-        "title": "The Flow object"
+        "title": "The Email Template object"
+      },
+      "EmailTemplateEmbed": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the email template embed"
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL to embed the email template editor"
+          },
+          "expires_at": {
+            "type": "string",
+            "description": "When the email template embed expires and needs to be regenerated"
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "expires_at"
+        ],
+        "title": "The Email Template Embed object"
+      },
+      "Employee": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the employee"
+          },
+          "email_address": {
+            "type": "string",
+            "nullable": true,
+            "description": "The email address of the employee"
+          },
+          "phone_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "The phone number of the employee"
+          }
+        },
+        "required": [
+          "id",
+          "email_address",
+          "phone_number"
+        ],
+        "title": "The Employee object"
       },
       "Event": {
         "type": "object",
@@ -3669,36 +3623,54 @@
         ],
         "title": "The Event object"
       },
-      "Tier": {
+      "Flow": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "description": "The ID of the tier"
+            "description": "The ID of the flow"
           },
-          "name": {
+          "expires_at": {
             "type": "string",
-            "description": "The tier's name"
+            "description": "When the flow expires"
           },
-          "minimum_points": {
-            "type": "integer",
-            "description": "The minimum number of points to reach this tier"
-          },
-          "perks": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "The perks associated with reaching this tier"
+          "url": {
+            "type": "string",
+            "description": "The URL to embed the flow"
           }
         },
         "required": [
           "id",
-          "name",
-          "minimum_points",
-          "perks"
+          "expires_at",
+          "url"
         ],
-        "title": "The Tier object"
+        "title": "The Flow object"
+      },
+      "Location": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the location"
+          },
+          "rewards_program": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RewardsProgram"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "nullable": true,
+            "description": "The location's rewards program"
+          }
+        },
+        "required": [
+          "id",
+          "rewards_program"
+        ],
+        "title": "The Location object"
       },
       "Member": {
         "type": "object",
@@ -3747,49 +3719,64 @@
         ],
         "title": "The Member object"
       },
-      "Location": {
+      "ProjectEmailAddress": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "description": "The ID of the location"
+            "description": "The ID of the email address"
           },
-          "rewards_program": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/RewardsProgram"
-              }
-            ],
-            "nullable": true,
-            "description": "The location's rewards program"
+          "email_address": {
+            "type": "string",
+            "description": "The email address"
+          },
+          "display_name": {
+            "type": "string",
+            "description": "The readable name of the email address"
           }
         },
         "required": [
           "id",
-          "rewards_program"
+          "email_address",
+          "display_name"
         ],
-        "title": "The Location object"
+        "title": "The Project Email Address object"
       },
-      "User": {
+      "ProjectEmailDomain": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "description": "The ID of the user"
+            "description": "The ID of the email domain"
+          },
+          "domain": {
+            "type": "string",
+            "description": "The domain for email addresses"
+          }
+        },
+        "required": [
+          "id",
+          "domain"
+        ],
+        "title": "The Project Email Domain object"
+      },
+      "ProjectPhoneNumber": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the phone number"
           },
           "phone_number": {
             "type": "string",
-            "description": "The user's phone number"
+            "description": "The phone number"
           }
         },
         "required": [
           "id",
           "phone_number"
         ],
-        "title": "The User object"
+        "title": "The Project Phone Number object"
       },
       "RewardsProgram": {
         "type": "object",
@@ -3838,6 +3825,114 @@
           "points_for_first_visit_in_three_months"
         ],
         "title": "The Rewards Program object"
+      },
+      "SMSMessage": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "The phone number the SMS message was sent from"
+          },
+          "to": {
+            "type": "string",
+            "description": "The phone number the SMS message was sent to"
+          },
+          "message": {
+            "type": "string",
+            "description": "The message that was sent"
+          }
+        },
+        "required": [
+          "from",
+          "to",
+          "message"
+        ],
+        "title": "The SMS Message object"
+      },
+      "SMSTemplate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the SMS template"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the SMS template"
+          },
+          "message": {
+            "type": "string",
+            "description": "The message of the SMS template. Variables are supported via `{{ variableName }}`"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "message"
+        ],
+        "title": "The SMS Template object"
+      },
+      "Thread": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the thread"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "title": "The Thread object"
+      },
+      "Tier": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the tier"
+          },
+          "name": {
+            "type": "string",
+            "description": "The tier's name"
+          },
+          "minimum_points": {
+            "type": "integer",
+            "description": "The minimum number of points to reach this tier"
+          },
+          "perks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The perks associated with reaching this tier"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "minimum_points",
+          "perks"
+        ],
+        "title": "The Tier object"
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the user"
+          },
+          "phone_number": {
+            "type": "string",
+            "description": "The user's phone number"
+          }
+        },
+        "required": [
+          "id",
+          "phone_number"
+        ],
+        "title": "The User object"
       }
     }
   }
