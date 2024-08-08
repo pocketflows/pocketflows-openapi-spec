@@ -75,16 +75,7 @@
                     "type": "integer",
                     "description": "The number of points earned for first visit in three months"
                   }
-                },
-                "required": [
-                  "points_earned_per_dollar_spent",
-                  "point_redemption_value",
-                  "points_for_member_class_attendance",
-                  "points_for_referring_new_student",
-                  "points_for_referring_new_student_that_signs_up",
-                  "points_for_every_ten_classes_non_member",
-                  "points_for_first_visit_in_three_months"
-                ]
+                }
               }
             }
           }
@@ -147,7 +138,7 @@
         ],
         "responses": {
           "200": {
-            "description": "A dictionary with a `members` property which is an array of `Member` objects",
+            "description": "An object with key `members` containing an array of `Member` objects",
             "content": {
               "application/json": {
                 "schema": {
@@ -158,7 +149,7 @@
                       "items": {
                         "$ref": "#/components/schemas/Member"
                       },
-                      "description": "An array of `Member` objects"
+                      "description": "An array of members"
                     }
                   },
                   "required": [
@@ -169,7 +160,7 @@
             }
           }
         },
-        "summary": "List a rewards program's members"
+        "summary": "List all members for a rewards program"
       },
       "post": {
         "parameters": [
@@ -180,6 +171,119 @@
               "type": "string"
             },
             "description": "The ID of the rewards program",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "string",
+                    "description": "The ID of the user to associate with the new member"
+                  }
+                },
+                "required": [
+                  "user_id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created `Member` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Member"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a member"
+      }
+    },
+    "/members/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the member",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The `Member` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Member"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve a member"
+      }
+    },
+    "/locations/{id}/location_members": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the location",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An object containing key `location_members` which is an array of `LocationMember` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "location_members": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/LocationMember"
+                      },
+                      "description": "An array of location members"
+                    }
+                  },
+                  "required": [
+                    "location_members"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List all location members"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the location",
             "required": true
           }
         ],
@@ -204,20 +308,20 @@
         },
         "responses": {
           "200": {
-            "description": "The created `Member` object",
+            "description": "The created `LocationMember` object",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Member"
+                  "$ref": "#/components/schemas/LocationMember"
                 }
               }
             }
           }
         },
-        "summary": "Create a member in a rewards program"
+        "summary": "Create a new location member"
       }
     },
-    "/rewards_programs/{id}/members/{member_id}": {
+    "/location_members/{id}": {
       "get": {
         "parameters": [
           {
@@ -226,32 +330,23 @@
             "schema": {
               "type": "string"
             },
-            "description": "The ID of the rewards program",
-            "required": true
-          },
-          {
-            "in": "path",
-            "name": "member_id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the member",
+            "description": "The ID of the location member",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "A `Member` object",
+            "description": "The `LocationMember` object",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Member"
+                  "$ref": "#/components/schemas/LocationMember"
                 }
               }
             }
           }
         },
-        "summary": "Retrieve a member"
+        "summary": "Retrieve a location member"
       }
     },
     "/rewards_programs/{id}/locations": {
@@ -269,7 +364,7 @@
         ],
         "responses": {
           "200": {
-            "description": "A dictionary with a `locations` property which is an array of `Location` objects",
+            "description": "An object with a `locations` key containing an array of `Location` objects",
             "content": {
               "application/json": {
                 "schema": {
@@ -291,152 +386,7 @@
             }
           }
         },
-        "summary": "List a rewards program's locations"
-      }
-    },
-    "/rewards_programs/{id}/add_location": {
-      "post": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the rewards program",
-            "required": true
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "location_id": {
-                    "type": "string",
-                    "description": "The ID of the location to add to the rewards program"
-                  }
-                },
-                "required": [
-                  "location_id"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The `Location` object that was added to the rewards program",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Location"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Add a location to a rewards program"
-      }
-    },
-    "/rewards_programs/{id}/tiers": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the rewards program",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A dictionary with a `tiers` property which is an array of `Tier` objects",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "tiers": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Tier"
-                      },
-                      "description": "An array of tiers"
-                    }
-                  },
-                  "required": [
-                    "tiers"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "summary": "List a rewards program's tiers"
-      },
-      "post": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the rewards program",
-            "required": true
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "The tier's name"
-                  },
-                  "minimum_points": {
-                    "type": "integer",
-                    "description": "The minimum number of points to reach this tier"
-                  },
-                  "perks": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    },
-                    "description": "The perks associated with reaching this tier"
-                  }
-                },
-                "required": [
-                  "name",
-                  "minimum_points",
-                  "perks"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The created `Tier` object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Tier"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Create a tier in a rewards program"
+        "summary": "List the locations under a rewards program"
       }
     },
     "/locations": {
@@ -526,46 +476,6 @@
           }
         },
         "summary": "Retrieve a location"
-      }
-    },
-    "/locations/{id}/members": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the location",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A dictionary with a `members` property which is an array of `Member` objects",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "members": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Member"
-                      },
-                      "description": "An array of `Member` objects"
-                    }
-                  },
-                  "required": [
-                    "members"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "summary": "List all a location's members"
       },
       "post": {
         "parameters": [
@@ -579,41 +489,60 @@
             "required": true
           }
         ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "user_id": {
-                    "type": "string",
-                    "description": "The ID of the user to add as a member to the location"
-                  }
-                },
-                "required": [
-                  "user_id"
-                ]
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "The created `Member` object",
+            "description": "The updated `Location` object",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Member"
+                  "$ref": "#/components/schemas/Location"
                 }
               }
             }
           }
         },
-        "summary": "Create a member of a location"
+        "summary": "Update a location"
       }
     },
-    "/locations/{id}/change_rewards_program": {
+    "/rewards_programs/{id}/tiers": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the rewards program",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An object with a `tiers` key which contains an array of `Tier` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tiers": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Tier"
+                      },
+                      "description": "An array of tiers"
+                    }
+                  },
+                  "required": [
+                    "tiers"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List all tiers"
+      },
       "post": {
         "parameters": [
           {
@@ -622,7 +551,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "The ID of the location",
+            "description": "The ID of the rewards program",
             "required": true
           }
         ],
@@ -633,13 +562,26 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "rewards_program_id": {
+                  "name": {
                     "type": "string",
-                    "description": "The ID of the rewards program"
+                    "description": "The name of the tier"
+                  },
+                  "minimum_points": {
+                    "type": "integer",
+                    "description": "The minimum number of points to qualify for the tier"
+                  },
+                  "perks": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Descriptions of all the perks associated with the tier"
                   }
                 },
                 "required": [
-                  "rewards_program_id"
+                  "name",
+                  "minimum_points",
+                  "perks"
                 ]
               }
             }
@@ -647,17 +589,17 @@
         },
         "responses": {
           "200": {
-            "description": "The changed `Location` object",
+            "description": "The created `Tier` object",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Location"
+                  "$ref": "#/components/schemas/Tier"
                 }
               }
             }
           }
         },
-        "summary": "Update a location's rewards program"
+        "summary": "Create a tier"
       }
     },
     "/users": {
@@ -1381,19 +1323,42 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "phone_number": {
-                    "type": "string",
-                    "nullable": true,
-                    "description": "The phone number of the employee"
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "phone_number": {
+                        "type": "string",
+                        "description": "The phone number of the employee"
+                      },
+                      "email_address": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The email address of the employee"
+                      }
+                    },
+                    "required": [
+                      "phone_number"
+                    ]
                   },
-                  "email_address": {
-                    "type": "string",
-                    "nullable": true,
-                    "description": "The email of the employee"
+                  {
+                    "type": "object",
+                    "properties": {
+                      "email_address": {
+                        "type": "string",
+                        "description": "The email address of the employee"
+                      },
+                      "phone_number": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The phone number of the employee"
+                      }
+                    },
+                    "required": [
+                      "email_address"
+                    ]
                   }
-                }
+                ]
               }
             }
           }
@@ -3671,6 +3636,29 @@
           "rewards_program"
         ],
         "title": "The Location object"
+      },
+      "LocationMember": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the location member"
+          },
+          "user": {
+            "type": "string",
+            "description": "The user associated with the location member"
+          },
+          "location": {
+            "type": "string",
+            "description": "The location associated with the location member"
+          }
+        },
+        "required": [
+          "id",
+          "user",
+          "location"
+        ],
+        "title": "The Location Member object"
       },
       "Member": {
         "type": "object",
