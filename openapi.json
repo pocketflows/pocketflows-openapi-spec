@@ -1684,6 +1684,34 @@
         "summary": "Delete an email template"
       }
     },
+    "/email_templates/{id}/preview": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the email template",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The HTML of the compiled email template",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Preview an email template"
+      }
+    },
     "/email_templates/{id}/copy": {
       "post": {
         "parameters": [
