@@ -1912,6 +1912,61 @@
         "summary": "Draft send an email based off an email template"
       }
     },
+    "/email_templates/{id}/send": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the email template",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "from": {
+                    "type": "string",
+                    "description": "The ID of the email address from which to send the email"
+                  },
+                  "to": {
+                    "type": "string",
+                    "description": "The email address to send the email to"
+                  },
+                  "variables": {
+                    "description": "The variables to be injected into the email template"
+                  }
+                },
+                "required": [
+                  "from",
+                  "to"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The email that was sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Email"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Send an email based off an email template"
+      }
+    },
     "/email_addresses/{id}/send": {
       "post": {
         "parameters": [
