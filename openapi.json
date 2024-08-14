@@ -1942,6 +1942,27 @@
                   },
                   "variables": {
                     "description": "The variables to be injected into the email template"
+                  },
+                  "attachments": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "content": {
+                          "type": "string",
+                          "description": "The content of the attachment as a data url, e.g. 'data:image/png;base64,abcd1234'"
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "The intended name of the attachment"
+                        }
+                      },
+                      "required": [
+                        "content",
+                        "name"
+                      ]
+                    },
+                    "description": "An array of attachments to include with the email"
                   }
                 },
                 "required": [
