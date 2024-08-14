@@ -3000,7 +3000,7 @@
             }
           }
         },
-        "summary": "List all project email addresses"
+        "summary": "List all project email addresses for the project domain"
       },
       "post": {
         "parameters": [
@@ -3052,6 +3052,35 @@
           }
         },
         "summary": "Create a new project email address"
+      }
+    },
+    "/project_email_addresses": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "An object with key `project_email_addresses` which maps to an array of `ProjectEmailAddress` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "project_email_addresses": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ProjectEmailAddress"
+                      },
+                      "description": "An array of project email addresses"
+                    }
+                  },
+                  "required": [
+                    "project_email_addresses"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List all project email addresses"
       }
     },
     "/project_email_addresses/{id}": {
