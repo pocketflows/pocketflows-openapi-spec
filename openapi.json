@@ -1536,30 +1536,147 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "The name of the email template"
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the email template"
+                      },
+                      "subject": {
+                        "type": "string",
+                        "description": "The subject of the email template. Variables are supported via `{{ variableName }}`"
+                      },
+                      "template_json": {
+                        "description": "The JSON representing the email template"
+                      },
+                      "attachments": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "content": {
+                              "type": "string",
+                              "description": "The content of the attachment as a data url, e.g. 'data:image/png;base64,abcd1234'"
+                            },
+                            "name": {
+                              "type": "string",
+                              "description": "The intended name of the attachment"
+                            }
+                          },
+                          "required": [
+                            "content",
+                            "name"
+                          ]
+                        },
+                        "description": "An array of attachments that will always be sent with this template"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "subject",
+                      "template_json"
+                    ]
                   },
-                  "subject": {
-                    "type": "string",
-                    "description": "The subject of the email template. Variables are supported via `{{ variableName }}`"
+                  {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the email template"
+                      },
+                      "subject": {
+                        "type": "string",
+                        "description": "The subject of the email template. Variables are supported via `{{ variableName }}`"
+                      },
+                      "body": {
+                        "type": "string",
+                        "description": "The plaintext version of the body of the email template. Variables are supported via `{{ variableName }}`"
+                      },
+                      "attachments": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "content": {
+                              "type": "string",
+                              "description": "The content of the attachment as a data url, e.g. 'data:image/png;base64,abcd1234'"
+                            },
+                            "name": {
+                              "type": "string",
+                              "description": "The intended name of the attachment"
+                            }
+                          },
+                          "required": [
+                            "content",
+                            "name"
+                          ]
+                        },
+                        "description": "An array of attachments that will always be sent with this template"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "subject",
+                      "body"
+                    ]
                   },
-                  "body": {
-                    "type": "string",
-                    "description": "The plaintext version of the body of the email template. Variables are supported via `{{ variableName }}`"
-                  },
-                  "template_html": {
-                    "type": "string",
-                    "description": "The HTML version of the body of the email template. Variables are supported via `{{ variableName }}`"
-                  },
-                  "template_json": {
-                    "description": "The JSON representing the email template"
+                  {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the email template"
+                      },
+                      "subject": {
+                        "type": "string",
+                        "description": "The subject of the email template. Variables are supported via `{{ variableName }}`"
+                      },
+                      "template_html": {
+                        "type": "string",
+                        "description": "The HTML of the email template. Variables are supported via `{{ variableName }}`"
+                      },
+                      "template_json": {
+                        "description": "The JSON representing the email template"
+                      },
+                      "v1": {
+                        "type": "boolean",
+                        "enum": [
+                          true
+                        ],
+                        "description": "The v1 flag. Must be `true` in this format"
+                      },
+                      "attachments": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "content": {
+                              "type": "string",
+                              "description": "The content of the attachment as a data url, e.g. 'data:image/png;base64,abcd1234'"
+                            },
+                            "name": {
+                              "type": "string",
+                              "description": "The intended name of the attachment"
+                            }
+                          },
+                          "required": [
+                            "content",
+                            "name"
+                          ]
+                        },
+                        "description": "An array of attachments that will always be sent with this template"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "subject",
+                      "template_html",
+                      "template_json",
+                      "v1"
+                    ]
                   }
-                },
-                "required": [
-                  "name"
                 ]
               }
             }
