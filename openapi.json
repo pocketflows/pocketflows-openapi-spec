@@ -2956,6 +2956,11 @@
                     "type": "string",
                     "nullable": true,
                     "description": "The phone number used to send SMS messages in the campaign. Will be the ID of a phone number-like object"
+                  },
+                  "scheduled_at": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The scheduled time of the campaign in ISO 8601 format"
                   }
                 },
                 "required": [
@@ -3056,6 +3061,10 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The updated name of the campaign. Can be omitted"
+                  },
                   "steps": {
                     "type": "array",
                     "items": {
@@ -3134,16 +3143,27 @@
                     },
                     "description": "The updated steps of the campaign. Can be omitted"
                   },
-                  "name": {
-                    "type": "string",
-                    "description": "The updated name of the campaign. Can be omitted"
-                  },
                   "enrolled_customers": {
                     "type": "array",
                     "items": {
                       "type": "string"
                     },
                     "description": "The updated enrolled customer IDs of the campaign. Can be omitted"
+                  },
+                  "email_address": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The email address used to send emails in the campaign. Will be the ID of an email-like object"
+                  },
+                  "phone_number": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The phone number used to send SMS messages in the campaign. Will be the ID of a phone number-like object"
+                  },
+                  "scheduled_at": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The scheduled time of the campaign in ISO 8601 format"
                   }
                 }
               }
@@ -3870,7 +3890,12 @@
           },
           "status": {
             "type": "string",
-            "description": "The status of the campaign. One of \"draft\", \"started\", or \"stopped\""
+            "description": "The status of the campaign. One of \"draft\", \"scheduled\", \"started\", or \"stopped\""
+          },
+          "scheduled_at": {
+            "type": "string",
+            "nullable": true,
+            "description": "The time when the campaign is scheduled to start in ISO 8601 format"
           }
         },
         "required": [
@@ -3880,7 +3905,8 @@
           "steps",
           "email_address",
           "phone_number",
-          "status"
+          "status",
+          "scheduled_at"
         ],
         "title": "The Campaign object"
       },
