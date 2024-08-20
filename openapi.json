@@ -2041,6 +2041,34 @@
                   "body": {
                     "type": "string",
                     "description": "The plaintext version of the body of the email template. Variables are supported via `{{ variableName }}`"
+                  },
+                  "attachments": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "content": {
+                              "type": "string",
+                              "description": "The content of the attachment as a data url, e.g. 'data:image/png;base64,abcd1234'"
+                            },
+                            "name": {
+                              "type": "string",
+                              "description": "The intended name of the attachment"
+                            }
+                          },
+                          "required": [
+                            "content",
+                            "name"
+                          ]
+                        }
+                      ]
+                    },
+                    "description": "An array of existing attachment IDs or new attachments that will always be sent with this template"
                   }
                 }
               }
@@ -4063,13 +4091,35 @@
           "body": {
             "type": "string",
             "description": "The body of the email template. Variables are supported via `{{ variableName }}`"
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "description": "The content of the attachment as a data url, e.g. 'data:image/png;base64,abcd1234'"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The intended name of the attachment"
+                }
+              },
+              "required": [
+                "content",
+                "name"
+              ]
+            },
+            "description": "An array of attachment associted with the email template. Will be sent with every email built from this template"
           }
         },
         "required": [
           "id",
           "name",
           "subject",
-          "body"
+          "body",
+          "attachments"
         ],
         "title": "The Email Template object"
       },
