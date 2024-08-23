@@ -934,6 +934,10 @@
                   "name": {
                     "type": "string",
                     "description": "The name of the business"
+                  },
+                  "metadata": {
+                    "nullable": true,
+                    "description": "Arbitrary metadata to associate with the business"
                   }
                 },
                 "required": [
@@ -1122,6 +1126,10 @@
                         "type": "string",
                         "nullable": true,
                         "description": "The phone number of the customer"
+                      },
+                      "metadata": {
+                        "nullable": true,
+                        "description": "Any metadata to attach to the customer"
                       }
                     },
                     "required": [
@@ -1139,6 +1147,10 @@
                         "type": "string",
                         "nullable": true,
                         "description": "The email address of the customer"
+                      },
+                      "metadata": {
+                        "nullable": true,
+                        "description": "Any metadata to attach to the customer"
                       }
                     },
                     "required": [
@@ -3801,11 +3813,15 @@
           "name": {
             "type": "string",
             "description": "The name of the business"
+          },
+          "metadata": {
+            "description": "Arbitrary metadata associated with this business"
           }
         },
         "required": [
           "id",
-          "name"
+          "name",
+          "metadata"
         ],
         "title": "The Business object"
       },
@@ -3933,6 +3949,29 @@
             "type": "string",
             "nullable": true,
             "description": "The time when the campaign is scheduled to start in ISO 8601 format"
+          },
+          "statistics": {
+            "type": "object",
+            "properties": {
+              "total_customers_enrolled": {
+                "type": "integer",
+                "description": "The number of customers enrolled in the campaign"
+              },
+              "total_customers_started": {
+                "type": "integer",
+                "description": "The number of customers who have started receiving messages in the campaign"
+              },
+              "total_customers_finished": {
+                "type": "integer",
+                "description": "The number of customers who have finished receiving all the messages in the campaign"
+              }
+            },
+            "required": [
+              "total_customers_enrolled",
+              "total_customers_started",
+              "total_customers_finished"
+            ],
+            "description": "The statistics of the campaign. Includes information about the number of customers enrolled and their status in the campaign"
           }
         },
         "required": [
@@ -3943,7 +3982,8 @@
           "email_address",
           "phone_number",
           "status",
-          "scheduled_at"
+          "scheduled_at",
+          "statistics"
         ],
         "title": "The Campaign object"
       },
@@ -4009,12 +4049,16 @@
             "type": "string",
             "nullable": true,
             "description": "The phone number of the customer"
+          },
+          "metadata": {
+            "description": "The metadata associated with this customer"
           }
         },
         "required": [
           "id",
           "email_address",
-          "phone_number"
+          "phone_number",
+          "metadata"
         ],
         "title": "The Customer object"
       },
