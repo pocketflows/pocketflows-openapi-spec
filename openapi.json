@@ -2383,44 +2383,86 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "from": {
-                    "type": "string",
-                    "description": "The ID of the email address from which to send the email"
-                  },
-                  "to": {
-                    "type": "string",
-                    "description": "The email address to send the email to"
-                  },
-                  "variables": {
-                    "description": "The variables to be injected into the email template"
-                  },
-                  "attachments": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "content": {
-                          "type": "string",
-                          "description": "The content of the attachment as a data url, e.g. 'data:image/png;base64,abcd1234'"
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "The intended name of the attachment"
-                        }
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "from": {
+                        "type": "string",
+                        "description": "The ID of the email address from which to send the email"
                       },
-                      "required": [
-                        "content",
-                        "name"
-                      ]
+                      "attachments": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "content": {
+                              "type": "string",
+                              "description": "The content of the attachment as a data url, e.g. 'data:image/png;base64,abcd1234'"
+                            },
+                            "name": {
+                              "type": "string",
+                              "description": "The intended name of the attachment"
+                            }
+                          },
+                          "required": [
+                            "content",
+                            "name"
+                          ]
+                        },
+                        "description": "An array of attachments to include with the email"
+                      },
+                      "to": {
+                        "type": "string",
+                        "description": "The email address to send the email to"
+                      },
+                      "variables": {
+                        "description": "The variables to be injected into the email template"
+                      }
                     },
-                    "description": "An array of attachments to include with the email"
+                    "required": [
+                      "from",
+                      "to"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "from": {
+                        "type": "string",
+                        "description": "The ID of the email address from which to send the email"
+                      },
+                      "attachments": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "content": {
+                              "type": "string",
+                              "description": "The content of the attachment as a data url, e.g. 'data:image/png;base64,abcd1234'"
+                            },
+                            "name": {
+                              "type": "string",
+                              "description": "The intended name of the attachment"
+                            }
+                          },
+                          "required": [
+                            "content",
+                            "name"
+                          ]
+                        },
+                        "description": "An array of attachments to include with the email"
+                      },
+                      "customer": {
+                        "type": "string",
+                        "description": "The ID of the customer to send the email to"
+                      }
+                    },
+                    "required": [
+                      "from",
+                      "customer"
+                    ]
                   }
-                },
-                "required": [
-                  "from",
-                  "to"
                 ]
               }
             }
