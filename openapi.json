@@ -1368,6 +1368,90 @@
         "summary": "Unsubscribe a customer from campaigns"
       }
     },
+    "/customers/{id}/unsubscribe_embeds": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the customer that's unsubscribing",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The created `UnsubscribeEmbed` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnsubscribeEmbed"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create an unsubscribe embed"
+      }
+    },
+    "/unsubscribe_embeds/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the unsubscribe embed",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An `UnsubscribeEmbed` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnsubscribeEmbed"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve an unsubscribe embed"
+      }
+    },
+    "/unsubscribe_embeds/{id}/show": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the unsubscribe embed",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The embeddable HTML that will render a UI for unsubscribing from a campaign",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Embed the unsubscribe form"
+      }
+    },
     "/businesses/{id}/employees": {
       "get": {
         "parameters": [
@@ -4858,6 +4942,29 @@
           "perks"
         ],
         "title": "The Tier object"
+      },
+      "UnsubscribeEmbed": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the unsubscribe embed"
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL to embed the unsubscribe form"
+          },
+          "customer": {
+            "type": "string",
+            "description": "The ID of the customer that's unsubscribing"
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "customer"
+        ],
+        "title": "The Unsubscribe Embed object"
       },
       "User": {
         "type": "object",
