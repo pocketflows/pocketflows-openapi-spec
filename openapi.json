@@ -2495,6 +2495,15 @@
             },
             "description": "Whether to hide the top bar when embedding the email template editor",
             "required": false
+          },
+          {
+            "in": "query",
+            "name": "hide_save_buttons",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Whether to hide the save buttons when embedding the email template editor",
+            "required": false
           }
         ],
         "responses": {
