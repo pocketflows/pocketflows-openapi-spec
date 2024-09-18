@@ -1368,6 +1368,225 @@
         "summary": "Unsubscribe a customer from campaigns"
       }
     },
+    "/businesses/{id}/segments": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "A dictionary with a `segments` property which is an array of `Segment` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "segments": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Segment"
+                      },
+                      "description": "An array of segments"
+                    }
+                  },
+                  "required": [
+                    "segments"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List all the business's segments"
+      },
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the segment"
+                  },
+                  "customers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "A list of customer IDs to include in this segment"
+                  }
+                },
+                "required": [
+                  "name",
+                  "customers"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created `Segment` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Segment"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a segment"
+      }
+    },
+    "/segments/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the segment",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A `Segment` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Segment"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve a segment"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the segment",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The deleted `Segment` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Segment"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Delete a segment"
+      }
+    },
+    "/segments/{id}/customers": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the segment",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "customer": {
+                    "type": "string",
+                    "description": "The ID of the customer to add to the segment"
+                  }
+                },
+                "required": [
+                  "customer"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated `Segment` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Segment"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Add a customer to a segment"
+      }
+    },
+    "/segments/{id}/customers/{customer_id}": {
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the segment",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "customer": {
+                    "type": "string",
+                    "description": "The ID of the customer to remove from the segment"
+                  }
+                },
+                "required": [
+                  "customer"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated `Segment` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Segment"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Remove a customer from a segment"
+      }
+    },
     "/customers/{id}/unsubscribe_embeds": {
       "post": {
         "parameters": [
@@ -4945,6 +5164,32 @@
           "message"
         ],
         "title": "The SMS Template object"
+      },
+      "Segment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the segment"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the segment"
+          },
+          "customers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A list of customers in this segment"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "customers"
+        ],
+        "title": "The Segment object"
       },
       "Thread": {
         "type": "object",
