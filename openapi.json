@@ -1177,6 +1177,111 @@
         "summary": "Create a customer"
       }
     },
+    "/businesses/{id}/customers/batch": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "customers": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "email_address": {
+                              "type": "string",
+                              "description": "The email address of the customer"
+                            },
+                            "phone_number": {
+                              "type": "string",
+                              "nullable": true,
+                              "description": "The phone number of the customer"
+                            },
+                            "metadata": {
+                              "nullable": true,
+                              "description": "Any metadata to attach to the customer"
+                            }
+                          },
+                          "required": [
+                            "email_address"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "phone_number": {
+                              "type": "string",
+                              "description": "The phone number of the customer"
+                            },
+                            "email_address": {
+                              "type": "string",
+                              "nullable": true,
+                              "description": "The email address of the customer"
+                            },
+                            "metadata": {
+                              "nullable": true,
+                              "description": "Any metadata to attach to the customer"
+                            }
+                          },
+                          "required": [
+                            "phone_number"
+                          ]
+                        }
+                      ]
+                    },
+                    "description": "An array of customer data to create"
+                  }
+                },
+                "required": [
+                  "customers"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "An array of created `Customer` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "customers": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Customer"
+                      },
+                      "description": "An array of created `Customer` objects"
+                    }
+                  },
+                  "required": [
+                    "customers"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create multiple customers"
+      }
+    },
     "/customers/{id}": {
       "get": {
         "parameters": [
