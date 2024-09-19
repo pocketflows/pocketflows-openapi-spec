@@ -4887,7 +4887,17 @@
           },
           "body": {
             "type": "string",
-            "description": "The body of the email template. Variables are supported via `{{ variableName }}`"
+            "nullable": true,
+            "description": "The body of the email template. May be null. Variables are supported via `{{ variableName }}`"
+          },
+          "template_json": {
+            "nullable": true,
+            "description": "The JSON representing the rich text email template. May be null"
+          },
+          "template_html": {
+            "type": "string",
+            "nullable": true,
+            "description": "The HTML representation of the rich text email. May be null"
           },
           "attachments": {
             "type": "array",
@@ -4916,6 +4926,8 @@
           "name",
           "subject",
           "body",
+          "template_json",
+          "template_html",
           "attachments"
         ],
         "title": "The Email Template object"
