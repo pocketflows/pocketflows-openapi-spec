@@ -2000,6 +2000,18 @@
             },
             "description": "The ID of the business",
             "required": true
+          },
+          {
+            "in": "query",
+            "name": "include_project_email_templates",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "true"
+              ]
+            },
+            "description": "Whether to include project email templates in the list of business's email templates",
+            "required": false
           }
         ],
         "responses": {
@@ -2161,269 +2173,6 @@
                       "name",
                       "subject",
                       "template_json"
-                    ]
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "v1": {
-                        "type": "boolean",
-                        "enum": [
-                          false
-                        ],
-                        "description": "The version of email template API to use. `false` in this instance"
-                      },
-                      "name": {
-                        "type": "string",
-                        "description": "The name of the email template"
-                      },
-                      "subject": {
-                        "type": "string",
-                        "description": "The subject of the email template. Variables are supported via `{{ variableName }}`"
-                      },
-                      "attachments": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "content": {
-                              "type": "string",
-                              "description": "The content of the attachment as a data url, e.g. 'data:image/png;base64,abcd1234'"
-                            },
-                            "name": {
-                              "type": "string",
-                              "description": "The intended name of the attachment"
-                            }
-                          },
-                          "required": [
-                            "content",
-                            "name"
-                          ]
-                        },
-                        "description": "An array of attachments that will always be sent with this template"
-                      },
-                      "body": {
-                        "type": "string",
-                        "description": "The plain text of the email. Mutually exclusive with rich text emails"
-                      },
-                      "template_json": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or omitted"
-                      },
-                      "template_html": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or omitted"
-                      }
-                    },
-                    "required": [
-                      "v1",
-                      "name",
-                      "subject",
-                      "body"
-                    ]
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "v1": {
-                        "type": "boolean",
-                        "enum": [
-                          false
-                        ],
-                        "description": "The version of email template API to use. `false` in this instance"
-                      },
-                      "name": {
-                        "type": "string",
-                        "description": "The name of the email template"
-                      },
-                      "subject": {
-                        "type": "string",
-                        "description": "The subject of the email template. Variables are supported via `{{ variableName }}`"
-                      },
-                      "attachments": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "content": {
-                              "type": "string",
-                              "description": "The content of the attachment as a data url, e.g. 'data:image/png;base64,abcd1234'"
-                            },
-                            "name": {
-                              "type": "string",
-                              "description": "The intended name of the attachment"
-                            }
-                          },
-                          "required": [
-                            "content",
-                            "name"
-                          ]
-                        },
-                        "description": "An array of attachments that will always be sent with this template"
-                      },
-                      "body": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or omitted"
-                      },
-                      "template_json": {
-                        "description": "The JSON representing the rich text email template. Mutually exclusive with plain text email templates"
-                      },
-                      "template_html": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or omitted"
-                      }
-                    },
-                    "required": [
-                      "v1",
-                      "name",
-                      "subject",
-                      "template_json"
-                    ]
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "v1": {
-                        "type": "boolean",
-                        "enum": [
-                          true
-                        ],
-                        "description": "The version of email template API to use. `true` in this instance"
-                      },
-                      "name": {
-                        "type": "string",
-                        "description": "The name of the email template"
-                      },
-                      "subject": {
-                        "type": "string",
-                        "description": "The subject of the email template. Variables are supported via `{{ variableName }}`"
-                      },
-                      "attachments": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "content": {
-                              "type": "string",
-                              "description": "The content of the attachment as a data url, e.g. 'data:image/png;base64,abcd1234'"
-                            },
-                            "name": {
-                              "type": "string",
-                              "description": "The intended name of the attachment"
-                            }
-                          },
-                          "required": [
-                            "content",
-                            "name"
-                          ]
-                        },
-                        "description": "An array of attachments that will always be sent with this template"
-                      },
-                      "body": {
-                        "type": "string",
-                        "description": "The plain text email. Mutually exclusive with rich text emails"
-                      },
-                      "template_json": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or omitted"
-                      },
-                      "template_html": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or omitted"
-                      }
-                    },
-                    "required": [
-                      "v1",
-                      "name",
-                      "subject",
-                      "body"
-                    ]
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "v1": {
-                        "type": "boolean",
-                        "enum": [
-                          true
-                        ],
-                        "description": "The version of email template API to use. `true` in this instance"
-                      },
-                      "name": {
-                        "type": "string",
-                        "description": "The name of the email template"
-                      },
-                      "subject": {
-                        "type": "string",
-                        "description": "The subject of the email template. Variables are supported via `{{ variableName }}`"
-                      },
-                      "attachments": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "content": {
-                              "type": "string",
-                              "description": "The content of the attachment as a data url, e.g. 'data:image/png;base64,abcd1234'"
-                            },
-                            "name": {
-                              "type": "string",
-                              "description": "The intended name of the attachment"
-                            }
-                          },
-                          "required": [
-                            "content",
-                            "name"
-                          ]
-                        },
-                        "description": "An array of attachments that will always be sent with this template"
-                      },
-                      "body": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or omitted"
-                      },
-                      "template_json": {
-                        "description": "The JSON representation of the rich text email"
-                      },
-                      "template_html": {
-                        "type": "string",
-                        "description": "The HTML representation of the rich text email that corresponds with the JSON representation"
-                      }
-                    },
-                    "required": [
-                      "v1",
-                      "name",
-                      "subject",
-                      "template_json",
-                      "template_html"
                     ]
                   },
                   {
@@ -2902,6 +2651,110 @@
         "security": [
 
         ]
+      }
+    },
+    "/project_email_templates": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "A dictionary with a `project_email_templates` property which is an array of `ProjectEmailTemplate` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "project_email_templates": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ProjectEmailTemplate"
+                      },
+                      "description": "An array of project email templates"
+                    }
+                  },
+                  "required": [
+                    "project_email_templates"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List all project email templates"
+      }
+    },
+    "/project_email_templates/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the project email template",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A `ProjectEmailTemplate` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectEmailTemplate"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve a project email template"
+      }
+    },
+    "/project_email_templates/{id}/copy": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the project email template to copy",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "business": {
+                    "type": "string",
+                    "description": "The ID of the business to copy the project email template into"
+                  }
+                },
+                "required": [
+                  "business"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The `EmailTemplate` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailTemplate"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Copy a project email template into a specific business"
       }
     },
     "/email_templates/{id}/draft_send": {
@@ -5187,6 +5040,47 @@
           "domain"
         ],
         "title": "The Project Email Domain object"
+      },
+      "ProjectEmailTemplate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the email template"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the email template"
+          },
+          "subject": {
+            "type": "string",
+            "description": "The subject of the email template"
+          },
+          "body": {
+            "type": "string",
+            "nullable": true,
+            "description": "The body of the email template. If present, `template_html` and `template_json` must be `null`"
+          },
+          "template_html": {
+            "type": "string",
+            "nullable": true,
+            "description": "The HTML of the email template. If present, `body` and `template_json` must be `null`"
+          },
+          "template_json": {
+            "type": "string",
+            "nullable": true,
+            "description": "The JSON of the email template. If present, `body` and `template_html` must be `null`"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "subject",
+          "body",
+          "template_html",
+          "template_json"
+        ],
+        "title": "The Project Email Template object"
       },
       "ProjectPhoneNumber": {
         "type": "object",
