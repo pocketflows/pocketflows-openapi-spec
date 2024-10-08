@@ -1058,6 +1058,86 @@
         "summary": "Delete a business"
       }
     },
+    "/businesses/{id}/variables": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The variables for the business",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "variables": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "The variables for the business"
+                    }
+                  },
+                  "required": [
+                    "variables"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get all variables for a business"
+      }
+    },
+    "/email_templates/{id}/variables": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the email template",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The variables for the email template",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "variables": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "The variables for the email template"
+                    }
+                  },
+                  "required": [
+                    "variables"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get all variables for an email template"
+      }
+    },
     "/businesses/{id}/customers": {
       "get": {
         "parameters": [
@@ -1656,27 +1736,17 @@
             },
             "description": "The ID of the segment",
             "required": true
+          },
+          {
+            "in": "path",
+            "name": "customer_id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the customer to remove from the segment",
+            "required": true
           }
         ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "customer": {
-                    "type": "string",
-                    "description": "The ID of the customer to remove from the segment"
-                  }
-                },
-                "required": [
-                  "customer"
-                ]
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "The updated `Segment` object",
@@ -2905,6 +2975,9 @@
                       "customer": {
                         "type": "string",
                         "description": "The ID of the customer to send the email to"
+                      },
+                      "variables": {
+                        "description": "The variables to be injected into the email template in addition to the variables already induced by the customer"
                       }
                     },
                     "required": [
@@ -3296,6 +3369,90 @@
         "security": [
 
         ]
+      }
+    },
+    "/sms_templates/{id}/embeds": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the SMS template",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The created `SmsTemplateEmbed` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SMSTemplateEmbed"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create an SMS template embed to edit an existing SMS template"
+      }
+    },
+    "/businesses/{id}/sms_templates/embeds": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The created `EmailTemplateEmbed` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SMSTemplateEmbed"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create an SMS template embed to create a brand new SMS template"
+      }
+    },
+    "/sms_template_embeds/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the SMS template embed",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The `SmsTemplateEmbed` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SMSTemplateEmbed"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve an SMS template embed"
       }
     },
     "/sms_templates/{id}/draft_send": {
@@ -5193,6 +5350,29 @@
           "message"
         ],
         "title": "The SMS Template object"
+      },
+      "SMSTemplateEmbed": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the SMS template embed"
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL to embed the SMS template editor"
+          },
+          "expires_at": {
+            "type": "string",
+            "description": "When the SMS template embed expires and needs to be regenerated"
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "expires_at"
+        ],
+        "title": "The SMS Template Embed object"
       },
       "Segment": {
         "type": "object",
