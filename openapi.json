@@ -3455,6 +3455,64 @@
         "summary": "Retrieve an SMS template embed"
       }
     },
+    "/sms_template_embeds/{id}/show": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the SMS template embed",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "hide_top_bar",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Whether to hide the top bar when embedding the SMS template editor",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "hide_buttons",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Whether to hide all buttons when embedding the SMS template editor",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "hide_save_button",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Whether to hide the \"Save\" button when embedding the SMS template editor",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The embeddable HTML that will render a UI for editing the SMS template",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Embed the SMS template editor",
+        "security": [
+
+        ]
+      }
+    },
     "/sms_templates/{id}/draft_send": {
       "post": {
         "parameters": [
