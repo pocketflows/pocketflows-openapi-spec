@@ -4399,7 +4399,7 @@
         },
         "responses": {
           "200": {
-            "description": "The created `Campaign` object",
+            "description": "The created `Trigger` object",
             "content": {
               "application/json": {
                 "schema": {
