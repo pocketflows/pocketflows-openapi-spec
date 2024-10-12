@@ -2936,6 +2936,8 @@
                         "description": "The email address to send the email to"
                       },
                       "variables": {
+                        "type": "object",
+                        "additionalProperties": true,
                         "description": "The variables to be injected into the email template"
                       }
                     },
@@ -2977,6 +2979,8 @@
                         "description": "The ID of the customer to send the email to"
                       },
                       "variables": {
+                        "type": "object",
+                        "additionalProperties": true,
                         "description": "The variables to be injected into the email template in addition to the variables already induced by the customer"
                       }
                     },
@@ -3568,6 +3572,63 @@
           }
         },
         "summary": "Draft send an SMS message from an SMS template"
+      }
+    },
+    "/sms_templates/{id}/send": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the SMS template",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "to": {
+                    "type": "string",
+                    "description": "The phone number to send the SMS to"
+                  },
+                  "from": {
+                    "type": "string",
+                    "description": "The ID of the busines or project phone number to send the SMS from"
+                  },
+                  "variables": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "description": "The variables to be injected into the SMS template"
+                  }
+                },
+                "required": [
+                  "to",
+                  "from"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The SMS that was sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SMSMessage"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Send an SMS based off an SMS template"
       }
     },
     "/project_phone_numbers/{id}/send": {
@@ -4228,6 +4289,127 @@
           }
         },
         "summary": "Retrieve a campaign embed"
+      }
+    },
+    "/businesses/{id}/triggers": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the trigger"
+                  },
+                  "trigger": {
+                    "type": "string",
+                    "description": "The event that triggers the trigger"
+                  },
+                  "steps": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "email"
+                              ],
+                              "description": "The step type. Always \"email\" for this step"
+                            },
+                            "email_template_id": {
+                              "type": "string",
+                              "description": "The ID of the email template to use in this step"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "email_template_id"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "sms"
+                              ],
+                              "description": "The step type. Always \"sms\" for this step"
+                            },
+                            "sms_template_id": {
+                              "type": "string",
+                              "description": "The ID of the SMS template to use in this step"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "sms_template_id"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "wait"
+                              ],
+                              "description": "The step type. Always \"wait\" for this step"
+                            },
+                            "duration": {
+                              "type": "integer",
+                              "description": "The number of seconds to wait"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "duration"
+                          ]
+                        }
+                      ]
+                    },
+                    "description": "The steps of the trigger"
+                  }
+                },
+                "required": [
+                  "name",
+                  "trigger",
+                  "steps"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created `Campaign` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Trigger"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a trigger"
       }
     },
     "/project_email_domains": {
@@ -5501,6 +5683,103 @@
           "perks"
         ],
         "title": "The Tier object"
+      },
+      "Trigger": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the trigger"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the trigger"
+          },
+          "trigger": {
+            "type": "string",
+            "description": "The event that triggers the trigger"
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "email"
+                      ],
+                      "description": "The step type. Always \"email\" for this step"
+                    },
+                    "email_template_id": {
+                      "type": "string",
+                      "description": "The ID of the email template to use in this step"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "email_template_id"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "sms"
+                      ],
+                      "description": "The step type. Always \"sms\" for this step"
+                    },
+                    "sms_template_id": {
+                      "type": "string",
+                      "description": "The ID of the SMS template to use in this step"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "sms_template_id"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "wait"
+                      ],
+                      "description": "The step type. Always \"wait\" for this step"
+                    },
+                    "duration": {
+                      "type": "integer",
+                      "description": "The number of seconds to wait"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "duration"
+                  ]
+                }
+              ]
+            },
+            "description": "The steps of the trigger"
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the trigger. One of \"active\" or \"inactive\""
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "trigger",
+          "steps",
+          "status"
+        ],
+        "title": "The Trigger object"
       },
       "UnsubscribeEmbed": {
         "type": "object",
