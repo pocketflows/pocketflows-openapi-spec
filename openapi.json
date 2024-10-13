@@ -4410,6 +4410,72 @@
           }
         },
         "summary": "Create a trigger"
+      },
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An object with a `triggers` key which contains an array of `Trigger` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "triggers": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Trigger"
+                      },
+                      "description": "An array of triggers"
+                    }
+                  },
+                  "required": [
+                    "triggers"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List triggers for a business"
+      }
+    },
+    "/triggers/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the trigger",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A `Trigger` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Trigger"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve a trigger"
       }
     },
     "/project_email_domains": {
