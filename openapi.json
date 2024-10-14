@@ -4351,6 +4351,16 @@
                       ]
                     },
                     "description": "The steps of the trigger"
+                  },
+                  "email_address": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The ID of an email address or project email address. Will be used to send emails as part of this trigger"
+                  },
+                  "phone_number": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The ID of a phone number or project phone number. Will be used to send SMS messages as part of this trigger"
                   }
                 },
                 "required": [
@@ -5857,6 +5867,16 @@
           "status": {
             "type": "string",
             "description": "The status of the trigger. One of \"active\" or \"inactive\""
+          },
+          "email_address": {
+            "type": "string",
+            "nullable": true,
+            "description": "The ID of the email address or project email address associated with the trigger. Will be used to send emails as part of this trigger"
+          },
+          "phone_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "The ID of the phone number or project phone number associated with the trigger. Will be used to send SMS messages as part of this trigger"
           }
         },
         "required": [
@@ -5864,7 +5884,9 @@
           "name",
           "trigger",
           "steps",
-          "status"
+          "status",
+          "email_address",
+          "phone_number"
         ],
         "title": "The Trigger object"
       },
