@@ -693,7 +693,7 @@
         "summary": "Retrieve a user"
       }
     },
-    "/track": {
+    "/businesses/{id}/track": {
       "post": {
         "requestBody": {
           "required": true,
@@ -706,51 +706,14 @@
                     "type": "string",
                     "description": "The name of the event"
                   },
-                  "member_id": {
-                    "type": "string",
-                    "nullable": true,
-                    "description": "The ID of the member doing the event"
-                  },
-                  "location_member_id": {
-                    "type": "string",
-                    "nullable": true,
-                    "description": "The ID of the location member the event"
-                  },
-                  "rewards_program_id": {
-                    "type": "string",
-                    "nullable": true,
-                    "description": "The ID of the rewards program the event belongs to"
-                  },
-                  "location_id": {
-                    "type": "string",
-                    "nullable": true,
-                    "description": "The ID of the location the event belongs to"
-                  },
-                  "user_id": {
-                    "type": "string",
-                    "nullable": true,
-                    "description": "The ID of the user doing the event"
-                  },
-                  "price": {
-                    "type": "string",
-                    "nullable": true,
-                    "description": "The price of the item involved in the event"
-                  },
-                  "points": {
-                    "type": "integer",
-                    "nullable": true,
-                    "description": "The number of points earned for the event"
+                  "data": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "description": "The data associated with the event"
                   }
                 },
                 "required": [
-                  "event",
-                  "member_id",
-                  "location_member_id",
-                  "rewards_program_id",
-                  "location_id",
-                  "user_id",
-                  "price",
-                  "points"
+                  "event"
                 ]
               }
             }
@@ -758,17 +721,19 @@
         },
         "responses": {
           "200": {
-            "description": "The created `Event` object",
+            "description": "HTTP status acknowledging the event was properly received",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Event"
+                  "type": "object",
+                  "properties": {
+                  }
                 }
               }
             }
           }
         },
-        "summary": "Track an event"
+        "summary": "Track an event occuring within a business"
       }
     },
     "/rewards_programs/{id}/flows": {
@@ -4476,6 +4441,62 @@
           }
         },
         "summary": "Retrieve a trigger"
+      }
+    },
+    "/triggers/{id}/activate": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the trigger",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A `Trigger` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Trigger"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Activate a trigger"
+      }
+    },
+    "/triggers/{id}/deactivate": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the trigger",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A `Trigger` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Trigger"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Deactivate a trigger"
       }
     },
     "/project_email_domains": {
