@@ -1552,23 +1552,44 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "The name of the segment"
-                  },
-                  "customers": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the segment"
+                      },
+                      "customers": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "A list of customer IDs to include in this segment"
+                      }
                     },
-                    "description": "A list of customer IDs to include in this segment"
+                    "required": [
+                      "name",
+                      "customers"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the segment"
+                      },
+                      "filter": {
+                        "type": "string",
+                        "description": "The filter for this segment"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "filter"
+                    ]
                   }
-                },
-                "required": [
-                  "name",
-                  "customers"
                 ]
               }
             }
@@ -3804,6 +3825,11 @@
                     "type": "string",
                     "nullable": true,
                     "description": "The scheduled time of the campaign in ISO 8601 format"
+                  },
+                  "segment": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The ID of the segment to attach to the campaign"
                   }
                 },
                 "required": [
@@ -4167,6 +4193,37 @@
           }
         },
         "summary": "Preview a campaign",
+        "security": [
+
+        ]
+      }
+    },
+    "/campaigns/{id}/view": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the campaign",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An interactable canvas with the campaign and its many steps",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "View a campaign interactively",
         "security": [
 
         ]
@@ -5728,12 +5785,18 @@
               "type": "string"
             },
             "description": "A list of customers in this segment"
+          },
+          "filter": {
+            "type": "string",
+            "nullable": true,
+            "description": "The filter for this segment"
           }
         },
         "required": [
           "id",
           "name",
-          "customers"
+          "customers",
+          "filter"
         ],
         "title": "The Segment object"
       },
