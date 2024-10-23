@@ -1382,6 +1382,12 @@
                     "type": "string",
                     "nullable": true,
                     "description": "The phone number of the customer"
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "nullable": true,
+                    "description": "The metadata of the customer"
                   }
                 }
               }
@@ -1665,6 +1671,44 @@
       }
     },
     "/segments/{id}/customers": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the segment",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The customers in the segment",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "customers": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Customer"
+                      },
+                      "description": "The customers in the segment"
+                    }
+                  },
+                  "required": [
+                    "customers"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Show the customers in a segment"
+      },
       "post": {
         "parameters": [
           {
@@ -3750,6 +3794,22 @@
                             "email_template_id": {
                               "type": "string",
                               "description": "The ID of the email template to use in this step"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "email_template_id"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "email"
+                              ],
+                              "description": "The step type. Always \"email\" for this step"
                             },
                             "subject": {
                               "type": "string",
@@ -3761,7 +3821,9 @@
                             }
                           },
                           "required": [
-                            "type"
+                            "type",
+                            "subject",
+                            "body"
                           ]
                         },
                         {
@@ -3777,6 +3839,22 @@
                             "sms_template_id": {
                               "type": "string",
                               "description": "The ID of the SMS template to use in this step"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "sms_template_id"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "sms"
+                              ],
+                              "description": "The step type. Always \"sms\" for this step"
                             },
                             "message": {
                               "type": "string",
@@ -3784,7 +3862,8 @@
                             }
                           },
                           "required": [
-                            "type"
+                            "type",
+                            "message"
                           ]
                         },
                         {
@@ -3951,6 +4030,22 @@
                             "email_template_id": {
                               "type": "string",
                               "description": "The ID of the email template to use in this step"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "email_template_id"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "email"
+                              ],
+                              "description": "The step type. Always \"email\" for this step"
                             },
                             "subject": {
                               "type": "string",
@@ -3962,7 +4057,9 @@
                             }
                           },
                           "required": [
-                            "type"
+                            "type",
+                            "subject",
+                            "body"
                           ]
                         },
                         {
@@ -3978,6 +4075,22 @@
                             "sms_template_id": {
                               "type": "string",
                               "description": "The ID of the SMS template to use in this step"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "sms_template_id"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "sms"
+                              ],
+                              "description": "The step type. Always \"sms\" for this step"
                             },
                             "message": {
                               "type": "string",
@@ -3985,7 +4098,8 @@
                             }
                           },
                           "required": [
-                            "type"
+                            "type",
+                            "message"
                           ]
                         },
                         {
@@ -4011,6 +4125,11 @@
                       ]
                     },
                     "description": "The updated steps of the campaign. Can be omitted"
+                  },
+                  "segment": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The updated segment of the campaign. Can be omitted"
                   },
                   "enrolled_customers": {
                     "type": "array",
@@ -4371,6 +4490,31 @@
                             "type": {
                               "type": "string",
                               "enum": [
+                                "email"
+                              ],
+                              "description": "The step type. Always \"email\" for this step"
+                            },
+                            "subject": {
+                              "type": "string",
+                              "description": "The subject of the email template to use at this step"
+                            },
+                            "body": {
+                              "type": "string",
+                              "description": "The body of the email template to use at this step"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "subject",
+                            "body"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
                                 "sms"
                               ],
                               "description": "The step type. Always \"sms\" for this step"
@@ -4383,6 +4527,26 @@
                           "required": [
                             "type",
                             "sms_template_id"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "sms"
+                              ],
+                              "description": "The step type. Always \"sms\" for this step"
+                            },
+                            "message": {
+                              "type": "string",
+                              "description": "The message to send in this step"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "message"
                           ]
                         },
                         {
@@ -4508,6 +4672,62 @@
           }
         },
         "summary": "Retrieve a trigger"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the trigger",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the trigger"
+                  },
+                  "trigger": {
+                    "type": "string",
+                    "description": "The event that triggers the trigger"
+                  },
+                  "email_address": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The ID of an email address or project email address. Will be used to send emails as part of this trigger"
+                  },
+                  "phone_number": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The ID of a phone number or project phone number. Will be used to send SMS messages as part of this trigger"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated `Trigger` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Trigger"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update a trigger"
       }
     },
     "/triggers/{id}/activate": {
@@ -4564,6 +4784,149 @@
           }
         },
         "summary": "Deactivate a trigger"
+      }
+    },
+    "/businesses/{id}/triggers/embeds": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The created `TriggerEmbed` object. Can be used to create a new trigger for the business",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggerEmbed"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a trigger embed to create a new trigger"
+      }
+    },
+    "/triggers/{id}/embeds": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the trigger",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The created `TriggerEmbed` object. Can be used to modify the trigger",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggerEmbed"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a trigger embed"
+      }
+    },
+    "/trigger_embeds/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the trigger embed",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A `TriggerEmbed` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggerEmbed"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve a trigger embed"
+      }
+    },
+    "/trigger_embeds/{id}/show": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the trigger embed",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The embeddable HTML that will render a UI for editing the trigger",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Embed the trigger editor"
+      }
+    },
+    "/triggers/{id}/view": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the trigger",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An interactable canvas with the trigger and its many steps",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "View a trigger interactively",
+        "security": [
+
+        ]
       }
     },
     "/project_email_domains": {
@@ -5019,6 +5382,11 @@
             ],
             "description": "The customers enrolled in the campaign"
           },
+          "segment": {
+            "type": "string",
+            "nullable": true,
+            "description": "The segment attached to the campaign"
+          },
           "steps": {
             "type": "array",
             "items": {
@@ -5036,6 +5404,22 @@
                     "email_template_id": {
                       "type": "string",
                       "description": "The ID of the email template to use in this step"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "email_template_id"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "email"
+                      ],
+                      "description": "The step type. Always \"email\" for this step"
                     },
                     "subject": {
                       "type": "string",
@@ -5047,7 +5431,9 @@
                     }
                   },
                   "required": [
-                    "type"
+                    "type",
+                    "subject",
+                    "body"
                   ]
                 },
                 {
@@ -5063,6 +5449,22 @@
                     "sms_template_id": {
                       "type": "string",
                       "description": "The ID of the SMS template to use in this step"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "sms_template_id"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "sms"
+                      ],
+                      "description": "The step type. Always \"sms\" for this step"
                     },
                     "message": {
                       "type": "string",
@@ -5070,7 +5472,8 @@
                     }
                   },
                   "required": [
-                    "type"
+                    "type",
+                    "message"
                   ]
                 },
                 {
@@ -5144,6 +5547,7 @@
           "id",
           "name",
           "enrolled_customers",
+          "segment",
           "steps",
           "email_address",
           "phone_number",
@@ -5779,13 +6183,6 @@
             "type": "string",
             "description": "The name of the segment"
           },
-          "customers": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "A list of customers in this segment"
-          },
           "filter": {
             "type": "string",
             "nullable": true,
@@ -5795,7 +6192,6 @@
         "required": [
           "id",
           "name",
-          "customers",
           "filter"
         ],
         "title": "The Segment object"
@@ -5889,6 +6285,31 @@
                     "type": {
                       "type": "string",
                       "enum": [
+                        "email"
+                      ],
+                      "description": "The step type. Always \"email\" for this step"
+                    },
+                    "subject": {
+                      "type": "string",
+                      "description": "The subject of the email template to use at this step"
+                    },
+                    "body": {
+                      "type": "string",
+                      "description": "The body of the email template to use at this step"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "subject",
+                    "body"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
                         "sms"
                       ],
                       "description": "The step type. Always \"sms\" for this step"
@@ -5901,6 +6322,26 @@
                   "required": [
                     "type",
                     "sms_template_id"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "sms"
+                      ],
+                      "description": "The step type. Always \"sms\" for this step"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The message to send in this step"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "message"
                   ]
                 },
                 {
@@ -5952,6 +6393,29 @@
           "phone_number"
         ],
         "title": "The Trigger object"
+      },
+      "TriggerEmbed": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the trigger embed"
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL to embed the trigger editor"
+          },
+          "expires_at": {
+            "type": "string",
+            "description": "When the trigger embed expires and needs to be regenerated"
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "expires_at"
+        ],
+        "title": "The Trigger Embed object"
       },
       "UnsubscribeEmbed": {
         "type": "object",
