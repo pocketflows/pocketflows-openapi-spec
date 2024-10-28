@@ -1103,6 +1103,46 @@
         "summary": "Get all variables for an email template"
       }
     },
+    "/sms_templates/{id}/variables": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the SMS template",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The variables for the SMS template",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "variables": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "The variables for the SMS template"
+                    }
+                  },
+                  "required": [
+                    "variables"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get all variables for an SMS template"
+      }
+    },
     "/businesses/{id}/customers": {
       "get": {
         "parameters": [
@@ -3622,25 +3662,51 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "to": {
-                    "type": "string",
-                    "description": "The phone number to send the SMS to"
-                  },
-                  "from": {
-                    "type": "string",
-                    "description": "The ID of the busines or project phone number to send the SMS from"
-                  },
-                  "variables": {
+                "anyOf": [
+                  {
                     "type": "object",
-                    "additionalProperties": true,
-                    "description": "The variables to be injected into the SMS template"
+                    "properties": {
+                      "from": {
+                        "type": "string",
+                        "description": "The ID of the phone number from which to send the SMS"
+                      },
+                      "to": {
+                        "type": "string",
+                        "description": "The phone number to send the SMS to"
+                      },
+                      "variables": {
+                        "type": "object",
+                        "additionalProperties": true,
+                        "description": "The variables to be injected into the SMS template"
+                      }
+                    },
+                    "required": [
+                      "from",
+                      "to"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "from": {
+                        "type": "string",
+                        "description": "The ID of the phone number from which to send the SMS"
+                      },
+                      "customer": {
+                        "type": "string",
+                        "description": "The ID of the customer to send the SMS to"
+                      },
+                      "variables": {
+                        "type": "object",
+                        "additionalProperties": true,
+                        "description": "The variables to be injected into the SMS template in addition to the variables already induced by the customer"
+                      }
+                    },
+                    "required": [
+                      "from",
+                      "customer"
+                    ]
                   }
-                },
-                "required": [
-                  "to",
-                  "from"
                 ]
               }
             }
