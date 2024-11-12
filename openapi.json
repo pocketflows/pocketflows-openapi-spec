@@ -11,6 +11,202 @@
     }
   ],
   "paths": {
+    "/available_steps": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "A dictionary with a `steps` property which are the available steps for the project",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "steps": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "The type of the step"
+                          },
+                          "display_text": {
+                            "type": "string",
+                            "description": "The displayable name of the step"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "display_text"
+                        ]
+                      },
+                      "description": "An array of steps"
+                    }
+                  },
+                  "required": [
+                    "steps"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List the available steps for a project"
+      }
+    },
+    "/project_defined_events": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "event": {
+                    "type": "string",
+                    "description": "The event name. Likely takes the form `customer.created` or similar"
+                  },
+                  "display_text": {
+                    "type": "string",
+                    "description": "The human-readable text for this event. Should grammatically follow \"When...\" e.g. \"a customer is created\""
+                  }
+                },
+                "required": [
+                  "event",
+                  "display_text"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created `ProjectDefinedEvent` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectDefinedEvent"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a project defined event"
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "description": "A list of `ProjectDefinedEvent` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "project_defined_events": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ProjectDefinedEvent"
+                      },
+                      "description": "An array of `ProjectDefinedEvent` objects"
+                    }
+                  },
+                  "required": [
+                    "project_defined_events"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List all project-defined events"
+      }
+    },
+    "/project_defined_events/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the `ProjectDefinedEvent` object",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The `ProjectDefinedEvent` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectDefinedEvent"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve a project-defined event"
+      },
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "display_text": {
+                    "type": "string",
+                    "description": "The human-readable text for this event. Should grammatically follow \"When...\" e.g. \"a customer is created\""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated `ProjectDefinedEvent` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectDefinedEvent"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update a project defined event"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the `ProjectDefinedEvent` object",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The deleted `ProjectDefinedEvent` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectDefinedEvent"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Delete a project-defined event"
+      }
+    },
     "/rewards_programs": {
       "get": {
         "responses": {
@@ -1520,6 +1716,26 @@
                       "type": {
                         "type": "string",
                         "enum": [
+                          "trigger"
+                        ],
+                        "description": "The type of unsubscribe. `trigger` in this case indicates unsubscribing from a single trigger"
+                      },
+                      "trigger_id": {
+                        "type": "string",
+                        "description": "The ID of the trigger to unsubscribe from"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "trigger_id"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
                           "all"
                         ],
                         "description": "The type of unsubscribe. `all` in this case indicates unsubscribing from all campaigns"
@@ -1561,7 +1777,101 @@
             }
           }
         },
-        "summary": "Unsubscribe a customer from campaigns"
+        "summary": "Unsubscribe a customer from campaigns and triggers"
+      }
+    },
+    "/customers/{id}/resubscribe": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the customer",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "campaign"
+                        ],
+                        "description": "The type of resubscribe. `campaign` in this case indicates resubscribing to a single campaign"
+                      },
+                      "campaign_id": {
+                        "type": "string",
+                        "description": "The ID of the campaign to resubscribe to"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "campaign_id"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "trigger"
+                        ],
+                        "description": "The type of resubscribe. `trigger` in this case indicates resubscribing to a single trigger"
+                      },
+                      "trigger_id": {
+                        "type": "string",
+                        "description": "The ID of the trigger to resubscribe to"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "trigger_id"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "future"
+                        ],
+                        "description": "The type of resubscribe. `future` in this case indicates resubscribing to future campaigns. Does not resubscribe the customer to any existing campaigns or triggers"
+                      }
+                    },
+                    "required": [
+                      "type"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The `Customer` object which was resubscribed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Resubscribe a customer to campaigns and triggers"
       }
     },
     "/businesses/{id}/segments": {
@@ -4516,144 +4826,305 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "The name of the trigger"
-                  },
-                  "trigger": {
-                    "type": "string",
-                    "description": "The event that triggers the trigger"
-                  },
-                  "steps": {
-                    "type": "array",
-                    "items": {
-                      "anyOf": [
-                        {
-                          "type": "object",
-                          "properties": {
-                            "type": {
-                              "type": "string",
-                              "enum": [
-                                "email"
-                              ],
-                              "description": "The step type. Always \"email\" for this step"
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the trigger"
+                      },
+                      "trigger": {
+                        "type": "string",
+                        "description": "The event that triggers the trigger"
+                      },
+                      "project_defined_event": {
+                        "type": "string",
+                        "nullable": true,
+                        "enum": [
+                          null
+                        ],
+                        "description": "Must be null or not passed"
+                      },
+                      "steps": {
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "email"
+                                  ],
+                                  "description": "The step type. Always \"email\" for this step"
+                                },
+                                "email_template_id": {
+                                  "type": "string",
+                                  "description": "The ID of the email template to use in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "email_template_id"
+                              ]
                             },
-                            "email_template_id": {
-                              "type": "string",
-                              "description": "The ID of the email template to use in this step"
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "email"
+                                  ],
+                                  "description": "The step type. Always \"email\" for this step"
+                                },
+                                "subject": {
+                                  "type": "string",
+                                  "description": "The subject of the email template to use at this step"
+                                },
+                                "body": {
+                                  "type": "string",
+                                  "description": "The body of the email template to use at this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "subject",
+                                "body"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "sms"
+                                  ],
+                                  "description": "The step type. Always \"sms\" for this step"
+                                },
+                                "sms_template_id": {
+                                  "type": "string",
+                                  "description": "The ID of the SMS template to use in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "sms_template_id"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "sms"
+                                  ],
+                                  "description": "The step type. Always \"sms\" for this step"
+                                },
+                                "message": {
+                                  "type": "string",
+                                  "description": "The message to send in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "message"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "wait"
+                                  ],
+                                  "description": "The step type. Always \"wait\" for this step"
+                                },
+                                "duration": {
+                                  "type": "integer",
+                                  "description": "The number of seconds to wait"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "duration"
+                              ]
                             }
-                          },
-                          "required": [
-                            "type",
-                            "email_template_id"
                           ]
                         },
-                        {
-                          "type": "object",
-                          "properties": {
-                            "type": {
-                              "type": "string",
-                              "enum": [
-                                "email"
-                              ],
-                              "description": "The step type. Always \"email\" for this step"
-                            },
-                            "subject": {
-                              "type": "string",
-                              "description": "The subject of the email template to use at this step"
-                            },
-                            "body": {
-                              "type": "string",
-                              "description": "The body of the email template to use at this step"
-                            }
-                          },
-                          "required": [
-                            "type",
-                            "subject",
-                            "body"
-                          ]
-                        },
-                        {
-                          "type": "object",
-                          "properties": {
-                            "type": {
-                              "type": "string",
-                              "enum": [
-                                "sms"
-                              ],
-                              "description": "The step type. Always \"sms\" for this step"
-                            },
-                            "sms_template_id": {
-                              "type": "string",
-                              "description": "The ID of the SMS template to use in this step"
-                            }
-                          },
-                          "required": [
-                            "type",
-                            "sms_template_id"
-                          ]
-                        },
-                        {
-                          "type": "object",
-                          "properties": {
-                            "type": {
-                              "type": "string",
-                              "enum": [
-                                "sms"
-                              ],
-                              "description": "The step type. Always \"sms\" for this step"
-                            },
-                            "message": {
-                              "type": "string",
-                              "description": "The message to send in this step"
-                            }
-                          },
-                          "required": [
-                            "type",
-                            "message"
-                          ]
-                        },
-                        {
-                          "type": "object",
-                          "properties": {
-                            "type": {
-                              "type": "string",
-                              "enum": [
-                                "wait"
-                              ],
-                              "description": "The step type. Always \"wait\" for this step"
-                            },
-                            "duration": {
-                              "type": "integer",
-                              "description": "The number of seconds to wait"
-                            }
-                          },
-                          "required": [
-                            "type",
-                            "duration"
-                          ]
-                        }
-                      ]
+                        "description": "The steps of the trigger"
+                      },
+                      "email_address": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The ID of an email address or project email address. Will be used to send emails as part of this trigger"
+                      },
+                      "phone_number": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The ID of a phone number or project phone number. Will be used to send SMS messages as part of this trigger"
+                      }
                     },
-                    "description": "The steps of the trigger"
+                    "required": [
+                      "name",
+                      "trigger",
+                      "steps"
+                    ]
                   },
-                  "email_address": {
-                    "type": "string",
-                    "nullable": true,
-                    "description": "The ID of an email address or project email address. Will be used to send emails as part of this trigger"
-                  },
-                  "phone_number": {
-                    "type": "string",
-                    "nullable": true,
-                    "description": "The ID of a phone number or project phone number. Will be used to send SMS messages as part of this trigger"
+                  {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the trigger"
+                      },
+                      "trigger": {
+                        "type": "string",
+                        "nullable": true,
+                        "enum": [
+                          null
+                        ],
+                        "description": "Must be null"
+                      },
+                      "project_defined_event": {
+                        "type": "string",
+                        "description": "The ID of a project defined event that triggers the trigger"
+                      },
+                      "steps": {
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "email"
+                                  ],
+                                  "description": "The step type. Always \"email\" for this step"
+                                },
+                                "email_template_id": {
+                                  "type": "string",
+                                  "description": "The ID of the email template to use in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "email_template_id"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "email"
+                                  ],
+                                  "description": "The step type. Always \"email\" for this step"
+                                },
+                                "subject": {
+                                  "type": "string",
+                                  "description": "The subject of the email template to use at this step"
+                                },
+                                "body": {
+                                  "type": "string",
+                                  "description": "The body of the email template to use at this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "subject",
+                                "body"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "sms"
+                                  ],
+                                  "description": "The step type. Always \"sms\" for this step"
+                                },
+                                "sms_template_id": {
+                                  "type": "string",
+                                  "description": "The ID of the SMS template to use in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "sms_template_id"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "sms"
+                                  ],
+                                  "description": "The step type. Always \"sms\" for this step"
+                                },
+                                "message": {
+                                  "type": "string",
+                                  "description": "The message to send in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "message"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "wait"
+                                  ],
+                                  "description": "The step type. Always \"wait\" for this step"
+                                },
+                                "duration": {
+                                  "type": "integer",
+                                  "description": "The number of seconds to wait"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "duration"
+                              ]
+                            }
+                          ]
+                        },
+                        "description": "The steps of the trigger"
+                      },
+                      "email_address": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The ID of an email address or project email address. Will be used to send emails as part of this trigger"
+                      },
+                      "phone_number": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The ID of a phone number or project phone number. Will be used to send SMS messages as part of this trigger"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "project_defined_event",
+                      "steps"
+                    ]
                   }
-                },
-                "required": [
-                  "name",
-                  "trigger",
-                  "steps"
                 ]
               }
             }
@@ -4764,7 +5235,13 @@
                   },
                   "trigger": {
                     "type": "string",
+                    "nullable": true,
                     "description": "The event that triggers the trigger"
+                  },
+                  "project_defined_event": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The ID of a project defined event. Will be used to trigger the trigger"
                   },
                   "email_address": {
                     "type": "string",
@@ -5090,57 +5567,6 @@
           }
         },
         "summary": "List all project email addresses for the project domain"
-      },
-      "post": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the project email domain",
-            "required": true
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "email_address": {
-                    "type": "string",
-                    "description": "The email address"
-                  },
-                  "display_name": {
-                    "type": "string",
-                    "nullable": true,
-                    "description": "The readable name of the email address"
-                  }
-                },
-                "required": [
-                  "email_address",
-                  "display_name"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The created `ProjectEmailAddress` object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProjectEmailAddress"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Create a new project email address"
       }
     },
     "/project_email_addresses": {
@@ -5762,6 +6188,88 @@
         ],
         "title": "The Email object"
       },
+      "EmailBlast": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the email blast"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the email blast"
+          },
+          "email_template": {
+            "type": "string",
+            "nullable": true,
+            "description": "The email template associated with the email blast. If this is not null, `one_off_email_template` will be null"
+          },
+          "one_off_email_template": {
+            "type": "string",
+            "nullable": true,
+            "description": "The one-off email template associated with the email blast. If this is not null, `email_template` will be null"
+          },
+          "subject": {
+            "type": "string",
+            "nullable": true,
+            "description": "The manually set subject of the email blast"
+          },
+          "template_json": {
+            "nullable": true,
+            "description": "The template JSON of the email blast"
+          },
+          "enrolled_customers": {
+            "anyOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            ],
+            "description": "The customers enrolled in the email blast"
+          },
+          "segment": {
+            "type": "string",
+            "nullable": true,
+            "description": "The segment attached to the email blast"
+          },
+          "email_address": {
+            "type": "string",
+            "nullable": true,
+            "description": "The email address used to send the email blast. Will be the ID of an email-address-like object"
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the email blast. One of \"draft\", \"scheduled\", \"started\", or \"stopped\""
+          },
+          "scheduled_at": {
+            "type": "string",
+            "nullable": true,
+            "description": "The time when the email blast is scheduled to start in ISO 8601 format"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email_template",
+          "one_off_email_template",
+          "subject",
+          "template_json",
+          "enrolled_customers",
+          "segment",
+          "email_address",
+          "status",
+          "scheduled_at"
+        ],
+        "title": "The Email Blast object"
+      },
       "EmailTemplate": {
         "type": "object",
         "properties": {
@@ -6020,6 +6528,29 @@
           "point_balance"
         ],
         "title": "The Member object"
+      },
+      "ProjectDefinedEvent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the project defined event"
+          },
+          "event": {
+            "type": "string",
+            "description": "The event name. Likely takes the form `customer.created` or similar"
+          },
+          "display_text": {
+            "type": "string",
+            "description": "The human-readable text for this event. Should grammatically follow \"When...\" e.g. \"a customer is created\""
+          }
+        },
+        "required": [
+          "id",
+          "event",
+          "display_text"
+        ],
+        "title": "The ProjectDefinedEvent object"
       },
       "ProjectEmailAddress": {
         "type": "object",
