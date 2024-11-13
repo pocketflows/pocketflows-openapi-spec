@@ -4037,53 +4037,6 @@
         "summary": "Send an SMS based off an SMS template"
       }
     },
-    "/project_phone_numbers/{id}/send": {
-      "post": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the project",
-            "required": true
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "message": {
-                    "type": "string",
-                    "description": "The message of the SMS template. Variables are supported via `{{ variableName }}`"
-                  }
-                },
-                "required": [
-                  "message"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "An `SMSMessage` representing the sent message",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SMSMessage"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Send an SMS message from a project's phone number"
-      }
-    },
     "/businesses/{id}/campaigns": {
       "get": {
         "parameters": [
