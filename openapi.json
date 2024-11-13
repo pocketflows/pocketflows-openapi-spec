@@ -3446,63 +3446,6 @@
         "summary": "Send an email"
       }
     },
-    "/project_email_addresses/{id}/send": {
-      "post": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the project email address",
-            "required": true
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "to": {
-                    "type": "string",
-                    "description": "The email address to send the email to"
-                  },
-                  "subject": {
-                    "type": "string",
-                    "description": "The subject of the email"
-                  },
-                  "body": {
-                    "type": "string",
-                    "description": "The body of the email"
-                  }
-                },
-                "required": [
-                  "to",
-                  "subject",
-                  "body"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The sent `Email` object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Email"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Send an email from a project email address"
-      }
-    },
     "/businesses/{id}/sms_templates": {
       "get": {
         "parameters": [
