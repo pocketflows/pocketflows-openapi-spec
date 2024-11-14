@@ -54,6 +54,76 @@
         "summary": "List the available steps for a project"
       }
     },
+    "/businesses/{id}/segment_usage": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "start_time",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The start time of the usage period. Provided as a string in ISO 8601 format.",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "end_time",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The end time of the usage period. Provided as a string in ISO 8601 format.",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The segment usage for the business within the time window",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sms": {
+                      "type": "integer",
+                      "description": "The number of SMS segments sent"
+                    },
+                    "email": {
+                      "type": "integer",
+                      "description": "The number of email segments sent"
+                    },
+                    "start_time": {
+                      "type": "string",
+                      "description": "The start time of the usage period in ISO 8601 format"
+                    },
+                    "end_time": {
+                      "type": "string",
+                      "description": "The end time of the usage period in ISO 8601 format"
+                    }
+                  },
+                  "required": [
+                    "sms",
+                    "email",
+                    "start_time",
+                    "end_time"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve the segment usage for a business"
+      }
+    },
     "/project_defined_events": {
       "post": {
         "requestBody": {
