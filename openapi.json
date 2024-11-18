@@ -2063,6 +2063,61 @@
         },
         "summary": "Retrieve a segment"
       },
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the segment"
+                      },
+                      "customers": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "A list of customer IDs to include in this segment"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the segment"
+                      },
+                      "filter": {
+                        "type": "string",
+                        "description": "The filter for this segment"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated `Segment` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Segment"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update a segment"
+      },
       "delete": {
         "parameters": [
           {
@@ -3514,6 +3569,100 @@
           }
         },
         "summary": "Send an email"
+      }
+    },
+    "/businesses/{id}/email_addresses": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The email addresses belonging to the business",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email_addresses": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BusinessEmailAddress"
+                      },
+                      "description": "The business's email addresses"
+                    }
+                  },
+                  "required": [
+                    "email_addresses"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve the email addresses for a business"
+      }
+    },
+    "/email_addresses/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the connected email address",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An `EmailAddress` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessEmailAddress"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve a connected email address"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the connected email address",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The deleted `ConnectedEmailAddress` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessEmailAddress"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Delete a connected email address"
       }
     },
     "/businesses/{id}/sms_templates": {
@@ -5673,7 +5822,7 @@
                     "email_addresses": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/ConnectedEmailAddress"
+                        "$ref": "#/components/schemas/BusinessEmailAddress"
                       },
                       "description": "An array of connected email addresses"
                     }
@@ -5719,60 +5868,6 @@
 
         ]
       }
-    },
-    "/email_addresses/{id}": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the connected email address",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "An `EmailAddress` object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConnectedEmailAddress"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Retrieve a connected email address"
-      },
-      "delete": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the connected email address",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The deleted `ConnectedEmailAddress` object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConnectedEmailAddress"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Delete a connected email address"
-      }
     }
   },
   "security": [
@@ -5811,6 +5906,29 @@
           "metadata"
         ],
         "title": "The Business object"
+      },
+      "BusinessEmailAddress": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the business's email address"
+          },
+          "email_address": {
+            "type": "string",
+            "description": "The email address of the business's email address"
+          },
+          "display_name": {
+            "type": "string",
+            "description": "The display name of the business's email address"
+          }
+        },
+        "required": [
+          "id",
+          "email_address",
+          "display_name"
+        ],
+        "title": "The Business Email Address object"
       },
       "Campaign": {
         "type": "object",
@@ -5999,6 +6117,42 @@
               "total_customers_finished"
             ],
             "description": "The statistics of the campaign. Includes information about the number of customers enrolled and their status in the campaign"
+          },
+          "consumed_message_segments": {
+            "type": "object",
+            "properties": {
+              "sms": {
+                "type": "integer",
+                "description": "The number of SMS segments"
+              },
+              "email": {
+                "type": "integer",
+                "description": "The number of email segments"
+              }
+            },
+            "required": [
+              "sms",
+              "email"
+            ],
+            "description": "The number of message segments actually used by the campaign"
+          },
+          "estimated_message_segments": {
+            "type": "object",
+            "properties": {
+              "sms": {
+                "type": "integer",
+                "description": "The number of SMS segments"
+              },
+              "email": {
+                "type": "integer",
+                "description": "The number of email segments"
+              }
+            },
+            "required": [
+              "sms",
+              "email"
+            ],
+            "description": "The number of message segments estimated to be used by the campaign"
           }
         },
         "required": [
@@ -6011,7 +6165,9 @@
           "phone_number",
           "status",
           "scheduled_at",
-          "statistics"
+          "statistics",
+          "consumed_message_segments",
+          "estimated_message_segments"
         ],
         "title": "The Campaign object"
       },
@@ -6037,29 +6193,6 @@
           "expires_at"
         ],
         "title": "The Campaign Embed object"
-      },
-      "ConnectedEmailAddress": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The ID of the connected email address"
-          },
-          "email_address": {
-            "type": "string",
-            "description": "The email address of the connected email address"
-          },
-          "provider": {
-            "type": "string",
-            "description": "The provider of the connected email address. Always \"google\" (for now)"
-          }
-        },
-        "required": [
-          "id",
-          "email_address",
-          "provider"
-        ],
-        "title": "The Connected Email Address object"
       },
       "Customer": {
         "type": "object",
