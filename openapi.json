@@ -3285,6 +3285,68 @@
         "summary": "Retrieve a project email template"
       }
     },
+    "/project_email_templates/{id}/preview.png": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the project email template",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The image of the compiled project email template",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Preview a project email template as an image",
+        "security": [
+
+        ]
+      }
+    },
+    "/project_email_templates/{id}/preview": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the project email template",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The HTML of the compiled project email template",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Preview a project email template",
+        "security": [
+
+        ]
+      }
+    },
     "/project_email_templates/{id}/copy": {
       "post": {
         "parameters": [
