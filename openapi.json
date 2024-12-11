@@ -54,6 +54,23 @@
         "summary": "List the available steps for a project"
       }
     },
+    "/project": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "A `Project` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve a project"
+      }
+    },
     "/businesses/{id}/segment_usage": {
       "get": {
         "parameters": [
@@ -1420,6 +1437,24 @@
             },
             "description": "The ID of the business",
             "required": true
+          },
+          {
+            "in": "query",
+            "name": "email_address",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The email address to filter on",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "phone_number",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The phone number to filter on",
+            "required": false
           }
         ],
         "responses": {
@@ -1631,6 +1666,121 @@
           }
         },
         "summary": "Create multiple customers"
+      }
+    },
+    "/businesses/{id}/customers/batch_update": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "customers": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "description": "The ID of the customer"
+                            },
+                            "email_address": {
+                              "type": "string",
+                              "description": "The email address of the customer"
+                            },
+                            "phone_number": {
+                              "type": "string",
+                              "nullable": true,
+                              "description": "The phone number of the customer"
+                            },
+                            "metadata": {
+                              "nullable": true,
+                              "description": "Any metadata to attach to the customer"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "email_address"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "description": "The ID of the customer"
+                            },
+                            "phone_number": {
+                              "type": "string",
+                              "description": "The phone number of the customer"
+                            },
+                            "email_address": {
+                              "type": "string",
+                              "nullable": true,
+                              "description": "The email address of the customer"
+                            },
+                            "metadata": {
+                              "nullable": true,
+                              "description": "Any metadata to attach to the customer"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "phone_number"
+                          ]
+                        }
+                      ]
+                    },
+                    "description": "An array of customer data to update. Must identify every customer with their ID"
+                  }
+                },
+                "required": [
+                  "customers"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "An array of updated `Customer` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "customers": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Customer"
+                      },
+                      "description": "An array of updated `Customer` objects"
+                    }
+                  },
+                  "required": [
+                    "customers"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update multiple customers"
       }
     },
     "/customers/{id}": {
@@ -2786,6 +2936,53 @@
                     "required": [
                       "name",
                       "subject"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the email template"
+                      },
+                      "subject": {
+                        "type": "string",
+                        "description": "The subject of the email template"
+                      },
+                      "attachments": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "content": {
+                              "type": "string",
+                              "description": "The content of the attachment as a data url, e.g. 'data:image/png;base64,abcd1234'"
+                            },
+                            "name": {
+                              "type": "string",
+                              "description": "The intended name of the attachment"
+                            }
+                          },
+                          "required": [
+                            "content",
+                            "name"
+                          ]
+                        },
+                        "description": "An array of attachments that will always be sent with this template"
+                      },
+                      "new_template_json": {
+                        "description": "The JSON representing the rich text email template"
+                      },
+                      "new_template_html": {
+                        "type": "string",
+                        "description": "The HTML representation of the rich text email template"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "subject",
+                      "new_template_json",
+                      "new_template_html"
                     ]
                   }
                 ]
@@ -6689,6 +6886,19 @@
           "point_balance"
         ],
         "title": "The Member object"
+      },
+      "Project": {
+        "type": "object",
+        "properties": {
+          "new_email_editor_ff": {
+            "type": "boolean",
+            "description": "Whether the new email editor is enabled"
+          }
+        },
+        "required": [
+          "new_email_editor_ff"
+        ],
+        "title": "The Project object"
       },
       "ProjectDefinedEvent": {
         "type": "object",
