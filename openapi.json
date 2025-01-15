@@ -299,6 +299,80 @@
         "summary": "Delete a project-defined event"
       }
     },
+    "/project_defined_events/{id}/filter_types": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "A list of filter types associated with the project-defined event",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "filter_types": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "variable_name": {
+                            "type": "string",
+                            "description": "The name of the variable"
+                          },
+                          "type": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "string"
+                                ]
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "number"
+                                ]
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "boolean"
+                                ]
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "array"
+                                ]
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "null"
+                                ]
+                              }
+                            ],
+                            "description": "The type of the variable"
+                          }
+                        },
+                        "required": [
+                          "variable_name",
+                          "type"
+                        ]
+                      },
+                      "description": "An array of filter types"
+                    }
+                  },
+                  "required": [
+                    "filter_types"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List the types of all variables associated with the project-defined event"
+      }
+    },
     "/rewards_programs": {
       "get": {
         "responses": {
@@ -4516,6 +4590,10 @@
                               ],
                               "description": "The step type. Always \"email\" for this step"
                             },
+                            "custom_step_id": {
+                              "type": "string",
+                              "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
+                            },
                             "email_template_id": {
                               "type": "string",
                               "description": "The ID of the email template to use in this step"
@@ -4535,6 +4613,10 @@
                                 "email"
                               ],
                               "description": "The step type. Always \"email\" for this step"
+                            },
+                            "custom_step_id": {
+                              "type": "string",
+                              "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
                             },
                             "subject": {
                               "type": "string",
@@ -4561,6 +4643,10 @@
                               ],
                               "description": "The step type. Always \"sms\" for this step"
                             },
+                            "custom_step_id": {
+                              "type": "string",
+                              "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
+                            },
                             "sms_template_id": {
                               "type": "string",
                               "description": "The ID of the SMS template to use in this step"
@@ -4580,6 +4666,10 @@
                                 "sms"
                               ],
                               "description": "The step type. Always \"sms\" for this step"
+                            },
+                            "custom_step_id": {
+                              "type": "string",
+                              "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
                             },
                             "message": {
                               "type": "string",
@@ -4752,6 +4842,10 @@
                               ],
                               "description": "The step type. Always \"email\" for this step"
                             },
+                            "custom_step_id": {
+                              "type": "string",
+                              "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
+                            },
                             "email_template_id": {
                               "type": "string",
                               "description": "The ID of the email template to use in this step"
@@ -4771,6 +4865,10 @@
                                 "email"
                               ],
                               "description": "The step type. Always \"email\" for this step"
+                            },
+                            "custom_step_id": {
+                              "type": "string",
+                              "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
                             },
                             "subject": {
                               "type": "string",
@@ -4797,6 +4895,10 @@
                               ],
                               "description": "The step type. Always \"sms\" for this step"
                             },
+                            "custom_step_id": {
+                              "type": "string",
+                              "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
+                            },
                             "sms_template_id": {
                               "type": "string",
                               "description": "The ID of the SMS template to use in this step"
@@ -4816,6 +4918,10 @@
                                 "sms"
                               ],
                               "description": "The step type. Always \"sms\" for this step"
+                            },
+                            "custom_step_id": {
+                              "type": "string",
+                              "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
                             },
                             "message": {
                               "type": "string",
@@ -5195,6 +5301,11 @@
                         ],
                         "description": "Must be null or not passed"
                       },
+                      "filter": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "A further filter on the trigger"
+                      },
                       "steps": {
                         "type": "array",
                         "items": {
@@ -5208,6 +5319,10 @@
                                     "email"
                                   ],
                                   "description": "The step type. Always \"email\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
                                 },
                                 "email_template_id": {
                                   "type": "string",
@@ -5228,6 +5343,10 @@
                                     "email"
                                   ],
                                   "description": "The step type. Always \"email\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
                                 },
                                 "subject": {
                                   "type": "string",
@@ -5254,6 +5373,10 @@
                                   ],
                                   "description": "The step type. Always \"sms\" for this step"
                                 },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
+                                },
                                 "sms_template_id": {
                                   "type": "string",
                                   "description": "The ID of the SMS template to use in this step"
@@ -5273,6 +5396,10 @@
                                     "sms"
                                   ],
                                   "description": "The step type. Always \"sms\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
                                 },
                                 "message": {
                                   "type": "string",
@@ -5344,6 +5471,11 @@
                         "type": "string",
                         "description": "The ID of a project defined event that triggers the trigger"
                       },
+                      "filter": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "A further filter on the trigger"
+                      },
                       "steps": {
                         "type": "array",
                         "items": {
@@ -5357,6 +5489,10 @@
                                     "email"
                                   ],
                                   "description": "The step type. Always \"email\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
                                 },
                                 "email_template_id": {
                                   "type": "string",
@@ -5377,6 +5513,10 @@
                                     "email"
                                   ],
                                   "description": "The step type. Always \"email\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
                                 },
                                 "subject": {
                                   "type": "string",
@@ -5403,6 +5543,10 @@
                                   ],
                                   "description": "The step type. Always \"sms\" for this step"
                                 },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
+                                },
                                 "sms_template_id": {
                                   "type": "string",
                                   "description": "The ID of the SMS template to use in this step"
@@ -5422,6 +5566,10 @@
                                     "sms"
                                   ],
                                   "description": "The step type. Always \"sms\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
                                 },
                                 "message": {
                                   "type": "string",
@@ -5821,103 +5969,6 @@
         ]
       }
     },
-    "/project_email_domains": {
-      "get": {
-        "responses": {
-          "200": {
-            "description": "A dictionary with a `project_email_domains` property which is an array of `ProjectEmailDomain` objects",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "project_email_domains": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/ProjectEmailDomain"
-                      },
-                      "description": "An array of project email domains"
-                    }
-                  },
-                  "required": [
-                    "project_email_domains"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "summary": "List all project email domains"
-      }
-    },
-    "/project_email_domains/{id}": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the project email domain",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The `ProjectEmailDomain` object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProjectEmailDomain"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Retrieve a project email domain"
-      }
-    },
-    "/project_email_domains/{id}/project_email_addresses": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the project email domain",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A dictionary with a `project_email_addresses` property which is an array of `ProjectEmailAddress` objects",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "project_email_addresses": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/ProjectEmailAddress"
-                      },
-                      "description": "An array of project email addresses"
-                    }
-                  },
-                  "required": [
-                    "project_email_addresses"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "summary": "List all project email addresses for the project domain"
-      }
-    },
     "/project_email_addresses": {
       "get": {
         "responses": {
@@ -6102,6 +6153,217 @@
 
         ]
       }
+    },
+    "/businesses/{id}/filter_definitions": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A dictionary with a `filter_definitions` property which is an array of `FilterDefinition` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "filter_definitions": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/FilterDefinition"
+                      },
+                      "description": "An array of filter definitions"
+                    }
+                  },
+                  "required": [
+                    "filter_definitions"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List all filter definitions"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string",
+                    "description": "The label of the filter definition"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "select"
+                    ],
+                    "description": "The type of the filter definition. Must be \"select\""
+                  },
+                  "options": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/FilterDefinitionOption"
+                    },
+                    "description": "The options for the select dropdown"
+                  }
+                },
+                "required": [
+                  "label",
+                  "type",
+                  "options"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created `FilterDefinition` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FilterDefinition"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a filter definition"
+      }
+    },
+    "/filter_definitions/{id}": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the filter definition",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string",
+                    "description": "The updated label of the filter definition. Can be omitted"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "select"
+                    ],
+                    "description": "The updated type of the filter definition. Must be \"select\". Can be omitted"
+                  },
+                  "options": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/FilterDefinitionOption"
+                    },
+                    "description": "The updated options of the filter definition. Can be omitted. Will wholly replace the existing options"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated `FilterDefinition` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FilterDefinition"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update a filter definition"
+      },
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the filter definition",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A `FilterDefinition` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FilterDefinition"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve a filter definition"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the filter definition",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The created `FilterDefinition` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FilterDefinition"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Delete a filter definition"
+      }
     }
   },
   "security": [
@@ -6211,6 +6473,10 @@
                       ],
                       "description": "The step type. Always \"email\" for this step"
                     },
+                    "custom_step_id": {
+                      "type": "string",
+                      "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
+                    },
                     "email_template_id": {
                       "type": "string",
                       "description": "The ID of the email template to use in this step"
@@ -6230,6 +6496,10 @@
                         "email"
                       ],
                       "description": "The step type. Always \"email\" for this step"
+                    },
+                    "custom_step_id": {
+                      "type": "string",
+                      "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
                     },
                     "subject": {
                       "type": "string",
@@ -6256,6 +6526,10 @@
                       ],
                       "description": "The step type. Always \"sms\" for this step"
                     },
+                    "custom_step_id": {
+                      "type": "string",
+                      "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
+                    },
                     "sms_template_id": {
                       "type": "string",
                       "description": "The ID of the SMS template to use in this step"
@@ -6275,6 +6549,10 @@
                         "sms"
                       ],
                       "description": "The step type. Always \"sms\" for this step"
+                    },
+                    "custom_step_id": {
+                      "type": "string",
+                      "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
                     },
                     "message": {
                       "type": "string",
@@ -6752,6 +7030,58 @@
           "member"
         ],
         "title": "The Event object"
+      },
+      "FilterDefinition": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the filter definition"
+          },
+          "label": {
+            "type": "string",
+            "description": "The label of the filter definition"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "select"
+            ],
+            "description": "The type of the filter definition. Must be \"select\""
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilterDefinitionOption"
+            },
+            "description": "The options for the select dropdown"
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "type",
+          "options"
+        ],
+        "title": "The Filter Definition object"
+      },
+      "FilterDefinitionOption": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "description": "The label of the option"
+          },
+          "value": {
+            "type": "string",
+            "description": "The value of the option"
+          }
+        },
+        "required": [
+          "label",
+          "value"
+        ],
+        "title": "The Filter Definition Option object"
       },
       "Flow": {
         "type": "object",
@@ -7246,6 +7576,10 @@
                       ],
                       "description": "The step type. Always \"email\" for this step"
                     },
+                    "custom_step_id": {
+                      "type": "string",
+                      "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
+                    },
                     "email_template_id": {
                       "type": "string",
                       "description": "The ID of the email template to use in this step"
@@ -7265,6 +7599,10 @@
                         "email"
                       ],
                       "description": "The step type. Always \"email\" for this step"
+                    },
+                    "custom_step_id": {
+                      "type": "string",
+                      "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
                     },
                     "subject": {
                       "type": "string",
@@ -7291,6 +7629,10 @@
                       ],
                       "description": "The step type. Always \"sms\" for this step"
                     },
+                    "custom_step_id": {
+                      "type": "string",
+                      "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
+                    },
                     "sms_template_id": {
                       "type": "string",
                       "description": "The ID of the SMS template to use in this step"
@@ -7310,6 +7652,10 @@
                         "sms"
                       ],
                       "description": "The step type. Always \"sms\" for this step"
+                    },
+                    "custom_step_id": {
+                      "type": "string",
+                      "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
                     },
                     "message": {
                       "type": "string",
@@ -7349,6 +7695,11 @@
             "type": "string",
             "description": "The status of the trigger. One of \"active\" or \"inactive\""
           },
+          "filter": {
+            "type": "string",
+            "nullable": true,
+            "description": "An additional filter that determines if the trigger should be run"
+          },
           "email_address": {
             "type": "string",
             "nullable": true,
@@ -7366,6 +7717,7 @@
           "trigger",
           "steps",
           "status",
+          "filter",
           "email_address",
           "phone_number"
         ],
