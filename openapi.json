@@ -4553,16 +4553,15 @@
                 "properties": {
                   "scheduled_at": {
                     "type": "string",
+                    "nullable": true,
                     "description": "The scheduled time of the campaign in ISO 8601 format"
                   },
                   "scheduled_end_at": {
                     "type": "string",
+                    "nullable": true,
                     "description": "The scheduled end time of the campaign in ISO 8601 format"
                   }
-                },
-                "required": [
-                  "scheduled_at"
-                ]
+                }
               }
             }
           }
@@ -6606,12 +6605,12 @@
         "summary": "Sync a batch of businesses"
       }
     },
-    "/sync/businesses/{id}/customers": {
+    "/sync/businesses/{business_id}/customers": {
       "post": {
         "parameters": [
           {
             "in": "path",
-            "name": "id",
+            "name": "business_id",
             "schema": {
               "type": "string"
             },
@@ -6704,12 +6703,12 @@
         "summary": "Sync a customer"
       }
     },
-    "/sync/businesses/{id}/customers/batch": {
+    "/sync/businesses/{business_id}/customers/batch": {
       "post": {
         "parameters": [
           {
             "in": "path",
-            "name": "id",
+            "name": "business_id",
             "schema": {
               "type": "string"
             },
