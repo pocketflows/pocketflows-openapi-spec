@@ -7701,6 +7701,118 @@
         },
         "summary": "Retrieve a user"
       }
+    },
+    "/businesses/{id}/embeds": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The created `Embed` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Embed"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create an embed"
+      }
+    },
+    "/embeds/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the embed",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The `Embed` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Embed"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Fetch information about an embed"
+      }
+    },
+    "/embeds/{id}/show": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the embed",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The rendered user experience of the embed",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Render the user experience of the embed"
+      }
+    },
+    "/embeds/{id}/show/*rest": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the embed",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The rendered user experience of the embed",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Render the user experience of the embed"
+      }
     }
   },
   "security": [
@@ -8402,6 +8514,34 @@
           "expires_at"
         ],
         "title": "The Email Template Embed object"
+      },
+      "Embed": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the embed"
+          },
+          "business": {
+            "type": "string",
+            "description": "The ID of the business"
+          },
+          "expires_at": {
+            "type": "string",
+            "description": "The time when the embed will expire in ISO 8601 format"
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL of the embed"
+          }
+        },
+        "required": [
+          "id",
+          "business",
+          "expires_at",
+          "url"
+        ],
+        "title": "The Embed object"
       },
       "Employee": {
         "type": "object",
