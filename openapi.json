@@ -6899,6 +6899,13 @@
                     },
                     "description": "The ID of the customers enrolled in the email blast"
                   },
+                  "excluded_customers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "The ID of the customers excluded from the email blast"
+                  },
                   "email_address": {
                     "type": "string",
                     "nullable": true,
@@ -7000,6 +7007,13 @@
                       "type": "string"
                     },
                     "description": "The updated enrolled customer IDs of the email blast. Can be omitted"
+                  },
+                  "excluded_customers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "The updated excluded customer IDs of the email blast"
                   },
                   "email_address": {
                     "type": "string",
@@ -7213,6 +7227,37 @@
           }
         },
         "summary": "Get the executions of an email blast",
+        "tags": [
+          "Email blasts"
+        ]
+      }
+    },
+    "/email_blasts/{id}/customers": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the email blast",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A dictionary with a `customers` property, which is an array of `Customer` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailBlast"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get all the enrolled customers for an email blast",
         "tags": [
           "Email blasts"
         ]
@@ -10603,6 +10648,23 @@
             ],
             "description": "The customers enrolled in the email blast"
           },
+          "excluded_customers": {
+            "anyOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            ],
+            "description": "The customers excluded from the email blast"
+          },
           "segment": {
             "type": "string",
             "nullable": true,
@@ -10631,6 +10693,7 @@
           "subject",
           "template_json",
           "enrolled_customers",
+          "excluded_customers",
           "segment",
           "email_address",
           "status",
