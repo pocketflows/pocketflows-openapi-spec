@@ -51,7 +51,10 @@
             }
           }
         },
-        "summary": "List the available steps for a project"
+        "summary": "List the available steps for a project",
+        "tags": [
+          "Projects"
+        ]
       }
     },
     "/project": {
@@ -68,7 +71,10 @@
             }
           }
         },
-        "summary": "Retrieve a project"
+        "summary": "Retrieve a project",
+        "tags": [
+          "Projects"
+        ]
       }
     },
     "/businesses/{id}/segment_usage": {
@@ -143,7 +149,10 @@
             }
           }
         },
-        "summary": "Retrieve the segment usage for a business"
+        "summary": "Retrieve the segment usage for a business",
+        "tags": [
+          "Segment usage"
+        ]
       }
     },
     "/project_defined_events": {
@@ -184,7 +193,10 @@
             }
           }
         },
-        "summary": "Create a project defined event"
+        "summary": "Create a project defined event",
+        "tags": [
+          "Project defined events"
+        ]
       },
       "get": {
         "responses": {
@@ -211,7 +223,10 @@
             }
           }
         },
-        "summary": "List all project-defined events"
+        "summary": "List all project-defined events",
+        "tags": [
+          "Project defined events"
+        ]
       }
     },
     "/project_defined_events/{id}": {
@@ -239,7 +254,10 @@
             }
           }
         },
-        "summary": "Retrieve a project-defined event"
+        "summary": "Retrieve a project-defined event",
+        "tags": [
+          "Project defined events"
+        ]
       },
       "post": {
         "requestBody": {
@@ -270,7 +288,10 @@
             }
           }
         },
-        "summary": "Update a project defined event"
+        "summary": "Update a project defined event",
+        "tags": [
+          "Project defined events"
+        ]
       },
       "delete": {
         "parameters": [
@@ -296,7 +317,10 @@
             }
           }
         },
-        "summary": "Delete a project-defined event"
+        "summary": "Delete a project-defined event",
+        "tags": [
+          "Project defined events"
+        ]
       }
     },
     "/project_defined_events/{id}/filter_types": {
@@ -370,7 +394,10 @@
             }
           }
         },
-        "summary": "List the types of all variables associated with the project-defined event"
+        "summary": "List the types of all variables associated with the project-defined event",
+        "tags": [
+          "Project defined events"
+        ]
       }
     },
     "/businesses/{id}/track": {
@@ -406,14 +433,16 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {
-                  }
+                  "properties": {}
                 }
               }
             }
           }
         },
-        "summary": "Track an event occuring within a business"
+        "summary": "Track an event occuring within a business",
+        "tags": [
+          "Events"
+        ]
       }
     },
     "/rewards_programs/{id}/flows": {
@@ -441,7 +470,10 @@
             }
           }
         },
-        "summary": "Create a flow"
+        "summary": "Create a flow",
+        "tags": [
+          "Flows"
+        ]
       }
     },
     "/flows/{id}/embed": {
@@ -469,7 +501,10 @@
             }
           }
         },
-        "summary": "Embed a flow"
+        "summary": "Embed a flow",
+        "tags": [
+          "Flows"
+        ]
       }
     },
     "/flows/{id}/embed/analytics": {
@@ -497,7 +532,10 @@
             }
           }
         },
-        "summary": "Embed an analytics flow"
+        "summary": "Embed an analytics flow",
+        "tags": [
+          "Flows"
+        ]
       }
     },
     "/employees/{id}/emails": {
@@ -537,7 +575,10 @@
             }
           }
         },
-        "summary": "List all an employee's emails"
+        "summary": "List all an employee's emails",
+        "tags": [
+          "Employees"
+        ]
       }
     },
     "/businesses": {
@@ -566,7 +607,10 @@
             }
           }
         },
-        "summary": "List all businesses"
+        "summary": "List all businesses",
+        "tags": [
+          "Businesses"
+        ]
       },
       "post": {
         "requestBody": {
@@ -604,7 +648,10 @@
             }
           }
         },
-        "summary": "Create a business"
+        "summary": "Create a business",
+        "tags": [
+          "Businesses"
+        ]
       }
     },
     "/businesses/{id}": {
@@ -632,7 +679,10 @@
             }
           }
         },
-        "summary": "Retrieve a business"
+        "summary": "Retrieve a business",
+        "tags": [
+          "Businesses"
+        ]
       },
       "post": {
         "parameters": [
@@ -674,7 +724,10 @@
             }
           }
         },
-        "summary": "Update a business"
+        "summary": "Update a business",
+        "tags": [
+          "Businesses"
+        ]
       },
       "delete": {
         "parameters": [
@@ -700,7 +753,10 @@
             }
           }
         },
-        "summary": "Delete a business"
+        "summary": "Delete a business",
+        "tags": [
+          "Businesses"
+        ]
       }
     },
     "/businesses/{id}/variables": {
@@ -740,7 +796,10 @@
             }
           }
         },
-        "summary": "Get all variables for a business"
+        "summary": "Get all variables for a business",
+        "tags": [
+          "Variables"
+        ]
       }
     },
     "/email_templates/{id}/variables": {
@@ -780,7 +839,10 @@
             }
           }
         },
-        "summary": "Get all variables for an email template"
+        "summary": "Get all variables for an email template",
+        "tags": [
+          "Variables"
+        ]
       }
     },
     "/sms_templates/{id}/variables": {
@@ -820,7 +882,10 @@
             }
           }
         },
-        "summary": "Get all variables for an SMS template"
+        "summary": "Get all variables for an SMS template",
+        "tags": [
+          "Variables"
+        ]
       }
     },
     "/businesses/{id}/customers": {
@@ -878,7 +943,10 @@
             }
           }
         },
-        "summary": "List all customers for a business"
+        "summary": "List all customers for a business",
+        "tags": [
+          "Customers"
+        ]
       },
       "post": {
         "parameters": [
@@ -957,7 +1025,10 @@
             }
           }
         },
-        "summary": "Create a customer"
+        "summary": "Create a customer",
+        "tags": [
+          "Customers"
+        ]
       }
     },
     "/businesses/{id}/customers/batch": {
@@ -1062,7 +1133,10 @@
             }
           }
         },
-        "summary": "Create multiple customers"
+        "summary": "Create multiple customers",
+        "tags": [
+          "Customers"
+        ]
       }
     },
     "/businesses/{id}/customers/batch_update": {
@@ -1147,7 +1221,10 @@
             }
           }
         },
-        "summary": "Update multiple customers"
+        "summary": "Update multiple customers",
+        "tags": [
+          "Customers"
+        ]
       }
     },
     "/customers/{id}": {
@@ -1175,7 +1252,10 @@
             }
           }
         },
-        "summary": "Retrieve a customer"
+        "summary": "Retrieve a customer",
+        "tags": [
+          "Customers"
+        ]
       },
       "post": {
         "parameters": [
@@ -1229,7 +1309,10 @@
             }
           }
         },
-        "summary": "Update a customer"
+        "summary": "Update a customer",
+        "tags": [
+          "Customers"
+        ]
       },
       "delete": {
         "parameters": [
@@ -1255,7 +1338,10 @@
             }
           }
         },
-        "summary": "Delete a customer"
+        "summary": "Delete a customer",
+        "tags": [
+          "Customers"
+        ]
       }
     },
     "/customers/{id}/unsubscribe": {
@@ -1364,7 +1450,66 @@
             }
           }
         },
-        "summary": "Unsubscribe a customer from campaigns and triggers"
+        "summary": "Unsubscribe a customer from campaigns and triggers",
+        "tags": [
+          "Customers"
+        ]
+      }
+    },
+    "/customers/{id}/unsubscribe_info": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the customer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The marketing resources the customer has opted out of",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "unsubscribed_campaigns": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "The campaigns the customer has unsubscribed from"
+                    },
+                    "unsubscribed_triggers": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "The triggers the customer has unsubscribed from"
+                    },
+                    "unsubscribed_from_all": {
+                      "type": "boolean",
+                      "description": "Whether the customer has opted out of all marketing"
+                    }
+                  },
+                  "required": [
+                    "unsubscribed_campaigns",
+                    "unsubscribed_triggers",
+                    "unsubscribed_from_all"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve unsubscribe info for a customer",
+        "tags": [
+          "Customers"
+        ]
       }
     },
     "/customers/{id}/resubscribe": {
@@ -1458,7 +1603,42 @@
             }
           }
         },
-        "summary": "Resubscribe a customer to campaigns and triggers"
+        "summary": "Resubscribe a customer to campaigns and triggers",
+        "tags": [
+          "Customers"
+        ]
+      }
+    },
+    "/customers/{id}/segments": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "The segments the customer belongs to",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "segments": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Segment"
+                      },
+                      "description": "The segments the customer belongs to"
+                    }
+                  },
+                  "required": [
+                    "segments"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve the segments a customer belongs to",
+        "tags": [
+          "Customers"
+        ]
       }
     },
     "/businesses/{id}/segments": {
@@ -1487,7 +1667,10 @@
             }
           }
         },
-        "summary": "List all the business's segments"
+        "summary": "List all the business's segments",
+        "tags": [
+          "Segments"
+        ]
       },
       "post": {
         "requestBody": {
@@ -1495,44 +1678,34 @@
           "content": {
             "application/json": {
               "schema": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string",
-                        "description": "The name of the segment"
-                      },
-                      "customers": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        },
-                        "description": "A list of customer IDs to include in this segment"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "customers"
-                    ]
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the segment"
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string",
-                        "description": "The name of the segment"
-                      },
-                      "filter": {
-                        "type": "string",
-                        "description": "The filter for this segment"
-                      }
+                  "static_customers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
                     },
-                    "required": [
-                      "name",
-                      "filter"
-                    ]
+                    "description": "A list of customer IDs to always include in this segment"
+                  },
+                  "customers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "A list of customer IDs to include in this segment"
+                  },
+                  "filter": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The filter for this segment"
                   }
+                },
+                "required": [
+                  "name"
                 ]
               }
             }
@@ -1550,7 +1723,10 @@
             }
           }
         },
-        "summary": "Create a segment"
+        "summary": "Create a segment",
+        "tags": [
+          "Segments"
+        ]
       }
     },
     "/segments/{id}": {
@@ -1578,7 +1754,10 @@
             }
           }
         },
-        "summary": "Retrieve a segment"
+        "summary": "Retrieve a segment",
+        "tags": [
+          "Segments"
+        ]
       },
       "post": {
         "requestBody": {
@@ -1586,37 +1765,32 @@
           "content": {
             "application/json": {
               "schema": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string",
-                        "description": "The name of the segment"
-                      },
-                      "customers": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        },
-                        "description": "A list of customer IDs to include in this segment"
-                      }
-                    }
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the segment"
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string",
-                        "description": "The name of the segment"
-                      },
-                      "filter": {
-                        "type": "string",
-                        "description": "The filter for this segment"
-                      }
-                    }
+                  "static_customers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "A list of customer IDs to always include in this segment"
+                  },
+                  "customers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "A list of customer IDs to include in this segment"
+                  },
+                  "filter": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The filter for this segment"
                   }
-                ]
+                }
               }
             }
           }
@@ -1633,7 +1807,10 @@
             }
           }
         },
-        "summary": "Update a segment"
+        "summary": "Update a segment",
+        "tags": [
+          "Segments"
+        ]
       },
       "delete": {
         "parameters": [
@@ -1659,7 +1836,10 @@
             }
           }
         },
-        "summary": "Delete a segment"
+        "summary": "Delete a segment",
+        "tags": [
+          "Segments"
+        ]
       }
     },
     "/segments/{id}/customers": {
@@ -1699,7 +1879,10 @@
             }
           }
         },
-        "summary": "Show the customers in a segment"
+        "summary": "Show the customers in a segment",
+        "tags": [
+          "Segments"
+        ]
       },
       "post": {
         "parameters": [
@@ -1744,7 +1927,10 @@
             }
           }
         },
-        "summary": "Add a customer to a segment"
+        "summary": "Add a customer to a segment",
+        "tags": [
+          "Segments"
+        ]
       }
     },
     "/segments/{id}/customers/{customer_id}": {
@@ -1781,7 +1967,10 @@
             }
           }
         },
-        "summary": "Remove a customer from a segment"
+        "summary": "Remove a customer from a segment",
+        "tags": [
+          "Segments"
+        ]
       }
     },
     "/customers/{id}/unsubscribe_embeds": {
@@ -1809,7 +1998,10 @@
             }
           }
         },
-        "summary": "Create an unsubscribe embed"
+        "summary": "Create an unsubscribe embed",
+        "tags": [
+          "Unsubscribe embeds"
+        ]
       }
     },
     "/unsubscribe_embeds/{id}": {
@@ -1837,7 +2029,10 @@
             }
           }
         },
-        "summary": "Retrieve an unsubscribe embed"
+        "summary": "Retrieve an unsubscribe embed",
+        "tags": [
+          "Unsubscribe embeds"
+        ]
       }
     },
     "/unsubscribe_embeds/{id}/show": {
@@ -1865,7 +2060,10 @@
             }
           }
         },
-        "summary": "Embed the unsubscribe form"
+        "summary": "Embed the unsubscribe form",
+        "tags": [
+          "Unsubscribe embeds"
+        ]
       }
     },
     "/businesses/{id}/employees": {
@@ -1905,7 +2103,10 @@
             }
           }
         },
-        "summary": "List all employees for a business"
+        "summary": "List all employees for a business",
+        "tags": [
+          "Employees"
+        ]
       },
       "post": {
         "parameters": [
@@ -1976,7 +2177,10 @@
             }
           }
         },
-        "summary": "Create an employee"
+        "summary": "Create an employee",
+        "tags": [
+          "Employees"
+        ]
       }
     },
     "/employees/{id}": {
@@ -2004,7 +2208,10 @@
             }
           }
         },
-        "summary": "Retrieve an employee"
+        "summary": "Retrieve an employee",
+        "tags": [
+          "Employees"
+        ]
       },
       "post": {
         "parameters": [
@@ -2052,7 +2259,10 @@
             }
           }
         },
-        "summary": "Update an employee"
+        "summary": "Update an employee",
+        "tags": [
+          "Employees"
+        ]
       },
       "delete": {
         "parameters": [
@@ -2078,7 +2288,10 @@
             }
           }
         },
-        "summary": "Delete an employee"
+        "summary": "Delete an employee",
+        "tags": [
+          "Employees"
+        ]
       }
     },
     "/businesses/{id}/email_templates": {
@@ -2130,7 +2343,10 @@
             }
           }
         },
-        "summary": "List all email templates for a business"
+        "summary": "List all email templates for a business",
+        "tags": [
+          "Email templates"
+        ]
       },
       "post": {
         "parameters": [
@@ -2405,7 +2621,10 @@
             }
           }
         },
-        "summary": "Create an email template"
+        "summary": "Create an email template",
+        "tags": [
+          "Email templates"
+        ]
       }
     },
     "/businesses/{id}/email_templates/ai": {
@@ -2452,7 +2671,10 @@
             }
           }
         },
-        "summary": "Create a new email template using AI"
+        "summary": "Create a new email template using AI",
+        "tags": [
+          "Email templates"
+        ]
       }
     },
     "/email_templates/{id}": {
@@ -2480,7 +2702,10 @@
             }
           }
         },
-        "summary": "Retrieve an email template"
+        "summary": "Retrieve an email template",
+        "tags": [
+          "Email templates"
+        ]
       },
       "post": {
         "parameters": [
@@ -2558,7 +2783,10 @@
             }
           }
         },
-        "summary": "Update an email template"
+        "summary": "Update an email template",
+        "tags": [
+          "Email templates"
+        ]
       },
       "delete": {
         "parameters": [
@@ -2584,7 +2812,10 @@
             }
           }
         },
-        "summary": "Delete an email template"
+        "summary": "Delete an email template",
+        "tags": [
+          "Email templates"
+        ]
       }
     },
     "/email_templates/{id}/preview.png": {
@@ -2613,8 +2844,9 @@
           }
         },
         "summary": "Preview an email template as an image",
-        "security": [
-
+        "security": [],
+        "tags": [
+          "Email templates"
         ]
       }
     },
@@ -2644,8 +2876,9 @@
           }
         },
         "summary": "Preview an email template",
-        "security": [
-
+        "security": [],
+        "tags": [
+          "Email templates"
         ]
       }
     },
@@ -2674,7 +2907,10 @@
             }
           }
         },
-        "summary": "Create a copy of an existing email template"
+        "summary": "Create a copy of an existing email template",
+        "tags": [
+          "Email templates"
+        ]
       }
     },
     "/email_templates/{id}/copy_one_off": {
@@ -2702,7 +2938,10 @@
             }
           }
         },
-        "summary": "Copy an email template as a one-off"
+        "summary": "Copy an email template as a one-off",
+        "tags": [
+          "Email templates"
+        ]
       }
     },
     "/email_templates/{id}/embeds": {
@@ -2730,7 +2969,10 @@
             }
           }
         },
-        "summary": "Create an email template embed to edit an existing email template"
+        "summary": "Create an email template embed to edit an existing email template",
+        "tags": [
+          "Email template embeds"
+        ]
       }
     },
     "/businesses/{id}/email_templates/embeds": {
@@ -2758,7 +3000,10 @@
             }
           }
         },
-        "summary": "Create an email template embed to create a brand new email template"
+        "summary": "Create an email template embed to create a brand new email template",
+        "tags": [
+          "Email template embeds"
+        ]
       }
     },
     "/email_template_embeds/{id}": {
@@ -2786,7 +3031,10 @@
             }
           }
         },
-        "summary": "Retrieve an email template embed"
+        "summary": "Retrieve an email template embed",
+        "tags": [
+          "Email template embeds"
+        ]
       }
     },
     "/email_template_embeds/{id}/show": {
@@ -2851,8 +3099,9 @@
           }
         },
         "summary": "Embed the email template editor",
-        "security": [
-
+        "security": [],
+        "tags": [
+          "Email template embeds"
         ]
       }
     },
@@ -2882,7 +3131,10 @@
             }
           }
         },
-        "summary": "List all project email templates"
+        "summary": "List all project email templates",
+        "tags": [
+          "Project email templates"
+        ]
       }
     },
     "/project_email_templates/{id}": {
@@ -2910,7 +3162,10 @@
             }
           }
         },
-        "summary": "Retrieve a project email template"
+        "summary": "Retrieve a project email template",
+        "tags": [
+          "Project email templates"
+        ]
       }
     },
     "/project_email_templates/{id}/preview.png": {
@@ -2939,8 +3194,9 @@
           }
         },
         "summary": "Preview a project email template as an image",
-        "security": [
-
+        "security": [],
+        "tags": [
+          "Project email templates"
         ]
       }
     },
@@ -2970,8 +3226,9 @@
           }
         },
         "summary": "Preview a project email template",
-        "security": [
-
+        "security": [],
+        "tags": [
+          "Project email templates"
         ]
       }
     },
@@ -3019,7 +3276,10 @@
             }
           }
         },
-        "summary": "Copy a project email template into a specific business"
+        "summary": "Copy a project email template into a specific business",
+        "tags": [
+          "Project email templates"
+        ]
       }
     },
     "/project_email_templates/{id}/copy_one_off": {
@@ -3066,7 +3326,10 @@
             }
           }
         },
-        "summary": "Copy a project email template into a specific business as a one-off template"
+        "summary": "Copy a project email template into a specific business as a one-off template",
+        "tags": [
+          "Project email templates"
+        ]
       }
     },
     "/email_templates/{id}/draft_send": {
@@ -3123,7 +3386,10 @@
             }
           }
         },
-        "summary": "Draft send an email based off an email template"
+        "summary": "Draft send an email based off an email template",
+        "tags": [
+          "Emails"
+        ]
       }
     },
     "/email_templates/{id}/send": {
@@ -3248,7 +3514,10 @@
             }
           }
         },
-        "summary": "Send an email based off an email template"
+        "summary": "Send an email based off an email template",
+        "tags": [
+          "Emails"
+        ]
       }
     },
     "/email_addresses/{id}/send": {
@@ -3305,7 +3574,10 @@
             }
           }
         },
-        "summary": "Send an email"
+        "summary": "Send an email",
+        "tags": [
+          "Emails"
+        ]
       }
     },
     "/businesses/{id}/email_addresses": {
@@ -3345,7 +3617,10 @@
             }
           }
         },
-        "summary": "Retrieve the email addresses for a business"
+        "summary": "Retrieve the email addresses for a business",
+        "tags": [
+          "Email addresses"
+        ]
       }
     },
     "/email_addresses/{id}": {
@@ -3373,7 +3648,64 @@
             }
           }
         },
-        "summary": "Retrieve a connected email address"
+        "summary": "Retrieve a connected email address",
+        "tags": [
+          "Email addresses"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the email address",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "display_name": {
+                    "type": "string",
+                    "description": "The display name of the email address"
+                  },
+                  "reply_to": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The reply-to address of the email address"
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "The username of the email address - the part that comes before the @"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated `EmailAddress` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessEmailAddress"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update an email address",
+        "tags": [
+          "Email addresses"
+        ]
       },
       "delete": {
         "parameters": [
@@ -3399,7 +3731,10 @@
             }
           }
         },
-        "summary": "Delete a connected email address"
+        "summary": "Delete a connected email address",
+        "tags": [
+          "Email addresses"
+        ]
       }
     },
     "/businesses/{id}/sms_templates": {
@@ -3439,7 +3774,10 @@
             }
           }
         },
-        "summary": "List all SMS templates for a business"
+        "summary": "List all SMS templates for a business",
+        "tags": [
+          "Sms templates"
+        ]
       },
       "post": {
         "parameters": [
@@ -3493,7 +3831,10 @@
             }
           }
         },
-        "summary": "Create an SMS template"
+        "summary": "Create an SMS template",
+        "tags": [
+          "Sms templates"
+        ]
       }
     },
     "/sms_templates/{id}": {
@@ -3521,7 +3862,10 @@
             }
           }
         },
-        "summary": "Retrieve an SMS template"
+        "summary": "Retrieve an SMS template",
+        "tags": [
+          "Sms templates"
+        ]
       },
       "post": {
         "parameters": [
@@ -3567,7 +3911,10 @@
             }
           }
         },
-        "summary": "Update an SMS template"
+        "summary": "Update an SMS template",
+        "tags": [
+          "Sms templates"
+        ]
       },
       "delete": {
         "parameters": [
@@ -3593,7 +3940,10 @@
             }
           }
         },
-        "summary": "Delete an SMS template"
+        "summary": "Delete an SMS template",
+        "tags": [
+          "Sms templates"
+        ]
       }
     },
     "/sms_templates/{id}/preview.png": {
@@ -3622,8 +3972,9 @@
           }
         },
         "summary": "Preview an SMS template as an image",
-        "security": [
-
+        "security": [],
+        "tags": [
+          "Sms templates"
         ]
       }
     },
@@ -3653,8 +4004,9 @@
           }
         },
         "summary": "Preview an SMS template",
-        "security": [
-
+        "security": [],
+        "tags": [
+          "Sms templates"
         ]
       }
     },
@@ -3683,7 +4035,10 @@
             }
           }
         },
-        "summary": "Create an SMS template embed to edit an existing SMS template"
+        "summary": "Create an SMS template embed to edit an existing SMS template",
+        "tags": [
+          "Sms template embeds"
+        ]
       }
     },
     "/businesses/{id}/sms_templates/embeds": {
@@ -3711,7 +4066,10 @@
             }
           }
         },
-        "summary": "Create an SMS template embed to create a brand new SMS template"
+        "summary": "Create an SMS template embed to create a brand new SMS template",
+        "tags": [
+          "Sms template embeds"
+        ]
       }
     },
     "/sms_template_embeds/{id}": {
@@ -3739,7 +4097,10 @@
             }
           }
         },
-        "summary": "Retrieve an SMS template embed"
+        "summary": "Retrieve an SMS template embed",
+        "tags": [
+          "Sms template embeds"
+        ]
       }
     },
     "/sms_template_embeds/{id}/show": {
@@ -3795,8 +4156,9 @@
           }
         },
         "summary": "Embed the SMS template editor",
-        "security": [
-
+        "security": [],
+        "tags": [
+          "Sms template embeds"
         ]
       }
     },
@@ -3854,7 +4216,10 @@
             }
           }
         },
-        "summary": "Draft send an SMS message from an SMS template"
+        "summary": "Draft send an SMS message from an SMS template",
+        "tags": [
+          "Sms messages"
+        ]
       }
     },
     "/sms_templates/{id}/send": {
@@ -3937,7 +4302,10 @@
             }
           }
         },
-        "summary": "Send an SMS based off an SMS template"
+        "summary": "Send an SMS based off an SMS template",
+        "tags": [
+          "Sms messages"
+        ]
       }
     },
     "/businesses/{id}/campaigns": {
@@ -3977,7 +4345,10 @@
             }
           }
         },
-        "summary": "List all campaigns"
+        "summary": "List all campaigns",
+        "tags": [
+          "Campaigns"
+        ]
       },
       "post": {
         "parameters": [
@@ -4007,7 +4378,14 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "The ID of the customers enrolled in the campaign"
+                    "description": "The IDs of the customers enrolled in the campaign"
+                  },
+                  "excluded_customers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "The IDs of the customers excluded by the campaign"
                   },
                   "steps": {
                     "type": "array",
@@ -4186,7 +4564,10 @@
             }
           }
         },
-        "summary": "Create a campaign"
+        "summary": "Create a campaign",
+        "tags": [
+          "Campaigns"
+        ]
       }
     },
     "/businesses/{id}/campaigns/embeds": {
@@ -4214,7 +4595,10 @@
             }
           }
         },
-        "summary": "Create a campaign embed to create a new campaign"
+        "summary": "Create a campaign embed to create a new campaign",
+        "tags": [
+          "Campaign embeds"
+        ]
       }
     },
     "/campaigns/{id}": {
@@ -4242,7 +4626,10 @@
             }
           }
         },
-        "summary": "Retrieve a campaign"
+        "summary": "Retrieve a campaign",
+        "tags": [
+          "Campaigns"
+        ]
       },
       "post": {
         "parameters": [
@@ -4408,6 +4795,13 @@
                     },
                     "description": "The updated enrolled customer IDs of the campaign. Can be omitted"
                   },
+                  "excluded_customers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "The updated IDs of the customers excluded by the campaign"
+                  },
                   "email_address": {
                     "type": "string",
                     "nullable": true,
@@ -4446,7 +4840,10 @@
             }
           }
         },
-        "summary": "Update a campaign"
+        "summary": "Update a campaign",
+        "tags": [
+          "Campaigns"
+        ]
       },
       "delete": {
         "parameters": [
@@ -4472,7 +4869,10 @@
             }
           }
         },
-        "summary": "Delete a campaign"
+        "summary": "Delete a campaign",
+        "tags": [
+          "Campaigns"
+        ]
       }
     },
     "/campaigns/{id}/start": {
@@ -4500,7 +4900,10 @@
             }
           }
         },
-        "summary": "Start a campaign"
+        "summary": "Start a campaign",
+        "tags": [
+          "Campaigns"
+        ]
       }
     },
     "/campaigns/{id}/stop": {
@@ -4528,7 +4931,10 @@
             }
           }
         },
-        "summary": "Stop a campaign"
+        "summary": "Stop a campaign",
+        "tags": [
+          "Campaigns"
+        ]
       }
     },
     "/campaigns/{id}/schedule": {
@@ -4578,7 +4984,10 @@
             }
           }
         },
-        "summary": "Schedule a campaign to begin"
+        "summary": "Schedule a campaign to begin",
+        "tags": [
+          "Campaigns"
+        ]
       }
     },
     "/campaigns/{id}/preview.png": {
@@ -4607,8 +5016,9 @@
           }
         },
         "summary": "Preview a campaign as an image",
-        "security": [
-
+        "security": [],
+        "tags": [
+          "Campaigns"
         ]
       }
     },
@@ -4638,8 +5048,9 @@
           }
         },
         "summary": "Preview a campaign",
-        "security": [
-
+        "security": [],
+        "tags": [
+          "Campaigns"
         ]
       }
     },
@@ -4669,8 +5080,203 @@
           }
         },
         "summary": "View a campaign interactively",
-        "security": [
-
+        "security": [],
+        "tags": [
+          "Campaigns"
+        ]
+      }
+    },
+    "/campaign_templates/{id}/campaign_drafts": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the campaign template",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The created `Campaign` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "The name of the campaign"
+                    },
+                    "enrolled_customers": {
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/Customer"
+                          }
+                        }
+                      ],
+                      "description": "The customers enrolled in the campaign"
+                    },
+                    "segment": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "The segment attached to the campaign"
+                    },
+                    "steps": {
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "email"
+                                ],
+                                "description": "The step type. Always \"email\" for this step"
+                              },
+                              "custom_step_id": {
+                                "type": "string",
+                                "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
+                              },
+                              "email_template_id": {
+                                "type": "string",
+                                "description": "The ID of the email template to use in this step"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "email_template_id"
+                            ]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "email"
+                                ],
+                                "description": "The step type. Always \"email\" for this step"
+                              },
+                              "custom_step_id": {
+                                "type": "string",
+                                "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
+                              },
+                              "subject": {
+                                "type": "string",
+                                "description": "The subject of the email template to use at this step"
+                              },
+                              "body": {
+                                "type": "string",
+                                "description": "The body of the email template to use at this step"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "subject",
+                              "body"
+                            ]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "sms"
+                                ],
+                                "description": "The step type. Always \"sms\" for this step"
+                              },
+                              "custom_step_id": {
+                                "type": "string",
+                                "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
+                              },
+                              "sms_template_id": {
+                                "type": "string",
+                                "description": "The ID of the SMS template to use in this step"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "sms_template_id"
+                            ]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "sms"
+                                ],
+                                "description": "The step type. Always \"sms\" for this step"
+                              },
+                              "custom_step_id": {
+                                "type": "string",
+                                "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
+                              },
+                              "message": {
+                                "type": "string",
+                                "description": "The message to send in this step"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "message"
+                            ]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "wait"
+                                ],
+                                "description": "The step type. Always \"wait\" for this step"
+                              },
+                              "duration": {
+                                "type": "integer",
+                                "description": "The number of seconds to wait"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "duration"
+                            ]
+                          }
+                        ]
+                      },
+                      "description": "The steps of the campaign"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "enrolled_customers",
+                    "segment",
+                    "steps"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a campaign draft from a campaign template",
+        "tags": [
+          "Campaigns"
         ]
       }
     },
@@ -4711,7 +5317,10 @@
             }
           }
         },
-        "summary": "Get the executions of a campaign"
+        "summary": "Get the executions of a campaign",
+        "tags": [
+          "Campaigns"
+        ]
       }
     },
     "/campaigns/{id}/embeds": {
@@ -4739,7 +5348,10 @@
             }
           }
         },
-        "summary": "Create a campaign embed"
+        "summary": "Create a campaign embed",
+        "tags": [
+          "Campaign embeds"
+        ]
       }
     },
     "/campaign_embeds/{id}/show": {
@@ -4767,7 +5379,10 @@
             }
           }
         },
-        "summary": "Embed the campaign editor"
+        "summary": "Embed the campaign editor",
+        "tags": [
+          "Campaign embeds"
+        ]
       }
     },
     "/campaign_embeds/{id}": {
@@ -4795,7 +5410,10 @@
             }
           }
         },
-        "summary": "Retrieve a campaign embed"
+        "summary": "Retrieve a campaign embed",
+        "tags": [
+          "Campaign embeds"
+        ]
       }
     },
     "/businesses/{id}/triggers": {
@@ -4820,10 +5438,6 @@
                   {
                     "type": "object",
                     "properties": {
-                      "name": {
-                        "type": "string",
-                        "description": "The name of the trigger"
-                      },
                       "trigger": {
                         "type": "string",
                         "description": "The event that triggers the trigger"
@@ -4836,6 +5450,18 @@
                         ],
                         "description": "Must be null or not passed"
                       },
+                      "internal_event_definition": {
+                        "type": "string",
+                        "nullable": true,
+                        "enum": [
+                          null
+                        ],
+                        "description": "Must be null or not passed"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the trigger"
+                      },
                       "filter": {
                         "type": "string",
                         "nullable": true,
@@ -4985,32 +5611,47 @@
                         "type": "string",
                         "nullable": true,
                         "description": "The ID of a phone number or project phone number. Will be used to send SMS messages as part of this trigger"
+                      },
+                      "excluded_customers": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "The IDs of the customers excluded by the trigger"
                       }
                     },
                     "required": [
-                      "name",
                       "trigger",
+                      "name",
                       "steps"
                     ]
                   },
                   {
                     "type": "object",
                     "properties": {
-                      "name": {
-                        "type": "string",
-                        "description": "The name of the trigger"
-                      },
                       "trigger": {
                         "type": "string",
                         "nullable": true,
                         "enum": [
                           null
                         ],
-                        "description": "Must be null"
+                        "description": "Must be null or not passed"
                       },
                       "project_defined_event": {
                         "type": "string",
                         "description": "The ID of a project defined event that triggers the trigger"
+                      },
+                      "internal_event_definition": {
+                        "type": "string",
+                        "nullable": true,
+                        "enum": [
+                          null
+                        ],
+                        "description": "Must be null or not passed"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the trigger"
                       },
                       "filter": {
                         "type": "string",
@@ -5161,11 +5802,236 @@
                         "type": "string",
                         "nullable": true,
                         "description": "The ID of a phone number or project phone number. Will be used to send SMS messages as part of this trigger"
+                      },
+                      "excluded_customers": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "The IDs of the customers excluded by the trigger"
                       }
                     },
                     "required": [
-                      "name",
                       "project_defined_event",
+                      "name",
+                      "steps"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "trigger": {
+                        "type": "string",
+                        "nullable": true,
+                        "enum": [
+                          null
+                        ],
+                        "description": "Must be null or not passed"
+                      },
+                      "project_defined_event": {
+                        "type": "string",
+                        "nullable": true,
+                        "enum": [
+                          null
+                        ],
+                        "description": "Must be null or not passed"
+                      },
+                      "internal_event_definition": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "customer_created"
+                                ]
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "customer_joined_segment"
+                                ]
+                              }
+                            ],
+                            "description": "The type of internal event definition. Must be either 'customer_created' or 'customer_joined_segment'"
+                          },
+                          "segment": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "The ID of the segment that the customer joined. Can only be provided with 'customer_joined_segment'"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "description": "The internal event definition that triggers the trigger"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the trigger"
+                      },
+                      "filter": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "A further filter on the trigger"
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "additionalProperties": true,
+                        "nullable": true,
+                        "description": "Metadata for the trigger"
+                      },
+                      "steps": {
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "email"
+                                  ],
+                                  "description": "The step type. Always \"email\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
+                                },
+                                "email_template_id": {
+                                  "type": "string",
+                                  "description": "The ID of the email template to use in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "email_template_id"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "email"
+                                  ],
+                                  "description": "The step type. Always \"email\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
+                                },
+                                "subject": {
+                                  "type": "string",
+                                  "description": "The subject of the email template to use at this step"
+                                },
+                                "body": {
+                                  "type": "string",
+                                  "description": "The body of the email template to use at this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "subject",
+                                "body"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "sms"
+                                  ],
+                                  "description": "The step type. Always \"sms\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
+                                },
+                                "sms_template_id": {
+                                  "type": "string",
+                                  "description": "The ID of the SMS template to use in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "sms_template_id"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "sms"
+                                  ],
+                                  "description": "The step type. Always \"sms\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
+                                },
+                                "message": {
+                                  "type": "string",
+                                  "description": "The message to send in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "message"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "wait"
+                                  ],
+                                  "description": "The step type. Always \"wait\" for this step"
+                                },
+                                "duration": {
+                                  "type": "integer",
+                                  "description": "The number of seconds to wait"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "duration"
+                              ]
+                            }
+                          ]
+                        },
+                        "description": "The steps of the trigger"
+                      },
+                      "email_address": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The ID of an email address or project email address. Will be used to send emails as part of this trigger"
+                      },
+                      "phone_number": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The ID of a phone number or project phone number. Will be used to send SMS messages as part of this trigger"
+                      },
+                      "excluded_customers": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "The IDs of the customers excluded by the trigger"
+                      }
+                    },
+                    "required": [
+                      "internal_event_definition",
+                      "name",
                       "steps"
                     ]
                   }
@@ -5186,7 +6052,10 @@
             }
           }
         },
-        "summary": "Create a trigger"
+        "summary": "Create a trigger",
+        "tags": [
+          "Triggers"
+        ]
       },
       "get": {
         "parameters": [
@@ -5224,7 +6093,10 @@
             }
           }
         },
-        "summary": "List triggers for a business"
+        "summary": "List triggers for a business",
+        "tags": [
+          "Triggers"
+        ]
       }
     },
     "/triggers/{id}": {
@@ -5252,7 +6124,10 @@
             }
           }
         },
-        "summary": "Retrieve a trigger"
+        "summary": "Retrieve a trigger",
+        "tags": [
+          "Triggers"
+        ]
       },
       "post": {
         "parameters": [
@@ -5271,39 +6146,191 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "The name of the trigger"
-                  },
-                  "trigger": {
-                    "type": "string",
-                    "nullable": true,
-                    "description": "The event that triggers the trigger"
-                  },
-                  "project_defined_event": {
-                    "type": "string",
-                    "nullable": true,
-                    "description": "The ID of a project defined event. Will be used to trigger the trigger"
-                  },
-                  "email_address": {
-                    "type": "string",
-                    "nullable": true,
-                    "description": "The ID of an email address or project email address. Will be used to send emails as part of this trigger"
-                  },
-                  "phone_number": {
-                    "type": "string",
-                    "nullable": true,
-                    "description": "The ID of a phone number or project phone number. Will be used to send SMS messages as part of this trigger"
-                  },
-                  "metadata": {
+                "anyOf": [
+                  {
                     "type": "object",
-                    "additionalProperties": true,
-                    "nullable": true,
-                    "description": "Metadata for the trigger"
+                    "properties": {
+                      "trigger": {
+                        "type": "string",
+                        "description": "The event that triggers the trigger"
+                      },
+                      "project_defined_event": {
+                        "type": "string",
+                        "nullable": true,
+                        "enum": [
+                          null
+                        ],
+                        "description": "Must be null or not passed"
+                      },
+                      "internal_event_definition": {
+                        "type": "string",
+                        "nullable": true,
+                        "enum": [
+                          null
+                        ],
+                        "description": "Must be null or not passed"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the trigger"
+                      },
+                      "email_address": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The ID of an email address or project email address. Will be used to send emails as part of this trigger"
+                      },
+                      "phone_number": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The ID of a phone number or project phone number. Will be used to send SMS messages as part of this trigger"
+                      },
+                      "excluded_customers": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "The IDs of the customers excluded by the trigger"
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "additionalProperties": true,
+                        "nullable": true,
+                        "description": "Metadata for the trigger"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "trigger": {
+                        "type": "string",
+                        "nullable": true,
+                        "enum": [
+                          null
+                        ],
+                        "description": "Must be null or not passed"
+                      },
+                      "project_defined_event": {
+                        "type": "string",
+                        "description": "The ID of a project defined event"
+                      },
+                      "internal_event_definition": {
+                        "type": "string",
+                        "nullable": true,
+                        "enum": [
+                          null
+                        ],
+                        "description": "Must be null or not passed"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the trigger"
+                      },
+                      "email_address": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The ID of an email address or project email address. Will be used to send emails as part of this trigger"
+                      },
+                      "phone_number": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The ID of a phone number or project phone number. Will be used to send SMS messages as part of this trigger"
+                      },
+                      "excluded_customers": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "The IDs of the customers excluded by the trigger"
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "additionalProperties": true,
+                        "nullable": true,
+                        "description": "Metadata for the trigger"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "trigger": {
+                        "type": "string",
+                        "nullable": true,
+                        "enum": [
+                          null
+                        ],
+                        "description": "Must be null or not passed"
+                      },
+                      "project_defined_event": {
+                        "type": "string",
+                        "nullable": true,
+                        "enum": [
+                          null
+                        ],
+                        "description": "Must be null or not passed"
+                      },
+                      "internal_event_definition": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "customer_created"
+                                ]
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "customer_joined_segment"
+                                ]
+                              }
+                            ],
+                            "description": "The type of internal event definition. Must be either 'customer_created' or 'customer_joined_segment'"
+                          },
+                          "segment": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "The ID of the segment that the customer joined. Can only be provided with 'customer_joined_segment'"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "description": "The internal event definition that triggers the trigger"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the trigger"
+                      },
+                      "email_address": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The ID of an email address or project email address. Will be used to send emails as part of this trigger"
+                      },
+                      "phone_number": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The ID of a phone number or project phone number. Will be used to send SMS messages as part of this trigger"
+                      },
+                      "excluded_customers": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "The IDs of the customers excluded by the trigger"
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "additionalProperties": true,
+                        "nullable": true,
+                        "description": "Metadata for the trigger"
+                      }
+                    }
                   }
-                }
+                ]
               }
             }
           }
@@ -5320,7 +6347,10 @@
             }
           }
         },
-        "summary": "Update a trigger"
+        "summary": "Update a trigger",
+        "tags": [
+          "Triggers"
+        ]
       },
       "delete": {
         "parameters": [
@@ -5346,7 +6376,10 @@
             }
           }
         },
-        "summary": "Delete a trigger"
+        "summary": "Delete a trigger",
+        "tags": [
+          "Triggers"
+        ]
       }
     },
     "/triggers/{id}/activate": {
@@ -5374,7 +6407,10 @@
             }
           }
         },
-        "summary": "Activate a trigger"
+        "summary": "Activate a trigger",
+        "tags": [
+          "Triggers"
+        ]
       }
     },
     "/triggers/{id}/deactivate": {
@@ -5402,7 +6438,10 @@
             }
           }
         },
-        "summary": "Deactivate a trigger"
+        "summary": "Deactivate a trigger",
+        "tags": [
+          "Triggers"
+        ]
       }
     },
     "/triggers/{id}/executions": {
@@ -5442,7 +6481,185 @@
             }
           }
         },
-        "summary": "Get the executions of a trigger"
+        "summary": "Get the executions of a trigger",
+        "tags": [
+          "Triggers"
+        ]
+      }
+    },
+    "/trigger_templates/{id}/trigger_drafts": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the trigger template",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The created `Trigger` draft",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "The name of the trigger"
+                    },
+                    "trigger": {
+                      "type": "string",
+                      "description": "The event that triggers the trigger"
+                    },
+                    "steps": {
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "email"
+                                ],
+                                "description": "The step type. Always \"email\" for this step"
+                              },
+                              "custom_step_id": {
+                                "type": "string",
+                                "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
+                              },
+                              "email_template_id": {
+                                "type": "string",
+                                "description": "The ID of the email template to use in this step"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "email_template_id"
+                            ]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "email"
+                                ],
+                                "description": "The step type. Always \"email\" for this step"
+                              },
+                              "custom_step_id": {
+                                "type": "string",
+                                "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
+                              },
+                              "subject": {
+                                "type": "string",
+                                "description": "The subject of the email template to use at this step"
+                              },
+                              "body": {
+                                "type": "string",
+                                "description": "The body of the email template to use at this step"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "subject",
+                              "body"
+                            ]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "sms"
+                                ],
+                                "description": "The step type. Always \"sms\" for this step"
+                              },
+                              "custom_step_id": {
+                                "type": "string",
+                                "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
+                              },
+                              "sms_template_id": {
+                                "type": "string",
+                                "description": "The ID of the SMS template to use in this step"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "sms_template_id"
+                            ]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "sms"
+                                ],
+                                "description": "The step type. Always \"sms\" for this step"
+                              },
+                              "custom_step_id": {
+                                "type": "string",
+                                "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
+                              },
+                              "message": {
+                                "type": "string",
+                                "description": "The message to send in this step"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "message"
+                            ]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "wait"
+                                ],
+                                "description": "The step type. Always \"wait\" for this step"
+                              },
+                              "duration": {
+                                "type": "integer",
+                                "description": "The number of seconds to wait"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "duration"
+                            ]
+                          }
+                        ]
+                      },
+                      "description": "The steps of the trigger"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "trigger",
+                    "steps"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a trigger draft from a trigger template",
+        "tags": [
+          "Triggers"
+        ]
       }
     },
     "/businesses/{id}/triggers/embeds": {
@@ -5470,7 +6687,10 @@
             }
           }
         },
-        "summary": "Create a trigger embed to create a new trigger"
+        "summary": "Create a trigger embed to create a new trigger",
+        "tags": [
+          "Trigger embeds"
+        ]
       }
     },
     "/triggers/{id}/embeds": {
@@ -5498,7 +6718,10 @@
             }
           }
         },
-        "summary": "Create a trigger embed"
+        "summary": "Create a trigger embed",
+        "tags": [
+          "Trigger embeds"
+        ]
       }
     },
     "/trigger_embeds/{id}": {
@@ -5526,7 +6749,10 @@
             }
           }
         },
-        "summary": "Retrieve a trigger embed"
+        "summary": "Retrieve a trigger embed",
+        "tags": [
+          "Trigger embeds"
+        ]
       }
     },
     "/trigger_embeds/{id}/show": {
@@ -5554,7 +6780,10 @@
             }
           }
         },
-        "summary": "Embed the trigger editor"
+        "summary": "Embed the trigger editor",
+        "tags": [
+          "Trigger embeds"
+        ]
       }
     },
     "/triggers/{id}/view": {
@@ -5583,8 +6812,9 @@
           }
         },
         "summary": "View a trigger interactively",
-        "security": [
-
+        "security": [],
+        "tags": [
+          "Triggers"
         ]
       }
     },
@@ -5625,7 +6855,10 @@
             }
           }
         },
-        "summary": "List all email blasts"
+        "summary": "List all email blasts",
+        "tags": [
+          "Email blasts"
+        ]
       },
       "post": {
         "parameters": [
@@ -5655,8 +6888,7 @@
                       {
                         "type": "string"
                       },
-                      {
-                      }
+                      {}
                     ],
                     "description": "The ID of the email template or the content of the email template to create"
                   },
@@ -5698,7 +6930,10 @@
             }
           }
         },
-        "summary": "Create an email blast"
+        "summary": "Create an email blast",
+        "tags": [
+          "Email blasts"
+        ]
       }
     },
     "/email_blasts/{id}": {
@@ -5726,7 +6961,10 @@
             }
           }
         },
-        "summary": "Retrieve an email blast"
+        "summary": "Retrieve an email blast",
+        "tags": [
+          "Email blasts"
+        ]
       },
       "post": {
         "parameters": [
@@ -5790,7 +7028,10 @@
             }
           }
         },
-        "summary": "Update an email blast"
+        "summary": "Update an email blast",
+        "tags": [
+          "Email blasts"
+        ]
       },
       "delete": {
         "parameters": [
@@ -5816,7 +7057,10 @@
             }
           }
         },
-        "summary": "Delete an email blast"
+        "summary": "Delete an email blast",
+        "tags": [
+          "Email blasts"
+        ]
       }
     },
     "/email_blasts/{id}/start": {
@@ -5844,7 +7088,10 @@
             }
           }
         },
-        "summary": "Start an email blast"
+        "summary": "Start an email blast",
+        "tags": [
+          "Email blasts"
+        ]
       }
     },
     "/email_blasts/{id}/stop": {
@@ -5872,7 +7119,10 @@
             }
           }
         },
-        "summary": "Stop an email blast"
+        "summary": "Stop an email blast",
+        "tags": [
+          "Email blasts"
+        ]
       }
     },
     "/email_blasts/{id}/schedule": {
@@ -5919,7 +7169,10 @@
             }
           }
         },
-        "summary": "Schedule an email blast"
+        "summary": "Schedule an email blast",
+        "tags": [
+          "Email blasts"
+        ]
       }
     },
     "/email_blasts/{id}/executions": {
@@ -5959,7 +7212,10 @@
             }
           }
         },
-        "summary": "Get the executions of an email blast"
+        "summary": "Get the executions of an email blast",
+        "tags": [
+          "Email blasts"
+        ]
       }
     },
     "/project_email_addresses": {
@@ -5988,7 +7244,10 @@
             }
           }
         },
-        "summary": "List all project email addresses"
+        "summary": "List all project email addresses",
+        "tags": [
+          "Project email addresses"
+        ]
       }
     },
     "/project_email_addresses/{id}": {
@@ -6016,7 +7275,10 @@
             }
           }
         },
-        "summary": "Retrieve a project email address"
+        "summary": "Retrieve a project email address",
+        "tags": [
+          "Project email addresses"
+        ]
       }
     },
     "/project_phone_numbers": {
@@ -6045,7 +7307,10 @@
             }
           }
         },
-        "summary": "List all project phone numbers"
+        "summary": "List all project phone numbers",
+        "tags": [
+          "Project phone numbers"
+        ]
       }
     },
     "/project_phone_numbers/{id}": {
@@ -6073,7 +7338,242 @@
             }
           }
         },
-        "summary": "Retrieve a project phone number"
+        "summary": "Retrieve a project phone number",
+        "tags": [
+          "Project phone numbers"
+        ]
+      }
+    },
+    "/campaign_templates": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "A dictionary with a `campaign_templates` property that contains an array of `CampaignTemplate` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "campaign_templates": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Campaign"
+                      },
+                      "description": "The campaign templates associated with this project"
+                    }
+                  },
+                  "required": [
+                    "campaign_templates"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve all campaign templates",
+        "tags": [
+          "Campaign templates"
+        ]
+      }
+    },
+    "/campaign_templates/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the campaign template",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The retrieved `CampaignTemplate`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignTemplate"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve a campaign template",
+        "tags": [
+          "Campaign templates"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the campaign template",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "The title of the campaign template"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "The description of the campaign template"
+                  },
+                  "campaign_name": {
+                    "type": "string",
+                    "description": "The name of the campaign that will be created when the campaign template is used as a base"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated `CampaignTemplate`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignTemplate"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update a campaign template",
+        "tags": [
+          "Campaign templates"
+        ]
+      }
+    },
+    "/trigger_templates": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "A dictionary with a `trigger_templates` property that contains an array of `TriggerTemplate` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "trigger_templates": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Trigger"
+                      },
+                      "description": "The trigger templates associated with this project"
+                    }
+                  },
+                  "required": [
+                    "trigger_templates"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve all trigger templates",
+        "tags": [
+          "Trigger templates"
+        ]
+      }
+    },
+    "/trigger_templates/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the trigger template",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The retrieved `TriggerTemplate`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggerTemplate"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve a trigger template",
+        "tags": [
+          "Trigger templates"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the trigger template",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "The title of the trigger template"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "The description of the trigger template"
+                  },
+                  "trigger_name": {
+                    "type": "string",
+                    "description": "The name of the trigger that will be created when the trigger template is used as a base"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated `TriggerTemplate`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggerTemplate"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update a trigger template",
+        "tags": [
+          "Trigger templates"
+        ]
       }
     },
     "/businesses/{id}/phone_numbers": {
@@ -6113,7 +7613,10 @@
             }
           }
         },
-        "summary": "List all phone numbers for a business"
+        "summary": "List all phone numbers for a business",
+        "tags": [
+          "Phone numbers"
+        ]
       }
     },
     "/phone_numbers/{id}": {
@@ -6141,7 +7644,10 @@
             }
           }
         },
-        "summary": "Retrieve a phone number"
+        "summary": "Retrieve a phone number",
+        "tags": [
+          "Phone numbers"
+        ]
       }
     },
     "/employees/{id}/email_addresses": {
@@ -6181,7 +7687,10 @@
             }
           }
         },
-        "summary": "List all connected email addresses for an employee"
+        "summary": "List all connected email addresses for an employee",
+        "tags": [
+          "Email addresses"
+        ]
       }
     },
     "/employees/{id}/email_addresses/connect/gmail": {
@@ -6210,8 +7719,9 @@
           }
         },
         "summary": "Connect a Gmail to an employee",
-        "security": [
-
+        "security": [],
+        "tags": [
+          "Email addresses"
         ]
       }
     },
@@ -6252,7 +7762,10 @@
             }
           }
         },
-        "summary": "List all filter definitions"
+        "summary": "List all filter definitions",
+        "tags": [
+          "Filter definitions"
+        ]
       },
       "post": {
         "parameters": [
@@ -6313,7 +7826,10 @@
             }
           }
         },
-        "summary": "Create a filter definition"
+        "summary": "Create a filter definition",
+        "tags": [
+          "Filter definitions"
+        ]
       }
     },
     "/filter_definitions/{id}": {
@@ -6371,7 +7887,10 @@
             }
           }
         },
-        "summary": "Update a filter definition"
+        "summary": "Update a filter definition",
+        "tags": [
+          "Filter definitions"
+        ]
       },
       "get": {
         "parameters": [
@@ -6397,7 +7916,10 @@
             }
           }
         },
-        "summary": "Retrieve a filter definition"
+        "summary": "Retrieve a filter definition",
+        "tags": [
+          "Filter definitions"
+        ]
       },
       "delete": {
         "parameters": [
@@ -6423,7 +7945,72 @@
             }
           }
         },
-        "summary": "Delete a filter definition"
+        "summary": "Delete a filter definition",
+        "tags": [
+          "Filter definitions"
+        ]
+      }
+    },
+    "/filter_definitions/{id}/enable": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the filter definition",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The enabled `FilterDefinition`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FilterDefinition"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Enable a filter definition",
+        "tags": [
+          "Filter definitions"
+        ]
+      }
+    },
+    "/filter_definitions/{id}/disable": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the filter definition",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The disabled `FilterDefinition`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FilterDefinition"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Disable a filter definition",
+        "tags": [
+          "Filter definitions"
+        ]
       }
     },
     "/sync/businesses": {
@@ -6500,7 +8087,10 @@
             }
           }
         },
-        "summary": "Sync a business"
+        "summary": "Sync a business",
+        "tags": [
+          "Sync"
+        ]
       }
     },
     "/sync/businesses/batch": {
@@ -6602,7 +8192,10 @@
             }
           }
         },
-        "summary": "Sync a batch of businesses"
+        "summary": "Sync a batch of businesses",
+        "tags": [
+          "Sync"
+        ]
       }
     },
     "/sync/businesses/{business_id}/customers": {
@@ -6700,7 +8293,10 @@
             }
           }
         },
-        "summary": "Sync a customer"
+        "summary": "Sync a customer",
+        "tags": [
+          "Sync"
+        ]
       }
     },
     "/sync/businesses/{business_id}/customers/batch": {
@@ -6823,7 +8419,467 @@
             }
           }
         },
-        "summary": "Sync a batch of customers"
+        "summary": "Sync a batch of customers",
+        "tags": [
+          "Sync"
+        ]
+      }
+    },
+    "/businesses/{id}/reviews": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A dictionary with a `reviews` property that contains an array of `Review` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reviews": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Review"
+                      },
+                      "description": "The reviews for the business"
+                    }
+                  },
+                  "required": [
+                    "reviews"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve the reviews for a business",
+        "tags": [
+          "Reviews"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "customer_id": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The ID of the customer who wrote the review"
+                  },
+                  "stars": {
+                    "type": "integer",
+                    "description": "The number of stars the review has"
+                  },
+                  "review_text": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The text of the review"
+                  }
+                },
+                "required": [
+                  "stars"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A dictionary with a `reviews` property that contains an array of `Review` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reviews": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Review"
+                      },
+                      "description": "The reviews for the business"
+                    }
+                  },
+                  "required": [
+                    "reviews"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a review for a business",
+        "tags": [
+          "Reviews"
+        ]
+      }
+    },
+    "/reviews/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the review",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The `Review` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Review"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve a review",
+        "tags": [
+          "Reviews"
+        ]
+      }
+    },
+    "/reviews/{id}/respond": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the review",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "response_text": {
+                    "type": "string",
+                    "description": "The response to the review"
+                  }
+                },
+                "required": [
+                  "response_text"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The `Review` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Review"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Respond to a review",
+        "tags": [
+          "Reviews"
+        ]
+      }
+    },
+    "/businesses/{id}/reviews/embeds": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The created `ReviewEmbed` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewEmbed"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a review embed",
+        "tags": [
+          "Review embeds"
+        ]
+      }
+    },
+    "/review_embeds/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the review embed",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The `ReviewEmbed` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewEmbed"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve a review embed",
+        "tags": [
+          "Review embeds"
+        ]
+      }
+    },
+    "/review_embeds/{id}/show": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the review embed",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The rendered user experience of the review embed",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Render the user experience of a review embed",
+        "tags": [
+          "Review embeds"
+        ]
+      }
+    },
+    "/businesses/{id}/review_embed_config": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The review embed configuration for the business",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "description": "The title of the review embed"
+                    },
+                    "review_text_prompt": {
+                      "type": "string",
+                      "description": "The prompt for the review text"
+                    },
+                    "review_text_placeholder": {
+                      "type": "string",
+                      "description": "The placeholder for the review text"
+                    },
+                    "min_stars_to_prompt_review": {
+                      "type": "integer",
+                      "description": "The minimum number of stars to prompt a review in external system"
+                    },
+                    "google_request_review_url": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "The URL to request a review from Google"
+                    },
+                    "submit_cta": {
+                      "type": "string",
+                      "description": "The text in the call to action for the review embed"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "review_text_prompt",
+                    "review_text_placeholder",
+                    "submit_cta"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieve a business's configuration of the review embed",
+        "tags": [
+          "Review embeds"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business to create or update the config for",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "The title of the review embed"
+                  },
+                  "review_text_prompt": {
+                    "type": "string",
+                    "description": "The prompt for the review text"
+                  },
+                  "review_text_placeholder": {
+                    "type": "string",
+                    "description": "The placeholder for the review text"
+                  },
+                  "min_stars_to_prompt_review": {
+                    "type": "integer",
+                    "description": "The minimum number of stars to prompt for a review"
+                  },
+                  "google_request_review_url": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The URL to request a review from Google"
+                  },
+                  "submit_cta": {
+                    "type": "string",
+                    "description": "The text for the submit button"
+                  }
+                },
+                "required": [
+                  "title",
+                  "review_text_prompt",
+                  "review_text_placeholder",
+                  "min_stars_to_prompt_review",
+                  "submit_cta"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created or updated review embed configuration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "description": "The title of the review embed"
+                    },
+                    "review_text_prompt": {
+                      "type": "string",
+                      "description": "The prompt for the review text"
+                    },
+                    "review_text_placeholder": {
+                      "type": "string",
+                      "description": "The placeholder for the review text"
+                    },
+                    "min_stars_to_prompt_review": {
+                      "type": "integer",
+                      "description": "The minimum number of stars to prompt a review in external system"
+                    },
+                    "google_request_review_url": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "The URL to request a review from Google"
+                    },
+                    "submit_cta": {
+                      "type": "string",
+                      "description": "The text in the call to action for the review embed"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "review_text_prompt",
+                    "review_text_placeholder",
+                    "submit_cta"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create or update a review embed config",
+        "tags": [
+          "Review embeds"
+        ]
       }
     },
     "/rewards_programs": {
@@ -6852,62 +8908,10 @@
             }
           }
         },
-        "summary": "List all rewards programs"
-      },
-      "post": {
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "points_earned_per_dollar_spent": {
-                    "type": "integer",
-                    "description": "The number of points earned per dollar spent"
-                  },
-                  "point_redemption_value": {
-                    "type": "string",
-                    "description": "The value of a single point in dollars"
-                  },
-                  "points_for_member_class_attendance": {
-                    "type": "integer",
-                    "description": "The number of points earned for attending a class"
-                  },
-                  "points_for_referring_new_student": {
-                    "type": "integer",
-                    "description": "The number of points earned for referring a new student"
-                  },
-                  "points_for_referring_new_student_that_signs_up": {
-                    "type": "integer",
-                    "description": "The number of points earned for referring a new student that signs up"
-                  },
-                  "points_for_every_ten_classes_non_member": {
-                    "type": "integer",
-                    "description": "The number of points earned for every ten classes attended"
-                  },
-                  "points_for_first_visit_in_three_months": {
-                    "type": "integer",
-                    "description": "The number of points earned for first visit in three months"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The created `RewardsProgram` object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RewardsProgram"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Create a rewards program"
+        "summary": "List all rewards programs",
+        "tags": [
+          "Rewards programs"
+        ]
       }
     },
     "/rewards_programs/{id}": {
@@ -6935,7 +8939,10 @@
             }
           }
         },
-        "summary": "Retrieve a rewards program"
+        "summary": "Retrieve a rewards program",
+        "tags": [
+          "Rewards programs"
+        ]
       },
       "post": {
         "requestBody": {
@@ -6990,7 +8997,10 @@
             }
           }
         },
-        "summary": "Update a rewards program"
+        "summary": "Update a rewards program",
+        "tags": [
+          "Rewards programs"
+        ]
       }
     },
     "/businesses/{id}/rewards_program": {
@@ -7018,7 +9028,68 @@
             }
           }
         },
-        "summary": "Show a business's rewards program"
+        "summary": "Show a business's rewards program",
+        "tags": [
+          "Rewards programs"
+        ]
+      },
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "points_earned_per_dollar_spent": {
+                    "type": "integer",
+                    "description": "The number of points earned per dollar spent"
+                  },
+                  "point_redemption_value": {
+                    "type": "string",
+                    "description": "The value of a single point in dollars"
+                  },
+                  "points_for_member_class_attendance": {
+                    "type": "integer",
+                    "description": "The number of points earned for attending a class"
+                  },
+                  "points_for_referring_new_student": {
+                    "type": "integer",
+                    "description": "The number of points earned for referring a new student"
+                  },
+                  "points_for_referring_new_student_that_signs_up": {
+                    "type": "integer",
+                    "description": "The number of points earned for referring a new student that signs up"
+                  },
+                  "points_for_every_ten_classes_non_member": {
+                    "type": "integer",
+                    "description": "The number of points earned for every ten classes attended"
+                  },
+                  "points_for_first_visit_in_three_months": {
+                    "type": "integer",
+                    "description": "The number of points earned for first visit in three months"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created `RewardsProgram` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RewardsProgram"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a rewards program",
+        "tags": [
+          "Rewards programs"
+        ]
       }
     },
     "/rewards_programs/{id}/members": {
@@ -7058,7 +9129,10 @@
             }
           }
         },
-        "summary": "List all members for a rewards program"
+        "summary": "List all members for a rewards program",
+        "tags": [
+          "Members"
+        ]
       },
       "post": {
         "parameters": [
@@ -7103,7 +9177,10 @@
             }
           }
         },
-        "summary": "Create a member"
+        "summary": "Create a member",
+        "tags": [
+          "Members"
+        ]
       }
     },
     "/members/{id}": {
@@ -7131,7 +9208,10 @@
             }
           }
         },
-        "summary": "Retrieve a member"
+        "summary": "Retrieve a member",
+        "tags": [
+          "Members"
+        ]
       }
     },
     "/locations/{id}/location_members": {
@@ -7171,7 +9251,10 @@
             }
           }
         },
-        "summary": "List all location members"
+        "summary": "List all location members",
+        "tags": [
+          "Location members"
+        ]
       },
       "post": {
         "parameters": [
@@ -7216,7 +9299,10 @@
             }
           }
         },
-        "summary": "Create a new location member"
+        "summary": "Create a new location member",
+        "tags": [
+          "Location members"
+        ]
       }
     },
     "/location_members/{id}": {
@@ -7244,7 +9330,10 @@
             }
           }
         },
-        "summary": "Retrieve a location member"
+        "summary": "Retrieve a location member",
+        "tags": [
+          "Location members"
+        ]
       }
     },
     "/rewards_programs/{id}/locations": {
@@ -7284,7 +9373,10 @@
             }
           }
         },
-        "summary": "List the locations under a rewards program"
+        "summary": "List the locations under a rewards program",
+        "tags": [
+          "Locations"
+        ]
       }
     },
     "/locations": {
@@ -7313,7 +9405,10 @@
             }
           }
         },
-        "summary": "List all locations"
+        "summary": "List all locations",
+        "tags": [
+          "Locations"
+        ]
       },
       "post": {
         "requestBody": {
@@ -7345,7 +9440,10 @@
             }
           }
         },
-        "summary": "Create a location"
+        "summary": "Create a location",
+        "tags": [
+          "Locations"
+        ]
       }
     },
     "/locations/{id}": {
@@ -7373,7 +9471,10 @@
             }
           }
         },
-        "summary": "Retrieve a location"
+        "summary": "Retrieve a location",
+        "tags": [
+          "Locations"
+        ]
       },
       "post": {
         "parameters": [
@@ -7399,7 +9500,10 @@
             }
           }
         },
-        "summary": "Update a location"
+        "summary": "Update a location",
+        "tags": [
+          "Locations"
+        ]
       }
     },
     "/rewards_programs/{id}/tiers": {
@@ -7439,7 +9543,10 @@
             }
           }
         },
-        "summary": "List all tiers"
+        "summary": "List all tiers",
+        "tags": [
+          "Tiers"
+        ]
       },
       "post": {
         "parameters": [
@@ -7497,7 +9604,10 @@
             }
           }
         },
-        "summary": "Create a tier"
+        "summary": "Create a tier",
+        "tags": [
+          "Tiers"
+        ]
       }
     },
     "/tiers/{id}": {
@@ -7552,7 +9662,10 @@
             }
           }
         },
-        "summary": "Update a tier"
+        "summary": "Update a tier",
+        "tags": [
+          "Tiers"
+        ]
       }
     },
     "/customers/{id}/rewards_profile": {
@@ -7580,7 +9693,10 @@
             }
           }
         },
-        "summary": "Show a customer's rewards profile"
+        "summary": "Show a customer's rewards profile",
+        "tags": [
+          "Rewards profiles"
+        ]
       }
     },
     "/businesses/{id}/rewards_profiles": {
@@ -7608,7 +9724,10 @@
             }
           }
         },
-        "summary": "Show all rewards profiles"
+        "summary": "Show all rewards profiles",
+        "tags": [
+          "Rewards profiles"
+        ]
       }
     },
     "/users": {
@@ -7637,7 +9756,10 @@
             }
           }
         },
-        "summary": "List all users"
+        "summary": "List all users",
+        "tags": [
+          "Users"
+        ]
       },
       "post": {
         "requestBody": {
@@ -7671,7 +9793,10 @@
             }
           }
         },
-        "summary": "Create a user"
+        "summary": "Create a user",
+        "tags": [
+          "Users"
+        ]
       }
     },
     "/users/{id}": {
@@ -7699,7 +9824,10 @@
             }
           }
         },
-        "summary": "Retrieve a user"
+        "summary": "Retrieve a user",
+        "tags": [
+          "Users"
+        ]
       }
     },
     "/businesses/{id}/embeds": {
@@ -7727,7 +9855,10 @@
             }
           }
         },
-        "summary": "Create an embed"
+        "summary": "Create an embed",
+        "tags": [
+          "Embeds"
+        ]
       }
     },
     "/embeds/{id}": {
@@ -7755,7 +9886,10 @@
             }
           }
         },
-        "summary": "Fetch information about an embed"
+        "summary": "Fetch information about an embed",
+        "tags": [
+          "Embeds"
+        ]
       }
     },
     "/embeds/{id}/show": {
@@ -7783,7 +9917,10 @@
             }
           }
         },
-        "summary": "Render the user experience of the embed"
+        "summary": "Render the user experience of the embed",
+        "tags": [
+          "Embeds"
+        ]
       }
     },
     "/embeds/{id}/show/*rest": {
@@ -7811,15 +9948,101 @@
             }
           }
         },
-        "summary": "Render the user experience of the embed"
+        "summary": "Render the user experience of the embed",
+        "tags": [
+          "Embeds"
+        ]
+      }
+    },
+    "/businesses/{id}/google_oauth_url": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A dictionary with a `url` property that contains the Google OAuth URL associated with the business",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "description": "The Google OAuth URL associated with the business"
+                    }
+                  },
+                  "required": [
+                    "url"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get the Google OAuth URL for a business",
+        "tags": [
+          "Businesses"
+        ]
+      }
+    },
+    "/businesses/{id}/connected_accounts": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A dictionary with a `google` and `yelp` property indicating whether those accounts have been connected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "google": {
+                      "type": "boolean",
+                      "description": "Whether the business has a connected Google account"
+                    },
+                    "yelp": {
+                      "type": "boolean",
+                      "description": "Whether the business has a connected Yelp account"
+                    }
+                  },
+                  "required": [
+                    "google",
+                    "yelp"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get the connected accounts for a business",
+        "tags": [
+          "Businesses"
+        ]
       }
     }
   },
   "security": [
     {
-      "HttpBasicAuth": [
-
-      ]
+      "HttpBasicAuth": []
     }
   ],
   "components": {
@@ -8206,6 +10429,39 @@
           "step_count"
         ],
         "title": "The Campaign Execution object"
+      },
+      "CampaignTemplate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the campaign template"
+          },
+          "title": {
+            "type": "string",
+            "description": "The title of the campaign template"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the campaign template"
+          },
+          "campaign": {
+            "$ref": "#/components/schemas/Campaign",
+            "description": "The campaign that will get created when the campaign template is used as a base"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the campaign template is enabled"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "description",
+          "campaign",
+          "enabled"
+        ],
+        "title": "The Campaign Template object"
       },
       "Customer": {
         "type": "object",
@@ -8923,6 +11179,137 @@
         ],
         "title": "The Project Phone Number object"
       },
+      "Review": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the review"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "The date and time the review was created"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "The date and time the review was last updated"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "internal"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "google"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "yelp"
+                ]
+              }
+            ],
+            "description": "The source of the review"
+          },
+          "stars": {
+            "type": "integer",
+            "description": "The number of stars the review has"
+          },
+          "review_text": {
+            "type": "string",
+            "nullable": true,
+            "description": "The text of the review"
+          },
+          "customer": {
+            "type": "string",
+            "nullable": true,
+            "description": "The ID of the customer who wrote the review"
+          },
+          "business": {
+            "type": "string",
+            "description": "The ID of the business that the review is about"
+          }
+        },
+        "required": [
+          "id",
+          "created_at",
+          "updated_at",
+          "source",
+          "stars",
+          "review_text",
+          "customer",
+          "business"
+        ],
+        "title": "The Review object"
+      },
+      "ReviewEmbed": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the review embed"
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL to embed the review request"
+          },
+          "config": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The ID of the review embed config"
+              },
+              "title": {
+                "type": "string",
+                "description": "The title of the review embed"
+              },
+              "review_text_prompt": {
+                "type": "string",
+                "description": "The prompt for the review text"
+              },
+              "review_text_placeholder": {
+                "type": "string",
+                "description": "The placeholder for the review text"
+              },
+              "min_stars_to_prompt_review": {
+                "type": "integer",
+                "description": "The minimum number of stars to prompt for a review"
+              },
+              "google_request_review_url": {
+                "type": "string",
+                "nullable": true,
+                "description": "The URL to request a review from Google"
+              },
+              "submit_cta": {
+                "type": "string",
+                "description": "The text for the submit button"
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "review_text_prompt",
+              "review_text_placeholder",
+              "min_stars_to_prompt_review",
+              "submit_cta"
+            ],
+            "description": "The config for the review embed"
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "config"
+        ],
+        "title": "The Review Embed object"
+      },
       "RewardsProfile": {
         "type": "object",
         "properties": {
@@ -9117,12 +11504,20 @@
             "type": "string",
             "nullable": true,
             "description": "The filter for this segment"
+          },
+          "static_customers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The customers that are always included in this segment"
           }
         },
         "required": [
           "id",
           "name",
-          "filter"
+          "filter",
+          "static_customers"
         ],
         "title": "The Segment object"
       },
@@ -9423,6 +11818,39 @@
           "step_count"
         ],
         "title": "The Trigger Execution object"
+      },
+      "TriggerTemplate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the trigger template"
+          },
+          "title": {
+            "type": "string",
+            "description": "The title of the trigger template"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the trigger template"
+          },
+          "trigger": {
+            "$ref": "#/components/schemas/Trigger",
+            "description": "The trigger that will get created when the trigger template is used as a base"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the trigger template is enabled"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "description",
+          "trigger",
+          "enabled"
+        ],
+        "title": "The Trigger Template object"
       },
       "UnsubscribeEmbed": {
         "type": "object",
