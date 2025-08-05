@@ -260,6 +260,17 @@
         ]
       },
       "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the project defined event",
+            "required": true
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -325,6 +336,17 @@
     },
     "/project_defined_events/{id}/filter_types": {
       "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the project defined event",
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "A list of filter types associated with the project-defined event",
@@ -343,37 +365,13 @@
                             "description": "The name of the variable"
                           },
                           "type": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "string"
-                                ]
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "number"
-                                ]
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "boolean"
-                                ]
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "array"
-                                ]
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "null"
-                                ]
-                              }
+                            "type": "string",
+                            "enum": [
+                              "string",
+                              "number",
+                              "boolean",
+                              "array",
+                              "null"
                             ],
                             "description": "The type of the variable"
                           }
@@ -402,6 +400,17 @@
     },
     "/businesses/{id}/track": {
       "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -442,142 +451,6 @@
         "summary": "Track an event occuring within a business",
         "tags": [
           "Events"
-        ]
-      }
-    },
-    "/rewards_programs/{id}/flows": {
-      "post": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the rewards program",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The created `Flow` object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Flow"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Create a flow",
-        "tags": [
-          "Flows"
-        ]
-      }
-    },
-    "/flows/{id}/embed": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the flow",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The embeddable HTML content of the flow",
-            "content": {
-              "text/html": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Embed a flow",
-        "tags": [
-          "Flows"
-        ]
-      }
-    },
-    "/flows/{id}/embed/analytics": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the flow",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The embeddable HTML content of the flow analytics",
-            "content": {
-              "text/html": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Embed an analytics flow",
-        "tags": [
-          "Flows"
-        ]
-      }
-    },
-    "/employees/{id}/emails": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the employee",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A dictionary with an `emails` property which is an array of `Email` objects",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "emails": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Email"
-                      },
-                      "description": "An array of `Email` objects"
-                    }
-                  },
-                  "required": [
-                    "emails"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "summary": "List all an employee's emails",
-        "tags": [
-          "Employees"
         ]
       }
     },
@@ -625,6 +498,8 @@
                     "description": "The name of the business"
                   },
                   "metadata": {
+                    "type": "object",
+                    "additionalProperties": true,
                     "nullable": true,
                     "description": "Arbitrary metadata to associate with the business"
                   }
@@ -706,6 +581,12 @@
                   "name": {
                     "type": "string",
                     "description": "The updated name of the business. Can be omitted"
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "nullable": true,
+                    "description": "Arbitrary metadata to associate with the business"
                   }
                 }
               }
@@ -979,6 +860,8 @@
                         "description": "The phone number of the customer"
                       },
                       "metadata": {
+                        "type": "object",
+                        "additionalProperties": true,
                         "nullable": true,
                         "description": "Any metadata to attach to the customer"
                       }
@@ -1000,6 +883,8 @@
                         "description": "The email address of the customer"
                       },
                       "metadata": {
+                        "type": "object",
+                        "additionalProperties": true,
                         "nullable": true,
                         "description": "Any metadata to attach to the customer"
                       }
@@ -1068,6 +953,8 @@
                               "description": "The phone number of the customer"
                             },
                             "metadata": {
+                              "type": "object",
+                              "additionalProperties": true,
                               "nullable": true,
                               "description": "Any metadata to attach to the customer"
                             }
@@ -1089,6 +976,8 @@
                               "description": "The email address of the customer"
                             },
                             "metadata": {
+                              "type": "object",
+                              "additionalProperties": true,
                               "nullable": true,
                               "description": "Any metadata to attach to the customer"
                             }
@@ -1179,6 +1068,8 @@
                           "description": "The updated email address of the customer"
                         },
                         "metadata": {
+                          "type": "object",
+                          "additionalProperties": true,
                           "nullable": true,
                           "description": "The updated metadata of the customer"
                         }
@@ -1611,6 +1502,17 @@
     },
     "/customers/{id}/segments": {
       "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the customer",
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "The segments the customer belongs to",
@@ -1643,6 +1545,17 @@
     },
     "/businesses/{id}/segments": {
       "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "A dictionary with a `segments` property which is an array of `Segment` objects",
@@ -1673,6 +1586,17 @@
         ]
       },
       "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -1760,6 +1684,17 @@
         ]
       },
       "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the segment",
+            "required": true
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -2066,234 +2001,6 @@
         ]
       }
     },
-    "/businesses/{id}/employees": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the business",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A dictionary with an `employees` property which is an array of `Employee` objects",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "employees": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Employee"
-                      },
-                      "description": "An array of `Employee` objects"
-                    }
-                  },
-                  "required": [
-                    "employees"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "summary": "List all employees for a business",
-        "tags": [
-          "Employees"
-        ]
-      },
-      "post": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the business",
-            "required": true
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "phone_number": {
-                        "type": "string",
-                        "description": "The phone number of the employee"
-                      },
-                      "email_address": {
-                        "type": "string",
-                        "nullable": true,
-                        "description": "The email address of the employee"
-                      }
-                    },
-                    "required": [
-                      "phone_number"
-                    ]
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "email_address": {
-                        "type": "string",
-                        "description": "The email address of the employee"
-                      },
-                      "phone_number": {
-                        "type": "string",
-                        "nullable": true,
-                        "description": "The phone number of the employee"
-                      }
-                    },
-                    "required": [
-                      "email_address"
-                    ]
-                  }
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The created `Employee` object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Employee"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Create an employee",
-        "tags": [
-          "Employees"
-        ]
-      }
-    },
-    "/employees/{id}": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the employee",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "An `Employee` object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Employee"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Retrieve an employee",
-        "tags": [
-          "Employees"
-        ]
-      },
-      "post": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the employee",
-            "required": true
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "phone_number": {
-                    "type": "string",
-                    "nullable": true,
-                    "description": "The phone number of the employee"
-                  },
-                  "email_address": {
-                    "type": "string",
-                    "nullable": true,
-                    "description": "The email of the employee"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The updated `Employee` object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Employee"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Update an employee",
-        "tags": [
-          "Employees"
-        ]
-      },
-      "delete": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the employee",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The deleted `Employee` object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Employee"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Delete an employee",
-        "tags": [
-          "Employees"
-        ]
-      }
-    },
     "/businesses/{id}/email_templates": {
       "get": {
         "parameters": [
@@ -2407,25 +2114,16 @@
                         "additionalProperties": true,
                         "description": "The metadata of the email template"
                       },
+                      "kind": {
+                        "type": "string",
+                        "enum": [
+                          "plaintext"
+                        ],
+                        "description": "The kind of the email template"
+                      },
                       "body": {
                         "type": "string",
                         "description": "The plain text of the email. Mutually exclusive with rich text emails"
-                      },
-                      "template_json": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or omitted"
-                      },
-                      "template_html": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or omitted"
                       }
                     },
                     "required": [
@@ -2475,24 +2173,16 @@
                         "additionalProperties": true,
                         "description": "The metadata of the email template"
                       },
-                      "body": {
+                      "kind": {
                         "type": "string",
-                        "nullable": true,
                         "enum": [
-                          null
+                          "editor",
+                          "old_editor"
                         ],
-                        "description": "Must be null or omitted"
+                        "description": "The kind of the email template"
                       },
                       "template_json": {
-                        "description": "The JSON representing the rich text email template. Mutually exclusive with plain text email templates"
-                      },
-                      "template_html": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or omitted"
+                        "description": "The JSON representing the email template. Mutually exclusive with plain text email templates"
                       }
                     },
                     "required": [
@@ -2541,6 +2231,13 @@
                         "type": "object",
                         "additionalProperties": true,
                         "description": "The metadata of the email template"
+                      },
+                      "kind": {
+                        "type": "string",
+                        "enum": [
+                          "unlayer"
+                        ],
+                        "description": "The kind of the email template"
                       }
                     },
                     "required": [
@@ -2589,6 +2286,13 @@
                         "additionalProperties": true,
                         "description": "The metadata of the email template"
                       },
+                      "kind": {
+                        "type": "string",
+                        "enum": [
+                          "unlayer"
+                        ],
+                        "description": "The kind of the email template"
+                      },
                       "new_template_json": {
                         "description": "The JSON representing the rich text email template"
                       },
@@ -2602,6 +2306,65 @@
                       "subject",
                       "new_template_json",
                       "new_template_html"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the email template"
+                      },
+                      "subject": {
+                        "type": "string",
+                        "description": "The subject of the email template. Variables are supported via `{{ variableName }}`"
+                      },
+                      "attachments": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "content": {
+                              "type": "string",
+                              "description": "The content of the attachment as a data url, e.g. 'data:image/png;base64,abcd1234'"
+                            },
+                            "name": {
+                              "type": "string",
+                              "description": "The intended name of the attachment"
+                            }
+                          },
+                          "required": [
+                            "content",
+                            "name"
+                          ]
+                        },
+                        "description": "An array of attachments that will always be sent with this template"
+                      },
+                      "one_off": {
+                        "type": "boolean",
+                        "description": "Whether this is a one off email template"
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "additionalProperties": true,
+                        "description": "The metadata of the email template"
+                      },
+                      "kind": {
+                        "type": "string",
+                        "enum": [
+                          "html"
+                        ],
+                        "description": "The kind of the email template"
+                      },
+                      "template_html": {
+                        "type": "string",
+                        "description": "The HTML representing the email template"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "subject",
+                      "template_html"
                     ]
                   }
                 ]
@@ -2738,6 +2501,24 @@
                     "type": "string",
                     "description": "The plaintext version of the body of the email template. Variables are supported via `{{ variableName }}`"
                   },
+                  "template_html": {
+                    "type": "string",
+                    "description": "The HTML representation of the email template. Mutually exclusive with plain text email templates."
+                  },
+                  "template_json": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "description": "The JSON representation of the email template. This will override the `name`, `subject`, and `body` properties"
+                  },
+                  "new_template_json": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "description": "The JSON representing the rich text email template. Mutually exclusive with plain text email templates"
+                  },
+                  "new_template_html": {
+                    "type": "string",
+                    "description": "The HTML representation of the rich text email template. Mutually exclusive with plain text email templates"
+                  },
                   "attachments": {
                     "type": "array",
                     "items": {
@@ -2765,6 +2546,22 @@
                       ]
                     },
                     "description": "An array of existing attachment IDs or new attachments that will always be sent with this template"
+                  },
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "unlayer",
+                      "editor",
+                      "old_editor",
+                      "html",
+                      "plaintext"
+                    ],
+                    "description": "The kind of the email template"
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "description": "The metadata for the email template"
                   }
                 }
               }
@@ -2895,6 +2692,17 @@
             "required": true
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "The created `EmailTemplate` object",
@@ -2926,6 +2734,17 @@
             "required": true
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "The copied `EmailTemplate` object. As a one-off, it will not be return from `GET /businesses/:id/email_templates`",
@@ -2957,6 +2776,22 @@
             "required": true
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "expires_in": {
+                    "type": "number",
+                    "description": "The number of seconds until the embed will expire"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "The created `EmailTemplateEmbed` object",
@@ -2988,6 +2823,22 @@
             "required": true
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "expires_in": {
+                    "type": "number",
+                    "description": "The number of seconds until the embed will expire"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "The created `EmailTemplateEmbed` object",
@@ -3809,6 +3660,13 @@
                   "one_off": {
                     "type": "boolean",
                     "description": "Whether the SMS template is one-off"
+                  },
+                  "image": {
+                    "description": "The image associated with the SMS template"
+                  },
+                  "shorten_urls": {
+                    "type": "boolean",
+                    "description": "Whether to shorten URLs in the SMS template"
                   }
                 },
                 "required": [
@@ -3893,6 +3751,13 @@
                   "message": {
                     "type": "string",
                     "description": "The message of the SMS template. Variables are supported via `{{ variableName }}`"
+                  },
+                  "image": {
+                    "description": "The image associated with the SMS template"
+                  },
+                  "shorten_urls": {
+                    "type": "boolean",
+                    "description": "Whether to shorten URLs in the SMS template"
                   }
                 }
               }
@@ -4023,6 +3888,22 @@
             "required": true
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "expires_in": {
+                    "type": "number",
+                    "description": "The number of seconds until the embed will expire"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "The created `SmsTemplateEmbed` object",
@@ -4054,6 +3935,22 @@
             "required": true
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "expires_in": {
+                    "type": "number",
+                    "description": "The number of seconds until the embed will expire"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "The created `EmailTemplateEmbed` object",
@@ -4511,6 +4408,26 @@
                             "type",
                             "duration"
                           ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "if"
+                              ],
+                              "description": "The step type. Always \"if\" for this step"
+                            },
+                            "filter": {
+                              "type": "string",
+                              "description": "The filter to use in this step"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "filter"
+                          ]
                         }
                       ]
                     },
@@ -4541,6 +4458,11 @@
                     "additionalProperties": true,
                     "nullable": true,
                     "description": "The metadata of the campaign"
+                  },
+                  "attributed_revenue": {
+                    "type": "number",
+                    "nullable": true,
+                    "description": "The revenue attributed to the campaign"
                   }
                 },
                 "required": [
@@ -4778,6 +4700,26 @@
                             "type",
                             "duration"
                           ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "if"
+                              ],
+                              "description": "The step type. Always \"if\" for this step"
+                            },
+                            "filter": {
+                              "type": "string",
+                              "description": "The filter to use in this step"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "filter"
+                          ]
                         }
                       ]
                     },
@@ -4822,6 +4764,11 @@
                     "additionalProperties": true,
                     "nullable": true,
                     "description": "The metadata of the campaign"
+                  },
+                  "attributed_revenue": {
+                    "type": "number",
+                    "nullable": true,
+                    "description": "The revenue attributed to the campaign"
                   }
                 }
               }
@@ -5099,6 +5046,25 @@
             "required": true
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "business": {
+                    "type": "string",
+                    "description": "The business ID"
+                  }
+                },
+                "required": [
+                  "business"
+                ]
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "The created `Campaign` object",
@@ -5257,6 +5223,26 @@
                               "type",
                               "duration"
                             ]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "if"
+                                ],
+                                "description": "The step type. Always \"if\" for this step"
+                              },
+                              "filter": {
+                                "type": "string",
+                                "description": "The filter to use in this step"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "filter"
+                            ]
                           }
                         ]
                       },
@@ -5275,6 +5261,49 @@
           }
         },
         "summary": "Create a campaign draft from a campaign template",
+        "tags": [
+          "Campaigns"
+        ]
+      }
+    },
+    "/campaigns/{id}/variables": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the campaign",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The variables associated with the campaign's steps",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "variables": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "The variables for the campaign"
+                    }
+                  },
+                  "required": [
+                    "variables"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get all variables associated with a campaign's steps",
         "tags": [
           "Campaigns"
         ]
@@ -5304,7 +5333,7 @@
                     "executions": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/CampaignExecution"
+                        "$ref": "#/components/schemas/Execution"
                       },
                       "description": "The executions of the campaign"
                     }
@@ -5319,7 +5348,7 @@
         },
         "summary": "Get the executions of a campaign",
         "tags": [
-          "Campaigns"
+          "Executions"
         ]
       }
     },
@@ -5442,22 +5471,6 @@
                         "type": "string",
                         "description": "The event that triggers the trigger"
                       },
-                      "project_defined_event": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or not passed"
-                      },
-                      "internal_event_definition": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or not passed"
-                      },
                       "name": {
                         "type": "string",
                         "description": "The name of the trigger"
@@ -5472,6 +5485,11 @@
                         "additionalProperties": true,
                         "nullable": true,
                         "description": "Metadata for the trigger"
+                      },
+                      "attributed_revenue": {
+                        "type": "number",
+                        "nullable": true,
+                        "description": "The revenue attributed to the trigger"
                       },
                       "steps": {
                         "type": "array",
@@ -5596,6 +5614,26 @@
                               "required": [
                                 "type",
                                 "duration"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "if"
+                                  ],
+                                  "description": "The step type. Always \"if\" for this step"
+                                },
+                                "filter": {
+                                  "type": "string",
+                                  "description": "The filter to use in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "filter"
                               ]
                             }
                           ]
@@ -5629,25 +5667,9 @@
                   {
                     "type": "object",
                     "properties": {
-                      "trigger": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or not passed"
-                      },
                       "project_defined_event": {
                         "type": "string",
                         "description": "The ID of a project defined event that triggers the trigger"
-                      },
-                      "internal_event_definition": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or not passed"
                       },
                       "name": {
                         "type": "string",
@@ -5663,6 +5685,11 @@
                         "additionalProperties": true,
                         "nullable": true,
                         "description": "Metadata for the trigger"
+                      },
+                      "attributed_revenue": {
+                        "type": "number",
+                        "nullable": true,
+                        "description": "The revenue attributed to the trigger"
                       },
                       "steps": {
                         "type": "array",
@@ -5787,6 +5814,26 @@
                               "required": [
                                 "type",
                                 "duration"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "if"
+                                  ],
+                                  "description": "The step type. Always \"if\" for this step"
+                                },
+                                "filter": {
+                                  "type": "string",
+                                  "description": "The filter to use in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "filter"
                               ]
                             }
                           ]
@@ -5820,39 +5867,14 @@
                   {
                     "type": "object",
                     "properties": {
-                      "trigger": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or not passed"
-                      },
-                      "project_defined_event": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or not passed"
-                      },
                       "internal_event_definition": {
                         "type": "object",
                         "properties": {
                           "type": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "customer_created"
-                                ]
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "customer_joined_segment"
-                                ]
-                              }
+                            "type": "string",
+                            "enum": [
+                              "customer_created",
+                              "customer_joined_segment"
                             ],
                             "description": "The type of internal event definition. Must be either 'customer_created' or 'customer_joined_segment'"
                           },
@@ -5881,6 +5903,11 @@
                         "additionalProperties": true,
                         "nullable": true,
                         "description": "Metadata for the trigger"
+                      },
+                      "attributed_revenue": {
+                        "type": "number",
+                        "nullable": true,
+                        "description": "The revenue attributed to the trigger"
                       },
                       "steps": {
                         "type": "array",
@@ -6005,6 +6032,26 @@
                               "required": [
                                 "type",
                                 "duration"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "if"
+                                  ],
+                                  "description": "The step type. Always \"if\" for this step"
+                                },
+                                "filter": {
+                                  "type": "string",
+                                  "description": "The filter to use in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "filter"
                               ]
                             }
                           ]
@@ -6154,22 +6201,6 @@
                         "type": "string",
                         "description": "The event that triggers the trigger"
                       },
-                      "project_defined_event": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or not passed"
-                      },
-                      "internal_event_definition": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or not passed"
-                      },
                       "name": {
                         "type": "string",
                         "description": "The name of the trigger"
@@ -6196,32 +6227,173 @@
                         "additionalProperties": true,
                         "nullable": true,
                         "description": "Metadata for the trigger"
+                      },
+                      "attributed_revenue": {
+                        "type": "number",
+                        "nullable": true,
+                        "description": "The revenue attributed to the trigger"
+                      },
+                      "steps": {
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "email"
+                                  ],
+                                  "description": "The step type. Always \"email\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
+                                },
+                                "email_template_id": {
+                                  "type": "string",
+                                  "description": "The ID of the email template to use in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "email_template_id"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "email"
+                                  ],
+                                  "description": "The step type. Always \"email\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
+                                },
+                                "subject": {
+                                  "type": "string",
+                                  "description": "The subject of the email template to use at this step"
+                                },
+                                "body": {
+                                  "type": "string",
+                                  "description": "The body of the email template to use at this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "subject",
+                                "body"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "sms"
+                                  ],
+                                  "description": "The step type. Always \"sms\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
+                                },
+                                "sms_template_id": {
+                                  "type": "string",
+                                  "description": "The ID of the SMS template to use in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "sms_template_id"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "sms"
+                                  ],
+                                  "description": "The step type. Always \"sms\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
+                                },
+                                "message": {
+                                  "type": "string",
+                                  "description": "The message to send in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "message"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "wait"
+                                  ],
+                                  "description": "The step type. Always \"wait\" for this step"
+                                },
+                                "duration": {
+                                  "type": "integer",
+                                  "description": "The number of seconds to wait"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "duration"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "if"
+                                  ],
+                                  "description": "The step type. Always \"if\" for this step"
+                                },
+                                "filter": {
+                                  "type": "string",
+                                  "description": "The filter to use in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "filter"
+                              ]
+                            }
+                          ]
+                        },
+                        "description": "The steps of the trigger"
                       }
-                    }
+                    },
+                    "required": [
+                      "trigger"
+                    ]
                   },
                   {
                     "type": "object",
                     "properties": {
-                      "trigger": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or not passed"
-                      },
                       "project_defined_event": {
                         "type": "string",
                         "description": "The ID of a project defined event"
                       },
-                      "internal_event_definition": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or not passed"
-                      },
                       "name": {
                         "type": "string",
                         "description": "The name of the trigger"
@@ -6248,45 +6420,177 @@
                         "additionalProperties": true,
                         "nullable": true,
                         "description": "Metadata for the trigger"
+                      },
+                      "attributed_revenue": {
+                        "type": "number",
+                        "nullable": true,
+                        "description": "The revenue attributed to the trigger"
+                      },
+                      "steps": {
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "email"
+                                  ],
+                                  "description": "The step type. Always \"email\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
+                                },
+                                "email_template_id": {
+                                  "type": "string",
+                                  "description": "The ID of the email template to use in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "email_template_id"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "email"
+                                  ],
+                                  "description": "The step type. Always \"email\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
+                                },
+                                "subject": {
+                                  "type": "string",
+                                  "description": "The subject of the email template to use at this step"
+                                },
+                                "body": {
+                                  "type": "string",
+                                  "description": "The body of the email template to use at this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "subject",
+                                "body"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "sms"
+                                  ],
+                                  "description": "The step type. Always \"sms\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
+                                },
+                                "sms_template_id": {
+                                  "type": "string",
+                                  "description": "The ID of the SMS template to use in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "sms_template_id"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "sms"
+                                  ],
+                                  "description": "The step type. Always \"sms\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
+                                },
+                                "message": {
+                                  "type": "string",
+                                  "description": "The message to send in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "message"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "wait"
+                                  ],
+                                  "description": "The step type. Always \"wait\" for this step"
+                                },
+                                "duration": {
+                                  "type": "integer",
+                                  "description": "The number of seconds to wait"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "duration"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "if"
+                                  ],
+                                  "description": "The step type. Always \"if\" for this step"
+                                },
+                                "filter": {
+                                  "type": "string",
+                                  "description": "The filter to use in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "filter"
+                              ]
+                            }
+                          ]
+                        },
+                        "description": "The steps of the trigger"
                       }
-                    }
+                    },
+                    "required": [
+                      "project_defined_event"
+                    ]
                   },
                   {
                     "type": "object",
                     "properties": {
-                      "trigger": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or not passed"
-                      },
-                      "project_defined_event": {
-                        "type": "string",
-                        "nullable": true,
-                        "enum": [
-                          null
-                        ],
-                        "description": "Must be null or not passed"
-                      },
                       "internal_event_definition": {
                         "type": "object",
                         "properties": {
                           "type": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "customer_created"
-                                ]
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "customer_joined_segment"
-                                ]
-                              }
+                            "type": "string",
+                            "enum": [
+                              "customer_created",
+                              "customer_joined_segment"
                             ],
                             "description": "The type of internal event definition. Must be either 'customer_created' or 'customer_joined_segment'"
                           },
@@ -6327,6 +6631,349 @@
                         "additionalProperties": true,
                         "nullable": true,
                         "description": "Metadata for the trigger"
+                      },
+                      "attributed_revenue": {
+                        "type": "number",
+                        "nullable": true,
+                        "description": "The revenue attributed to the trigger"
+                      },
+                      "steps": {
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "email"
+                                  ],
+                                  "description": "The step type. Always \"email\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
+                                },
+                                "email_template_id": {
+                                  "type": "string",
+                                  "description": "The ID of the email template to use in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "email_template_id"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "email"
+                                  ],
+                                  "description": "The step type. Always \"email\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
+                                },
+                                "subject": {
+                                  "type": "string",
+                                  "description": "The subject of the email template to use at this step"
+                                },
+                                "body": {
+                                  "type": "string",
+                                  "description": "The body of the email template to use at this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "subject",
+                                "body"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "sms"
+                                  ],
+                                  "description": "The step type. Always \"sms\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
+                                },
+                                "sms_template_id": {
+                                  "type": "string",
+                                  "description": "The ID of the SMS template to use in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "sms_template_id"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "sms"
+                                  ],
+                                  "description": "The step type. Always \"sms\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
+                                },
+                                "message": {
+                                  "type": "string",
+                                  "description": "The message to send in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "message"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "wait"
+                                  ],
+                                  "description": "The step type. Always \"wait\" for this step"
+                                },
+                                "duration": {
+                                  "type": "integer",
+                                  "description": "The number of seconds to wait"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "duration"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "if"
+                                  ],
+                                  "description": "The step type. Always \"if\" for this step"
+                                },
+                                "filter": {
+                                  "type": "string",
+                                  "description": "The filter to use in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "filter"
+                              ]
+                            }
+                          ]
+                        },
+                        "description": "The steps of the trigger"
+                      }
+                    },
+                    "required": [
+                      "internal_event_definition"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the trigger"
+                      },
+                      "email_address": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The ID of an email address or project email address. Will be used to send emails as part of this trigger"
+                      },
+                      "phone_number": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The ID of a phone number or project phone number. Will be used to send SMS messages as part of this trigger"
+                      },
+                      "excluded_customers": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "The IDs of the customers excluded by the trigger"
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "additionalProperties": true,
+                        "nullable": true,
+                        "description": "Metadata for the trigger"
+                      },
+                      "attributed_revenue": {
+                        "type": "number",
+                        "nullable": true,
+                        "description": "The revenue attributed to the trigger"
+                      },
+                      "steps": {
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "email"
+                                  ],
+                                  "description": "The step type. Always \"email\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
+                                },
+                                "email_template_id": {
+                                  "type": "string",
+                                  "description": "The ID of the email template to use in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "email_template_id"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "email"
+                                  ],
+                                  "description": "The step type. Always \"email\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"email\" as well"
+                                },
+                                "subject": {
+                                  "type": "string",
+                                  "description": "The subject of the email template to use at this step"
+                                },
+                                "body": {
+                                  "type": "string",
+                                  "description": "The body of the email template to use at this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "subject",
+                                "body"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "sms"
+                                  ],
+                                  "description": "The step type. Always \"sms\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
+                                },
+                                "sms_template_id": {
+                                  "type": "string",
+                                  "description": "The ID of the SMS template to use in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "sms_template_id"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "sms"
+                                  ],
+                                  "description": "The step type. Always \"sms\" for this step"
+                                },
+                                "custom_step_id": {
+                                  "type": "string",
+                                  "description": "Optional. The ID of the custom step to use in this step. The type of the custom step must be \"sms\" as well"
+                                },
+                                "message": {
+                                  "type": "string",
+                                  "description": "The message to send in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "message"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "wait"
+                                  ],
+                                  "description": "The step type. Always \"wait\" for this step"
+                                },
+                                "duration": {
+                                  "type": "integer",
+                                  "description": "The number of seconds to wait"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "duration"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "if"
+                                  ],
+                                  "description": "The step type. Always \"if\" for this step"
+                                },
+                                "filter": {
+                                  "type": "string",
+                                  "description": "The filter to use in this step"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "filter"
+                              ]
+                            }
+                          ]
+                        },
+                        "description": "The steps of the trigger"
                       }
                     }
                   }
@@ -6500,6 +7147,25 @@
             "required": true
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "business": {
+                    "type": "string",
+                    "description": "The business ID"
+                  }
+                },
+                "required": [
+                  "business"
+                ]
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "The created `Trigger` draft",
@@ -6639,6 +7305,26 @@
                             "required": [
                               "type",
                               "duration"
+                            ]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "if"
+                                ],
+                                "description": "The step type. Always \"if\" for this step"
+                              },
+                              "filter": {
+                                "type": "string",
+                                "description": "The filter to use in this step"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "filter"
                             ]
                           }
                         ]
@@ -7024,6 +7710,11 @@
                     "type": "string",
                     "nullable": true,
                     "description": "The scheduled time of the email blast in ISO 8601 format"
+                  },
+                  "email_template": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The ID of the email template to use for the email blast"
                   }
                 }
               }
@@ -7692,81 +8383,6 @@
         "summary": "Retrieve a phone number",
         "tags": [
           "Phone numbers"
-        ]
-      }
-    },
-    "/employees/{id}/email_addresses": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the employee",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A dictionary with an `email_addresses` property which is an array of `ConnectedEmailAddress` objects",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "email_addresses": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/BusinessEmailAddress"
-                      },
-                      "description": "An array of connected email addresses"
-                    }
-                  },
-                  "required": [
-                    "email_addresses"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "summary": "List all connected email addresses for an employee",
-        "tags": [
-          "Email addresses"
-        ]
-      }
-    },
-    "/employees/{id}/email_addresses/connect/gmail": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the employee",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "An HTML page for the OAuth flow to connect the Gmail account",
-            "content": {
-              "text/html": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Connect a Gmail to an employee",
-        "security": [],
-        "tags": [
-          "Email addresses"
         ]
       }
     },
@@ -8531,7 +9147,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "customer_id": {
+                  "customer": {
                     "type": "string",
                     "nullable": true,
                     "description": "The ID of the customer who wrote the review"
@@ -8863,6 +9479,10 @@
                   "submit_cta": {
                     "type": "string",
                     "description": "The text for the submit button"
+                  },
+                  "slug": {
+                    "type": "string",
+                    "description": "The slug for the review embed"
                   }
                 },
                 "required": [
@@ -8870,7 +9490,8 @@
                   "review_text_prompt",
                   "review_text_placeholder",
                   "min_stars_to_prompt_review",
-                  "submit_cta"
+                  "submit_cta",
+                  "slug"
                 ]
               }
             }
@@ -8990,6 +9611,17 @@
         ]
       },
       "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the rewards program",
+            "required": true
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -9079,6 +9711,17 @@
         ]
       },
       "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -9623,15 +10266,36 @@
                   "perks": {
                     "type": "array",
                     "items": {
-                      "type": "string"
+                      "type": "object",
+                      "properties": {
+                        "perk_type": {
+                          "type": "string",
+                          "enum": [
+                            "text"
+                          ],
+                          "description": "The type of perk. Must be 'text'"
+                        },
+                        "description": {
+                          "type": "string",
+                          "description": "The description of the perk"
+                        },
+                        "title": {
+                          "type": "string",
+                          "nullable": true,
+                          "description": "The title of the perk"
+                        }
+                      },
+                      "required": [
+                        "perk_type",
+                        "description"
+                      ]
                     },
                     "description": "Descriptions of all the perks associated with the tier"
                   }
                 },
                 "required": [
                   "name",
-                  "minimum_points",
-                  "perks"
+                  "minimum_points"
                 ]
               }
             }
@@ -9686,9 +10350,31 @@
                   "perks": {
                     "type": "array",
                     "items": {
-                      "type": "string"
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "perk_type": {
+                          "type": "string",
+                          "enum": [
+                            "text"
+                          ],
+                          "description": ""
+                        },
+                        "description": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "title": {
+                          "type": "string",
+                          "nullable": true,
+                          "description": ""
+                        }
+                      }
                     },
-                    "description": "Descriptions of all the perks associated with the tier"
+                    "description": "The resulting perks we want to have as part of the tier"
                   }
                 }
               }
@@ -9710,6 +10396,258 @@
         "summary": "Update a tier",
         "tags": [
           "Tiers"
+        ]
+      }
+    },
+    "/rewards_programs/{id}/promotions": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the rewards program",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A dictionary with a `promotions` property which is an array of `Promotion` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "promotions": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Promotion"
+                      },
+                      "description": "An array of promotions"
+                    }
+                  },
+                  "required": [
+                    "promotions"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List promotions for a rewards program",
+        "tags": [
+          "Promotions"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the rewards program",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the promotion"
+                  },
+                  "start_time": {
+                    "type": "string",
+                    "description": "The start time of the promotion"
+                  },
+                  "end_time": {
+                    "type": "string",
+                    "description": "The end time of the promotion"
+                  },
+                  "points_multiplier": {
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ],
+                    "description": "The points multiplier of the promotion"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "The description of the promotion"
+                  },
+                  "image": {
+                    "description": "The cover image of the promotion used to display on the rewards program"
+                  }
+                },
+                "required": [
+                  "name",
+                  "start_time",
+                  "end_time",
+                  "points_multiplier",
+                  "description"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created `Promotion` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Promotion"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a promotion",
+        "tags": [
+          "Promotions"
+        ]
+      }
+    },
+    "/promotions/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the promotion",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The retrieved `Promotion` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Promotion"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Show a promotion",
+        "tags": [
+          "Promotions"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the promotion",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the promotion"
+                  },
+                  "start_time": {
+                    "type": "string",
+                    "description": "The start time of the promotion"
+                  },
+                  "end_time": {
+                    "type": "string",
+                    "description": "The end time of the promotion"
+                  },
+                  "points_multiplier": {
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ],
+                    "description": "The points multiplier of the promotion"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "The description of the promotion"
+                  },
+                  "image": {
+                    "description": "The cover image of the promotion used to display on the rewards program"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated `Promotion` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Promotion"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update a promotion",
+        "tags": [
+          "Promotions"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the promotion",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The deleted `Promotion` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Promotion"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Delete a promotion",
+        "tags": [
+          "Promotions"
         ]
       }
     },
@@ -9739,6 +10677,37 @@
           }
         },
         "summary": "Show a customer's rewards profile",
+        "tags": [
+          "Rewards profiles"
+        ]
+      }
+    },
+    "/businesses/{id}/rewards_profiles.csv": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The CSV file of rewards profiles",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Download a CSV of all rewards profiles",
         "tags": [
           "Rewards profiles"
         ]
@@ -10039,6 +11008,46 @@
         ]
       }
     },
+    "/businesses/{id}/yelp_oauth_url": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A dictionary with a `url` property that contains the Yelp OAuth URL associated with the business",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "description": "The Yelp OAuth URL associated with the business"
+                    }
+                  },
+                  "required": [
+                    "url"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get the Yelp OAuth URL for a business",
+        "tags": [
+          "Businesses"
+        ]
+      }
+    },
     "/businesses/{id}/connected_accounts": {
       "get": {
         "parameters": [
@@ -10083,6 +11092,275 @@
           "Businesses"
         ]
       }
+    },
+    "/businesses/{business_id}/feature_flags/statuses": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "business_id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "feature_flag_names",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "The names of the feature flags to check",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A dictionary with a `feature_flags` property which is an array of `FeatureFlag` objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "feature_flags": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/FeatureFlag"
+                      },
+                      "description": "An array of `FeatureFlag` objects"
+                    }
+                  },
+                  "required": [
+                    "feature_flags"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get the status of multiple feature flags for a business",
+        "tags": [
+          "Feature flags"
+        ]
+      }
+    },
+    "/businesses/{business_id}/feature_flags/{feature_flag_name}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "business_id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "feature_flag_name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The name of the feature flag",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A `FeatureFlag` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeatureFlag"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Check if a feature flag is enabled for a business",
+        "tags": [
+          "Feature flags"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "business_id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "feature_flag_name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The name of the feature flag",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "description": "Whether the feature flag is enabled"
+                  }
+                },
+                "required": [
+                  "enabled"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created or updated `FeatureFlagOverride` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeatureFlag"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create or update a feature flag override for a business",
+        "tags": [
+          "Feature flags"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "business_id",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "feature_flag_name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The name of the feature flag",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The deleted `FeatureFlagOverride` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeatureFlag"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Destroy a feature flag override for a business",
+        "tags": [
+          "Feature flags"
+        ]
+      }
+    },
+    "/project_feature_flags/{feature_flag_name}": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "feature_flag_name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The name of the feature flag",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "description": "Whether the feature flag is enabled"
+                  }
+                },
+                "required": [
+                  "enabled"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created or updated `FeatureFlagOverride` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeatureFlag"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create or update a feature flag override for a project",
+        "tags": [
+          "Feature flags"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "feature_flag_name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The name of the feature flag",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The deleted `FeatureFlagOverride` object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeatureFlag"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Destroy a feature flag override for a project",
+        "tags": [
+          "Feature flags"
+        ]
+      }
     }
   },
   "security": [
@@ -10098,6 +11376,19 @@
       }
     },
     "schemas": {
+      "AITask": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the task"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "title": "The AI Task object"
+      },
       "Business": {
         "type": "object",
         "properties": {
@@ -10115,6 +11406,8 @@
             "description": "The name of the business"
           },
           "metadata": {
+            "type": "object",
+            "additionalProperties": true,
             "description": "Arbitrary metadata associated with this business"
           }
         },
@@ -10155,6 +11448,14 @@
           "id": {
             "type": "string",
             "description": "The ID of the campaign"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "The time when the campaign was created in ISO 8601 format"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "The time when the campaign was last updated in ISO 8601 format"
           },
           "name": {
             "type": "string",
@@ -10306,6 +11607,26 @@
                     "type",
                     "duration"
                   ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "if"
+                      ],
+                      "description": "The step type. Always \"if\" for this step"
+                    },
+                    "filter": {
+                      "type": "string",
+                      "description": "The filter to use in this step"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "filter"
+                  ]
                 }
               ]
             },
@@ -10323,7 +11644,14 @@
           },
           "status": {
             "type": "string",
-            "description": "The status of the campaign. One of \"draft\", \"scheduled\", \"started\", or \"stopped\""
+            "enum": [
+              "draft",
+              "scheduled",
+              "started",
+              "stopped",
+              "finished"
+            ],
+            "description": "The status of the campaign."
           },
           "scheduled_at": {
             "type": "string",
@@ -10335,23 +11663,85 @@
             "properties": {
               "total_customers_enrolled": {
                 "type": "integer",
-                "description": "The number of customers enrolled in the campaign"
+                "description": "The number of customers enrolled in the campaign or trigger"
               },
               "total_customers_started": {
                 "type": "integer",
-                "description": "The number of customers who have started receiving messages in the campaign"
+                "description": "The number of customers who have started receiving messages"
               },
               "total_customers_finished": {
                 "type": "integer",
-                "description": "The number of customers who have finished receiving all the messages in the campaign"
+                "description": "The number of customers who have finished receiving all the messages"
+              },
+              "emails": {
+                "type": "object",
+                "properties": {
+                  "sent": {
+                    "type": "integer",
+                    "description": "The number of emails sent"
+                  },
+                  "delivered": {
+                    "type": "integer",
+                    "description": "The number of emails delivered"
+                  },
+                  "opened": {
+                    "type": "integer",
+                    "description": "The number of emails opened"
+                  },
+                  "soft_bounced": {
+                    "type": "integer",
+                    "description": "The number of emails that soft bounced"
+                  },
+                  "hard_bounced": {
+                    "type": "integer",
+                    "description": "The number of emails that hard bounced"
+                  },
+                  "clicked": {
+                    "type": "integer",
+                    "nullable": true,
+                    "description": "The number of emails clicked (null if tracking not enabled)"
+                  }
+                },
+                "required": [
+                  "sent",
+                  "delivered",
+                  "opened",
+                  "soft_bounced",
+                  "hard_bounced",
+                  "clicked"
+                ],
+                "description": "Email statistics including sent, delivered, opened, bounced, and clicked counts"
+              },
+              "custom_steps": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "custom_step": {
+                      "type": "string",
+                      "description": "The ID of the custom step"
+                    },
+                    "sent": {
+                      "type": "integer",
+                      "description": "The number of times this custom step was sent"
+                    }
+                  },
+                  "required": [
+                    "custom_step",
+                    "sent"
+                  ]
+                },
+                "description": "Statistics for custom steps"
               }
             },
             "required": [
               "total_customers_enrolled",
               "total_customers_started",
-              "total_customers_finished"
+              "total_customers_finished",
+              "emails",
+              "custom_steps"
             ],
-            "description": "The statistics of the campaign. Includes information about the number of customers enrolled and their status in the campaign"
+            "description": "The statistics of the campaign. Includes information about customers enrolled, email statistics, and custom step statistics"
           },
           "consumed_message_segments": {
             "type": "object",
@@ -10398,10 +11788,17 @@
               "email"
             ],
             "description": "The number of message segments estimated to be used by the campaign"
+          },
+          "attributed_revenue": {
+            "type": "number",
+            "nullable": true,
+            "description": "The revenue attributed to the campaign"
           }
         },
         "required": [
           "id",
+          "created_at",
+          "updated_at",
           "name",
           "enrolled_customers",
           "segment",
@@ -10412,7 +11809,8 @@
           "scheduled_at",
           "statistics",
           "consumed_message_segments",
-          "estimated_message_segments"
+          "estimated_message_segments",
+          "attributed_revenue"
         ],
         "title": "The Campaign object"
       },
@@ -10438,42 +11836,6 @@
           "expires_at"
         ],
         "title": "The Campaign Embed object"
-      },
-      "CampaignExecution": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The ID of the campaign execution"
-          },
-          "customer": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/Customer"
-              }
-            ],
-            "description": "The customer executing through the campaign"
-          },
-          "scheduled_at": {
-            "type": "string",
-            "nullable": true,
-            "description": "The scheduled time for the next step fo the campaign execution"
-          },
-          "step_count": {
-            "type": "integer",
-            "description": "The index of the next step of the campaign to execute"
-          }
-        },
-        "required": [
-          "id",
-          "customer",
-          "scheduled_at",
-          "step_count"
-        ],
-        "title": "The Campaign Execution object"
       },
       "CampaignTemplate": {
         "type": "object",
@@ -10526,6 +11888,8 @@
             "description": "The phone number of the customer"
           },
           "metadata": {
+            "type": "object",
+            "additionalProperties": true,
             "description": "The metadata associated with this customer"
           }
         },
@@ -10764,6 +12128,17 @@
             "type": "string",
             "description": "The subject of the email template. Variables are supported via `{{ variableName }}`"
           },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "plaintext",
+              "html",
+              "unlayer",
+              "old_editor",
+              "editor"
+            ],
+            "description": "The kind of the email template"
+          },
           "body": {
             "type": "string",
             "nullable": true,
@@ -10804,6 +12179,7 @@
           "id",
           "name",
           "subject",
+          "kind",
           "body",
           "template_json",
           "template_html",
@@ -10917,6 +12293,60 @@
         ],
         "title": "The Event object"
       },
+      "Execution": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the execution"
+          },
+          "customer": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/Customer"
+              }
+            ],
+            "description": "The customer executing through the campaign"
+          },
+          "scheduled_at": {
+            "type": "string",
+            "nullable": true,
+            "description": "The scheduled time for the next step to execute"
+          },
+          "step_count": {
+            "type": "integer",
+            "description": "The index of the next step to execute"
+          }
+        },
+        "required": [
+          "id",
+          "customer",
+          "scheduled_at",
+          "step_count"
+        ],
+        "title": "The Execution object"
+      },
+      "FeatureFlag": {
+        "type": "object",
+        "properties": {
+          "feature_flag_name": {
+            "type": "string",
+            "description": "The name of the feature flag"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the feature flag is enabled"
+          }
+        },
+        "required": [
+          "feature_flag_name",
+          "enabled"
+        ],
+        "title": "The Feature Flag object"
+      },
       "FilterDefinition": {
         "type": "object",
         "properties": {
@@ -10991,6 +12421,30 @@
           "url"
         ],
         "title": "The Flow object"
+      },
+      "ImageUpload": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the image upload"
+          },
+          "url": {
+            "type": "string",
+            "description": "The stable URL of the image"
+          },
+          "alt": {
+            "type": "string",
+            "nullable": true,
+            "description": "The alt text of the image"
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "alt"
+        ],
+        "title": "The ImageUpload object"
       },
       "Location": {
         "type": "object",
@@ -11112,10 +12566,15 @@
           "new_email_editor_ff": {
             "type": "boolean",
             "description": "Whether the new email editor is enabled"
+          },
+          "unlayer_email_editor_ff": {
+            "type": "boolean",
+            "description": "Whether the unlayer email editor is enabled"
           }
         },
         "required": [
-          "new_email_editor_ff"
+          "new_email_editor_ff",
+          "unlayer_email_editor_ff"
         ],
         "title": "The Project object"
       },
@@ -11242,6 +12701,50 @@
         ],
         "title": "The Project Phone Number object"
       },
+      "Promotion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the promotion"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the promotion"
+          },
+          "start_time": {
+            "type": "string",
+            "description": "Start time of the promotion"
+          },
+          "end_time": {
+            "type": "string",
+            "description": "End time of the promotion"
+          },
+          "points_multiplier": {
+            "type": "integer",
+            "description": "Multiplier applied to earned points"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the promotion"
+          },
+          "image_url": {
+            "type": "string",
+            "nullable": true,
+            "description": "URL of the promotion image"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "start_time",
+          "end_time",
+          "points_multiplier",
+          "description",
+          "image_url"
+        ],
+        "title": "The Promotion object"
+      },
       "Review": {
         "type": "object",
         "properties": {
@@ -11258,25 +12761,11 @@
             "description": "The date and time the review was last updated"
           },
           "source": {
-            "anyOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "internal"
-                ]
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "google"
-                ]
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "yelp"
-                ]
-              }
+            "type": "string",
+            "enum": [
+              "internal",
+              "google",
+              "yelp"
             ],
             "description": "The source of the review"
           },
@@ -11635,6 +13124,14 @@
             "type": "string",
             "description": "The ID of the trigger"
           },
+          "created_at": {
+            "type": "string",
+            "description": "The time when the trigger was created in ISO 8601 format"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "The time when the trigger was last updated in ISO 8601 format"
+          },
           "name": {
             "type": "string",
             "description": "The name of the trigger"
@@ -11767,31 +13264,37 @@
                     "type",
                     "duration"
                   ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "if"
+                      ],
+                      "description": "The step type. Always \"if\" for this step"
+                    },
+                    "filter": {
+                      "type": "string",
+                      "description": "The filter to use in this step"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "filter"
+                  ]
                 }
               ]
             },
             "description": "The steps of the trigger"
           },
           "status": {
-            "anyOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "draft"
-                ]
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "active"
-                ]
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "inactive"
-                ]
-              }
+            "type": "string",
+            "enum": [
+              "draft",
+              "active",
+              "inactive"
             ],
             "description": "The status of the trigger. One of \"draft\", \"active\", or \"inactive\""
           },
@@ -11809,17 +13312,111 @@
             "type": "string",
             "nullable": true,
             "description": "The ID of the phone number or project phone number associated with the trigger. Will be used to send SMS messages as part of this trigger"
+          },
+          "attributed_revenue": {
+            "type": "number",
+            "nullable": true,
+            "description": "The revenue attributed to the trigger"
+          },
+          "statistics": {
+            "type": "object",
+            "properties": {
+              "total_customers_enrolled": {
+                "type": "integer",
+                "description": "The number of customers enrolled in the campaign or trigger"
+              },
+              "total_customers_started": {
+                "type": "integer",
+                "description": "The number of customers who have started receiving messages"
+              },
+              "total_customers_finished": {
+                "type": "integer",
+                "description": "The number of customers who have finished receiving all the messages"
+              },
+              "emails": {
+                "type": "object",
+                "properties": {
+                  "sent": {
+                    "type": "integer",
+                    "description": "The number of emails sent"
+                  },
+                  "delivered": {
+                    "type": "integer",
+                    "description": "The number of emails delivered"
+                  },
+                  "opened": {
+                    "type": "integer",
+                    "description": "The number of emails opened"
+                  },
+                  "soft_bounced": {
+                    "type": "integer",
+                    "description": "The number of emails that soft bounced"
+                  },
+                  "hard_bounced": {
+                    "type": "integer",
+                    "description": "The number of emails that hard bounced"
+                  },
+                  "clicked": {
+                    "type": "integer",
+                    "nullable": true,
+                    "description": "The number of emails clicked (null if tracking not enabled)"
+                  }
+                },
+                "required": [
+                  "sent",
+                  "delivered",
+                  "opened",
+                  "soft_bounced",
+                  "hard_bounced",
+                  "clicked"
+                ],
+                "description": "Email statistics including sent, delivered, opened, bounced, and clicked counts"
+              },
+              "custom_steps": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "custom_step": {
+                      "type": "string",
+                      "description": "The ID of the custom step"
+                    },
+                    "sent": {
+                      "type": "integer",
+                      "description": "The number of times this custom step was sent"
+                    }
+                  },
+                  "required": [
+                    "custom_step",
+                    "sent"
+                  ]
+                },
+                "description": "Statistics for custom steps"
+              }
+            },
+            "required": [
+              "total_customers_enrolled",
+              "total_customers_started",
+              "total_customers_finished",
+              "emails",
+              "custom_steps"
+            ],
+            "description": "The statistics of the trigger. Includes information about customers enrolled, email statistics, and custom step statistics"
           }
         },
         "required": [
           "id",
+          "created_at",
+          "updated_at",
           "name",
           "trigger",
           "steps",
           "status",
           "filter",
           "email_address",
-          "phone_number"
+          "phone_number",
+          "attributed_revenue",
+          "statistics"
         ],
         "title": "The Trigger object"
       },
